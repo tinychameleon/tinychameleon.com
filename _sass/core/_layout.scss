@@ -1,0 +1,30 @@
+main, footer {
+    padding: 0 4vw;
+
+    @include for-tablet-portrait-up {
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0;
+        width: 90%;
+    }
+
+    @include for-tablet-landscape-up {
+        width: 66%;
+    }
+}
+
+footer {
+    .content-metadata {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        @include for-tablet-landscape-up {
+            flex-direction: row;
+
+            > div {
+                width: 48%;
+            }
+        }
+    }
+}

@@ -47,3 +47,11 @@ The current required configuration values are:
 - `AZ_RESOURCE_GROUP` &mdash; The Azure resource group name;
 - `AZ_STORAGE_ACCOUNT` &mdash; The Azure storage account name;
 - `AZ_DEPLOYMENT_NAME` &mdash; The Azure resource group deployment name
+
+
+## Licensing
+
+Website content and content source files are
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) licensed.
+Supporting code to build, develop, and deploy the website is
+[BSD 3-Clause](./LICENSE) licensed.

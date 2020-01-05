@@ -1,5 +1,7 @@
-// The logo stylings purposefully avoid relative units due
-// to the text alignment with the SVG imagery.
+// Logo styles avoid relative units to align with the SVG piece.
+
+$logo-font-family: Verdana;
+$logo-font-size: 24px;
 
 .logo {
     display: flex;

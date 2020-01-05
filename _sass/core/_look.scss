@@ -1,0 +1,15 @@
+a {
+    color: $primary-accent-colour;
+
+    &:hover {
+        color: $secondary-accent-colour;
+    }
+}
+
+blockquote, figure {
+    border-left: 0.2rem solid $primary-accent-colour;
+}
+
+blockquote, figure, p > code {
+    border-radius: 0.2rem;
+}

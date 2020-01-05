@@ -1,13 +1,11 @@
-@import "variables/colours";
-@import "variables/typography";
-@import "logo";
+@import "core/base";
+@import "core/rhythm";
+@import "core/layout";
+@import "core/look";
 
-html, body { height: 100%; }
+@import "components/logo";
+@import "components/site_header";
+@import "components/spacer";
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    background-color: $light-background;
-}
+@import "pages/home";
+@import "pages/error_not_found";

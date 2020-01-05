@@ -8,6 +8,10 @@
         <link rel="stylesheet" media="screen" href="/assets/css/styles.css">
     </head>
     <body>
-        {{ content }}
+        {% include global_header.html %}
+        <main{% if page.kind %} class="{{ page.kind }}"{% endif %}>
+            {{ content }}
+        </main>
+        {% include global_footer.html %}
     </body>
 </html>

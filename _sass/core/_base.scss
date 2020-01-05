@@ -1,0 +1,36 @@
+/******************************
+ * Colours                    *
+ ******************************/
+
+$light-background: #fbfbfb;
+$light-figure-background: darken($light-background, 4%);
+$light-foreground: #444;
+$light-accent-foreground: #747474;
+$primary-accent-colour: #369904;
+$secondary-accent-colour: #297303;
+$tertiary-accent-colour: #867643;
+
+
+/******************************
+ * Fonts                      *
+ ******************************/
+
+$root-font-families: Verdana, Helvetica, sans-serif;
+$code-font-families: Consolas, Menlo, 'Courier New', monospace;
+
+
+/******************************
+ * Responsive Sizing          *
+ ******************************/
+
+@mixin for-tablet-portrait-up {
+    @media (min-width: 600px) {
+	    @content;
+    }
+}
+
+@mixin for-tablet-landscape-up {
+    @media (min-width: 900px) {
+        @content;
+    }
+}
