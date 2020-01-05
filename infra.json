@@ -1,18 +1,17 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "0.0.0.4",
+    "contentVersion": "0.0.0.6",
     "parameters": {
-        "storagePrefix": {
+        "storageAccountName": {
             "type": "string",
-            "minLength": 1,
-            "maxLength": 11
+            "minLength": 4,
+            "maxLength": 24
         },
         "cidr": {
             "type": "string"
         }
     },
     "variables": {
-        "storageAccountName": "[concat(parameters('storagePrefix'), uniqueString(resourceGroup().id))]",
         "blobServiceName": "default",
         "containerName": "$web"
     },
@@ -20,7 +19,7 @@
         {
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-04-01",
-            "name": "[variables('storageAccountName')]",
+            "name": "[parameters('storageAccountName')]",
             "location": "[resourceGroup().location]",
             "kind": "StorageV2",
             "sku": {
@@ -58,7 +57,7 @@
                     "apiVersion": "2019-04-01",
                     "name": "[variables('blobServiceName')]",
                     "dependsOn": [
-                        "[variables('storageAccountName')]"
+                        "[parameters('storageAccountName')]"
                     ],
                     "resources": [
                         {
