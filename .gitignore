@@ -1,0 +1,5 @@
+.jekyll-cache/
+.tmp/
+_site/
+.jekyll-metadata
+.ruby-version

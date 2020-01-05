@@ -1,0 +1,22 @@
+# General website settings
+
+title: tinychameleon
+url: https://tinychameleon.com
+permalink: pretty
+timezone: America/Vancouver
+date_format: "%B %e, %Y"
+title_suffix: Stephan Tarulli
+
+
+# Build command settings
+
+incremental: true
+strict_front_matter: true
+
+exclude:
+  - .gitignore
+  - .ruby-version
+  - Gemfile
+  - Gemfile.lock
+  - Makefile
+  - README.md

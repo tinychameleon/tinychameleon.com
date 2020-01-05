@@ -1,0 +1,11 @@
+# Build command settings
+
+watch: true
+show_drafts: true
+future: true
+
+
+# Server command settings
+
+host: 0.0.0.0
+livereload: true

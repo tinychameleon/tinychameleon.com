@@ -1,0 +1,13 @@
+@import "variables/colours";
+@import "variables/typography";
+@import "logo";
+
+html, body { height: 100%; }
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: $light-background;
+}
