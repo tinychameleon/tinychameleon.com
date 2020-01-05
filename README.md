@@ -43,6 +43,7 @@ Builds can be run manually via `make build` and removed via `make clean`.
 There are a few required configuration values, which depend on what recipes
 are being run. The Makefile will error if a recipe requires a missing value.
 
+The current required configuration values are:
 - `AZ_RESOURCE_GROUP` &mdash; The Azure resource group name;
 - `AZ_STORAGE_ACCOUNT` &mdash; The Azure storage account name;
 - `AZ_DEPLOYMENT_NAME` &mdash; The Azure resource group deployment name
