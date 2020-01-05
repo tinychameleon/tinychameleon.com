@@ -1,0 +1,3 @@
+.[]
+| select(.properties.contentSettings.cacheControl != 86400)
+.name

@@ -11,15 +11,15 @@ SHELL := bash
 ## Required parameters
 
 ifndef AZ_RESOURCE_GROUP
-	AZ_RESOURCE_GROUP = $(error The AZ_RESOURCE_GROUP variable must be defined)
+  AZ_RESOURCE_GROUP = $(error The AZ_RESOURCE_GROUP variable must be defined)
 endif
 
 ifndef AZ_STORAGE_ACCOUNT
-	AZ_STORAGE_ACCOUNT = $(error The AZ_STORAGE_ACCOUNT variable must be defined)
+  AZ_STORAGE_ACCOUNT = $(error The AZ_STORAGE_ACCOUNT variable must be defined)
 endif
 
 ifndef AZ_DEPLOYMENT_NAME
-	AZ_DEPLOYMENT_NAME = $(error The AZ_DEPLOYMENT_NAME variable must be defined)
+  AZ_DEPLOYMENT_NAME = $(error The AZ_DEPLOYMENT_NAME variable must be defined)
 endif
 
 
@@ -28,9 +28,9 @@ endif
 RUBY_VERSION ?= 2.6.5
 BUNDLER_VERSION ?= 2.0.2
 JEKYLL ?= bundle exec jekyll
+MAX_AGE ?= 86400
 
-STORAGE_ACCOUNT_PREFIX := website
-RESOURCE_GROUP_PREFIX := tinychameleon-website
+CACHE_HEADERS := public,max-age=$(MAX_AGE)
 
 
 ## External target definitions
@@ -39,18 +39,20 @@ serve: deps
 	$(JEKYLL) server --config _config/base.yml,_config/dev.yml
 .PHONY: serve
 
-build: deps clean
-	JEKYLL_ENV=production $(JEKYLL) build --config _config/base.yml,_config/prod.yml
-.PHONY: build
+publish: deps infra build .tmp/site_published
+.PHONY: publish
 
 infra: deps .tmp/infra_deployed
 .PHONY: infra
+
+build: deps .tmp/production_build
+.PHONY: build
 
 deps: .tmp/dependencies_installed
 .PHONY: deps
 
 clean:
-	rm -rf _site
+	rm -rf _site .tmp/production_build
 .PHONY: clean
 
 
@@ -58,6 +60,19 @@ clean:
 
 .tmp:
 	mkdir -p .tmp
+
+.tmp/site_published: .tmp/production_build | .tmp
+	az storage blob sync -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -s _site
+	az storage blob list -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" > .tmp/blobdata
+	jq -rf cache.filter .tmp/blobdata | xargs -t -P4 -I% \
+		az storage blob update -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -n '%' \
+			--content-cache-control '$(CACHE_HEADERS)'
+	touch $@
+
+.tmp/production_build: $(shell find _posts -type f -name '*.md') | .tmp
+	rm -rf _site
+	JEKYLL_ENV=production $(JEKYLL) build --config _config/base.yml,_config/prod.yml
+	touch $@
 
 .tmp/infra_deployed: .tmp/az_resource_group .tmp/az_infra_json | .tmp
 	touch $@

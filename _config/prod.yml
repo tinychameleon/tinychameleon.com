@@ -1,0 +1,4 @@
+# Build command settings
+
+sass:
+  style: compressed
