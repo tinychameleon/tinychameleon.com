@@ -34,11 +34,11 @@ h2, h3, h4 {
 }
 
 h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
 }
 
 h2 {
-    font-size: 1.9rem;
+    font-size: 1.8rem;
 }
 
 h3 {
@@ -46,7 +46,7 @@ h3 {
 }
 
 h4 {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 p, ul, ol, figure, blockquote {
@@ -76,12 +76,16 @@ blockquote > p {
     font-style: italic;
 }
 
-.post-date {
+.post-metadata {
     color: $light-accent-foreground;
 }
 
+.post-details h3 {
+    margin: 0;
+}
+
 footer {
-    margin: 1rem 0 0 0;
+    margin: 3rem 0 0 0;
 
     h5 {
         margin: 0.3rem 0;

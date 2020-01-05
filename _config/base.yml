@@ -2,7 +2,7 @@
 
 title: tinychameleon
 url: https://tinychameleon.com
-permalink: pretty
+permalink: /:title/
 timezone: America/Vancouver
 date_format: "%B %e, %Y"
 title_suffix: Stephan Tarulli

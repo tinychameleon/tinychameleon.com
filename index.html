@@ -1,17 +1,24 @@
 ---
 layout: default
-title: All Posts
+title: Hello There
 kind: home
 ---
 
 <h1>{{ page.title }}</h1>
+<p>This is my personal site containing thoughts, ideas, and projects;
+    all of these may be entirely useless. Still, you may enjoy starting with
+    one of these tags:
+    {% for tag in site.tags -%}
+    <a href="/tag/{{ tag[0] }}">{{ tag[0] }}</a>
+        {%- if forloop.index < forloop.length -%}, {% endif -%}
+    {% endfor %}.
+</p>
+<h2>Recent Writing</h2>
 <ul class="post-listing">
     {% for p in site.posts %}
     <li class="post-details">
-        <h2><a href="{{ p.url }}">{{ p.title }}</a></h2>
-        <p class="post-date">{{ p.date | date: site.date_format }}</p>
-        {{ p.excerpt }}
-        {% unless forloop.index == forloop.length %}<div class="spacer"></div>{% endunless %}
+        <h3><a href="{{ p.url }}">{{ p.title }}</a></h3>
+        {% include post_metadata.html post=p %}
     </li>
     {% endfor %}
 </ul>

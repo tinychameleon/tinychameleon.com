@@ -1,0 +1,14 @@
+---
+layout: default
+kind: posts-by-tag
+---
+
+<h1>{{ page.title }}</h1>
+<ul class="post-listing">
+    {% for p in page.posts %}
+    <li class="post-details">
+        <h3><a href="{{ p.url }}">{{ p.title }}</a></h3>
+        {% include post_metadata.html post=p %}
+    </li>
+    {% endfor %}
+</ul>

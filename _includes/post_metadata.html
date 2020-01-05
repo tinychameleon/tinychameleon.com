@@ -1,0 +1,7 @@
+<p class="post-metadata">
+    <span class="post-date">{{ include.post.date | date: site.date_format }}</span>
+    &middot;
+    {%- for entry in include.post.tag_data %}
+    <a href="{{ entry.url }}">{{ entry.tag }}</a> {% if forloop.index != forloop.length %}/{% endif %}
+    {%- endfor %}
+</p>
