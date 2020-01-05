@@ -7,5 +7,4 @@ future: true
 
 # Server command settings
 
-host: 0.0.0.0
 livereload: true

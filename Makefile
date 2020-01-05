@@ -23,13 +23,20 @@ ifndef AZ_DEPLOYMENT_NAME
 endif
 
 
-## Target parameters
+## Executable parameters
 
 RUBY_VERSION ?= 2.6.5
 BUNDLER_VERSION ?= 2.0.2
 JEKYLL ?= bundle exec jekyll
-MAX_AGE ?= 86400
+BREW_BIN ?= $(shell brew --prefix)/bin
+AZ ?= $(BREW_BIN)/az
+JQ ?= $(BREW_BIN)/jq
+RBENV ?= $(BREW_BIN)/rbenv
 
+
+## Target parameters
+
+MAX_AGE ?= 86400
 CACHE_HEADERS := public,max-age=$(MAX_AGE)
 
 
@@ -39,75 +46,75 @@ serve: deps
 	$(JEKYLL) server --config _config/base.yml,_config/dev.yml
 .PHONY: serve
 
-publish: deps infra build .tmp/site_published
+publish: deps infra build _tmp/site_published
 .PHONY: publish
 
-infra: deps .tmp/infra_deployed
+infra: deps _tmp/infra_deployed
 .PHONY: infra
 
-build: deps .tmp/production_build
+build: deps _tmp/production_build
 .PHONY: build
 
-deps: .tmp/dependencies_installed
+deps: _tmp/dependencies_installed
 .PHONY: deps
 
 clean:
-	rm -rf _site .tmp/production_build
+	rm -rf _site _tmp/production_build
 .PHONY: clean
 
 
 ## Internal target definitions
 
-.tmp:
-	mkdir -p .tmp
+_tmp:
+	mkdir -p _tmp
 
-.tmp/site_published: .tmp/production_build | .tmp
-	az storage blob sync -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -s _site
-	az storage blob list -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" > .tmp/blobdata
-	jq -rf cache.filter .tmp/blobdata | xargs -t -P4 -I% \
-		az storage blob update -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -n '%' \
+_tmp/site_published: _tmp/production_build | _tmp
+	$(AZ) storage blob sync -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -s _site
+	$(AZ) storage blob list -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" > _tmp/blobdata
+	$(JQ) -rf cache.filter _tmp/blobdata | xargs -t -P4 -I% \
+		$(AZ) storage blob update -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -n '%' \
 			--content-cache-control '$(CACHE_HEADERS)'
 	touch $@
 
-.tmp/production_build: $(shell find _posts -type f -name '*.md') | .tmp
+_tmp/production_build: $(shell find _posts -type f -name '*.md') | _tmp
 	rm -rf _site
 	JEKYLL_ENV=production $(JEKYLL) build --config _config/base.yml,_config/prod.yml
 	touch $@
 
-.tmp/infra_deployed: .tmp/az_resource_group .tmp/az_infra_json | .tmp
+_tmp/infra_deployed: _tmp/az_resource_group _tmp/az_infra_json | _tmp
 	touch $@
 
-.tmp/az_resource_group: | .tmp
-	az group create -l westus2 -n "$(AZ_RESOURCE_GROUP)"
+_tmp/az_resource_group: | _tmp
+	$(AZ) group create -l westus2 -n "$(AZ_RESOURCE_GROUP)"
 	touch $@
 
-.tmp/az_infra_json: infra.json .tmp/myip | .tmp
-	az group deployment create -g "$(AZ_RESOURCE_GROUP)" -n "$(AZ_DEPLOYMENT_NAME)" \
+_tmp/az_infra_json: infra.json _tmp/myip | _tmp
+	$(AZ) group deployment create -g "$(AZ_RESOURCE_GROUP)" -n "$(AZ_DEPLOYMENT_NAME)" \
 		--template-file infra.json --parameters \
-			cidr="$$(cat .tmp/myip)" \
+			cidr="$$(cat _tmp/myip)" \
 			storageAccountName="$(AZ_STORAGE_ACCOUNT)"
 	touch $@
 
-.tmp/myip: | .tmp
+_tmp/myip: | _tmp
 	dig @resolver1.opendns.com ANY myip.opendns.com +short -4 > $@
 
-/usr/local/bin/az:
+$(AZ):
 	brew install azure-cli
 
-/usr/local/bin/jq:
+$(JQ):
 	brew install jq
 
-/usr/local/bin/rbenv:
+$(RBENV):
 	brew install rbenv
 
-.ruby-version: /usr/local/bin/rbenv
+.ruby-version: $(RBENV)
 	rbenv install -s $(RUBY_VERSION)
 	rbenv local $(RUBY_VERSION)
 
-.tmp/bundler_installed: .ruby-version | .tmp
+_tmp/bundler_installed: .ruby-version | _tmp
 	gem install bundler:$(BUNDLER_VERSION)
 	touch $@
 
-.tmp/dependencies_installed: .tmp/bundler_installed /usr/local/bin/az /usr/local/bin/jq Gemfile | .tmp
+_tmp/dependencies_installed: Gemfile $(AZ) $(JQ) $(RBENV) _tmp/bundler_installed | _tmp
 	bundle install
 	touch $@
