@@ -4,6 +4,10 @@ a {
     &:hover {
         color: $secondary-accent-colour;
     }
+
+    &.tag:before {
+        content: '#';
+    }
 }
 
 blockquote, figure {

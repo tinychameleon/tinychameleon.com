@@ -9,7 +9,7 @@ kind: home
     all of these may be entirely useless. Still, you may enjoy starting with
     one of these tags:
     {% for tag in site.tags -%}
-    <a href="/tag/{{ tag[0] }}">{{ tag[0] }}</a>
+    <a class="tag" href="/tag/{{ tag[0] }}">{{ tag[0] }}</a>
         {%- if forloop.index < forloop.length -%}, {% endif -%}
     {% endfor %}.
 </p>
