@@ -30,6 +30,7 @@ BUNDLER_VERSION ?= 2.0.2
 JEKYLL ?= bundle exec jekyll
 BREW_BIN ?= $(shell brew --prefix)/bin
 AZ ?= $(BREW_BIN)/az
+DIRENV ?= $(BREW_BIN)/direnv
 JQ ?= $(BREW_BIN)/jq
 RBENV ?= $(BREW_BIN)/rbenv
 
@@ -46,7 +47,7 @@ serve: deps
 	$(JEKYLL) server --config _config/base.yml,_config/dev.yml
 .PHONY: serve
 
-publish: deps infra build _tmp/site_published
+deploy: deps infra build _tmp/site_published
 .PHONY: publish
 
 infra: deps _tmp/infra_deployed
@@ -101,6 +102,9 @@ _tmp/myip: | _tmp
 $(AZ):
 	brew install azure-cli
 
+$(DIRENV):
+	brew install direnv
+
 $(JQ):
 	brew install jq
 
@@ -115,6 +119,6 @@ _tmp/bundler_installed: .ruby-version | _tmp
 	gem install bundler:$(BUNDLER_VERSION)
 	touch $@
 
-_tmp/dependencies_installed: Gemfile $(AZ) $(JQ) $(RBENV) _tmp/bundler_installed | _tmp
+_tmp/dependencies_installed: Gemfile $(AZ) $(DIRENV) $(JQ) $(RBENV) _tmp/bundler_installed | _tmp
 	bundle install
 	touch $@

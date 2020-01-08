@@ -1,0 +1,20 @@
+#!/bin/bash -eu
+
+read -p 'Post Title: ' post_title
+
+drafts_dir="$(root_dir)/_drafts"
+post_name="${post_title// /-}"
+file_name="$(echo "$post_name" | tr '[[:upper:]]' '[[:lower:]]').md"
+file_path="${drafts_dir}/${file_name}"
+
+mkdir -p "$drafts_dir"
+cat <<POST >"$file_path"
+---
+layout: post
+title: $post_title
+date: $(now)
+---
+
+POST
+
+exec $EDITOR "$file_path"

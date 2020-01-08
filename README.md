@@ -6,6 +6,18 @@ The build steps within this repository are only tested on MacOS; they are
 almost guaranteed to be tied to the ecosystem, as they use `brew` liberally
 and do not consider Linux at all.
 
+## Managing Posts
+
+New draft posts can be created by issuing the `post` command from inside the
+repository; after creating the draft file it opens it via `$EDITOR`. Once
+completed, a draft can be made public by using the `publish` command; public
+implies being moved to the `_posts/` directory and having the date of the post
+updated in the file name and front matter.
+
+These commands are placed onto the path by `direnv`, which is an automatically
+installed dependency. Though `direnv` is not necessary, it is nice to avoid
+typing the `_bin/` prefix.
+
 
 ## Development
 
@@ -32,7 +44,7 @@ manually activated via the Azure portal.
 Custom domain name support is still required for the Azure infrastructure code
 to be considered complete.
 
-Publishing the website content is done via `make publish`; a production build
+Publishing the website content is done via `make deploy`; a production build
 and infrastructure changes will be automatically run if necessary.
 
 Builds can be run manually via `make build` and removed via `make clean`.
