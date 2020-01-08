@@ -17,3 +17,22 @@ blockquote, figure {
 blockquote, figure, p > code {
     border-radius: 0.2rem;
 }
+
+table {
+    thead th {
+        border-bottom: 1px solid $table-border-colour;
+        border-right: 1px solid $table-border-colour;
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+    tbody td {
+        border-top: 1px solid $table-border-colour;
+        border-right: 1px solid $table-border-colour;
+
+        &:last-child {
+            border-right: none;
+        }
+    }
+}
