@@ -14,6 +14,8 @@ incremental: true
 strict_front_matter: true
 
 exclude:
+  - _bin
+  - _tmp
   - .gitignore
   - .ruby-version
   - cache.filter
