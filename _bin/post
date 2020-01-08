@@ -13,6 +13,7 @@ cat <<POST >"$file_path"
 layout: post
 title: $post_title
 date: $(now)
+tags: []
 ---
 
 POST
