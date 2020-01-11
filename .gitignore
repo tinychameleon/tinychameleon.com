@@ -3,3 +3,4 @@ _site/
 _tmp/
 .jekyll-metadata
 .ruby-version
+.DS_Store
