@@ -12,19 +12,3 @@ main, footer {
         width: 66%;
     }
 }
-
-footer {
-    .content-metadata {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        @include for-tablet-landscape-up {
-            flex-direction: row;
-
-            > div {
-                width: 48%;
-            }
-        }
-    }
-}
