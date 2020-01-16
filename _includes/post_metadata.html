@@ -1,6 +1,8 @@
 <p class="post-metadata">
     <span class="post-date">{{ include.post.date | date: site.date_format }}</span>
     &middot;
+    {{ include.post.content | strip_html | number_of_words }} words
+    &middot;
     {%- for entry in include.post.tag_data %}
     <a class="tag" href="{{ entry.url }}">{{ entry.tag }}</a> {% if forloop.index != forloop.length %}/{% endif %}
     {%- endfor %}
