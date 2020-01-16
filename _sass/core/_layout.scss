@@ -9,6 +9,6 @@ main, footer {
     }
 
     @include for-tablet-landscape-up {
-        width: 66%;
+        max-width: 68ch;
     }
 }

@@ -21,7 +21,7 @@ header {
     margin-bottom: 2rem;
 }
 
-h1, h2, h3, h4, p, ul, ol, figure, blockquote, table, .post-details {
+h1, h2, h3, h4, p, ul, ol, figure, blockquote, table, div.highlight, .post-details {
     margin: 0 0 1rem 0;
 }
 
@@ -49,10 +49,21 @@ h4 {
     font-size: 1.4rem;
 }
 
-p, ul, ol, figure, blockquote, table {
+p, ul, ol, figure, div.highlight, blockquote, table {
     letter-spacing: -0.02rem;
     font-size: 1.1rem;
-    line-height: 1.6;
+    line-height: 1.8;
+}
+
+p {
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    text-indent: 2rem;
+}
+
+figure, div.highlight, p > code, li > code {
+    font-size: 1rem;
 }
 
 code, pre {
@@ -60,12 +71,12 @@ code, pre {
     font-family: $code-font-families;
 }
 
-p > code {
+p > code, li > code {
     padding: 0.2rem 0.4rem;
     background-color: $light-figure-background;
 }
 
-figure, blockquote {
+figure, blockquote, div.highlight {
     padding: 1rem 1.5rem;
     background-color: $light-figure-background;
     overflow: scroll;
@@ -74,6 +85,7 @@ figure, blockquote {
 blockquote > p {
     margin-bottom: 0;
     font-style: italic;
+    text-indent: unset;
 }
 
 table {
@@ -98,6 +110,7 @@ table {
 
 .post-metadata {
     color: $light-accent-foreground;
+    text-indent: unset;
 }
 
 .post-details h3 {
