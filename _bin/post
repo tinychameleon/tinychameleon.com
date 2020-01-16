@@ -1,18 +1,28 @@
 #!/bin/bash -eu
 
+function collapse_spaces() {
+    echo "$1" | sed -e 's/ \+/ /g'
+}
+
+function sanitize_file_name() {
+    collapse_spaces "$1" |
+        sed -e 's/[[:punct:]]//g' -e 's/ /-/g' |
+        tr '[[:upper:]]' '[[:lower:]]'
+}
+
 read -p 'Post Title: ' post_title
+post_title="$(collapse_spaces "$post_title")"
 
 drafts_dir="$(root_dir)/_drafts"
-post_name="${post_title// /-}"
-file_name="$(echo "$post_name" | tr '[[:upper:]]' '[[:lower:]]').md"
+file_name="$(sanitize_file_name "$post_title").md"
 file_path="${drafts_dir}/${file_name}"
 
 mkdir -p "$drafts_dir"
 cat <<POST >"$file_path"
 ---
 layout: post
-title: $post_title
-date: $(now)
+title: "$post_title"
+date: "$(now)"
 tags: []
 ---
 

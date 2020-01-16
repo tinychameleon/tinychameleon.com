@@ -23,4 +23,4 @@ draft="${draft_posts[$index]}"
 post="${root_dir}/_posts/${current_date%% *}-$(basename "$draft")"
 
 mv "$draft" "$post"
-sed -i "/^date: /c\\date: ${current_date}" "$post"
+sed -i "/^date: /c\\date: "${current_date}"" "$post"
