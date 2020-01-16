@@ -9,7 +9,7 @@ module Jekyll
       self.process(@name)
       self.read_yaml("#{base}/_layouts", 'tags.html')
       self.data['title'] = "Tag: #{tag}"
-      self.data['posts'] = posts
+      self.data['posts'] = posts.reverse
     end
   end
 
