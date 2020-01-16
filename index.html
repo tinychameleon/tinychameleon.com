@@ -2,12 +2,11 @@
 layout: default
 title: Hello There
 kind: home
+excerpt: This is my personal site containing thoughts, ideas, and projects; all of these may be entirely useless.
 ---
 
 <h1>{{ page.title }}</h1>
-<p>This is my personal site containing thoughts, ideas, and projects;
-    all of these may be entirely useless. Still, you may enjoy starting with
-    one of these tags:
+<p>{{ page.excerpt }} Still, you may enjoy starting with one of these tags:
     {% for tag in site.tags -%}
     <a class="tag" href="/tag/{{ tag[0] }}">{{ tag[0] }}</a>
         {%- if forloop.index < forloop.length -%}, {% endif -%}
