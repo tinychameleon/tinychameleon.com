@@ -38,11 +38,13 @@ during `make deps`.
 
 The website infrastructure can be deployed to Azure using `make infra`, but
 note that Azure Deployment Manager does not support all the necessary pieces
-for activating static website hosting. The static website hosting must be
-manually activated via the Azure portal.
+for activating static website hosting. To set up the infrastructure, these
+steps will need to be taken:
 
-Custom domain name support is still required for the Azure infrastructure code
-to be considered complete.
+1. run the `infra` recipe and wait for the deployment to complete;
+2. activate the storage account static website hosting via the Azure web portal;
+3. create a CloudFlare proxy record via the web portal which points to the
+   storage account static website address.
 
 Publishing the website content is done via `make deploy`; a production build
 and infrastructure changes will be automatically run if necessary.
@@ -59,6 +61,24 @@ The current required configuration values are:
 - `AZ_RESOURCE_GROUP` &mdash; The Azure resource group name;
 - `AZ_STORAGE_ACCOUNT` &mdash; The Azure storage account name;
 - `AZ_DEPLOYMENT_NAME` &mdash; The Azure resource group deployment name
+
+
+### Infrastructure Trade Offs
+
+The notable trade-off with this infrastructure approach is the website does not
+have its own SSL certificate. CloudFlare's free SSL option uses shared
+certificates across a handful of sites. This group of sites has the ability to
+spy on each other's requests. At this time, this is of sufficiently low danger
+that it is not considered a threat to reader privacy.
+
+In exchange for this certificate sharing the website:
+
+1. is protected from attacks without my active involvement in mitigation;
+2. can utilize apex domain name flattening to host no-www and mx records;
+3. can redirect www to no-www.
+
+At this point these free features are a large benefit compared to the small
+risk of the shared certificate.
 
 
 ## Licensing
