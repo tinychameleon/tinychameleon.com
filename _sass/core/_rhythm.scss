@@ -8,7 +8,7 @@ html {
     text-size-adjust: 100%;
 
     @include for-tablet-landscape-up {
-        font-size: 0.9em;
+        font-size: 0.9rem;
     }
 }
 
@@ -63,7 +63,7 @@ p {
 }
 
 figure, div.highlight, p > code, li > code {
-    font-size: 1rem;
+    font-size: 1.07rem;
 }
 
 code, pre {
@@ -78,8 +78,17 @@ p > code, li > code {
 
 figure, blockquote, div.highlight {
     padding: 1rem 1.5rem;
+    line-height: 1.6;
     background-color: $light-figure-background;
-    overflow: scroll;
+    overflow-x: auto;
+}
+
+figure, div.highlight {
+    display: flex;
+
+    pre {
+        padding-right: 1.5rem;
+    }
 }
 
 blockquote > p {
