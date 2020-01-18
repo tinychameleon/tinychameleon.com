@@ -16,6 +16,8 @@ strict_front_matter: true
 exclude:
   - _bin
   - _tmp
+  - .env
+  - .envrc
   - .gitignore
   - .ruby-version
   - cache.filter

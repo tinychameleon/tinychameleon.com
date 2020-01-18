@@ -1,6 +1,7 @@
 .jekyll-cache/
 _site/
 _tmp/
+.env
 .jekyll-metadata
 .ruby-version
 .DS_Store
