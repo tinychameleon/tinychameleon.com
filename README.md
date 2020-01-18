@@ -75,7 +75,7 @@ In exchange for this certificate sharing the website:
 
 1. is protected from attacks without my active involvement in mitigation;
 2. can utilize apex domain name flattening to host no-www and mx records;
-3. can redirect www to no-www.
+3. can redirect www subdomain to apex.
 
 At this point these free features are a large benefit compared to the small
 risk of the shared certificate.
