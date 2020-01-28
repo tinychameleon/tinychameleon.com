@@ -1,0 +1,51 @@
+.spoiler .spoiler-text {
+    color: $light-background;
+    border-radius: 0.3rem;
+    background-color: $primary-accent-colour;
+    text-align: center;
+
+    p {
+        text-indent: unset;
+    }
+}
+
+.spoiler.spoiler-full {
+    position: relative;
+
+    .spoiler-text {
+        padding: 0 2rem;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+    }
+
+    .spoiler-close {
+        display: block;
+        margin-top: 2rem;
+
+        @include for-tablet-portrait-up {
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        padding: 0.4rem 1rem;
+        color: $light-background;
+        border: 1px solid $light-background;
+        border-radius: 0.3rem;
+        background-color: transparent;
+        cursor: pointer;
+
+        &:hover {
+            color: $primary-accent-colour;
+            background-color: $light-background;
+        }
+    }
+
+    .spoiler-hide {
+        transition: all .4s ease-in-out;
+        opacity: 0;
+    }
+}

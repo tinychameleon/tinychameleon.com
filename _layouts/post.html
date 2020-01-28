@@ -5,5 +5,9 @@ layout: default
 <article class="post">
     <h1>{{ page.title }}</h1>
     {% include post_metadata.html post=page %}
-    {{ content }}
+    {% if page.spoiler %}
+        {% include spoiler_full.html spoiler=page.spoiler content=content %}
+    {% else %}
+        {{ content }}
+    {% endif %}
 </article>

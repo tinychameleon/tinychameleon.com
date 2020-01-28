@@ -27,3 +27,16 @@ exclude:
   - LICENSE
   - Makefile
   - README.md
+
+
+# Plugin settings
+
+plugins:
+  - jekyll-minifier
+
+jekyll-minifier:
+    exclude: []
+    compress_css: false
+    compress_javascript: true
+    uglifier_args:
+        harmony: true
