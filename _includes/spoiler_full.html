@@ -1,8 +1,12 @@
+{%- assign parts = include.content | split: "</p>" -%}
+{%- assign first = parts | first | append: "</p>" -%}
+{%- assign rest = parts | slice: 1, parts.size | join: "</p>" -%}
+{{ first }}
 <div class="spoiler spoiler-full">
     <div class="spoiler-text">
         <h2>Spoiler Warning</h2>
         <p>{{ include.spoiler }}</p>
         <span class="spoiler-close">Ok, let me read the article</span>
     </div>
-    {{ include.content }}
+    {{ rest }}
 </div>

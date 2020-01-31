@@ -7,11 +7,7 @@
         <meta property="og:url" content="{{ page.url | absolute_url }}">
         <meta property="og:title" content="{{ page.title }}">
         <meta property="og:image" content="{{ '/assets/images/ogshare.png' | absolute_url }}">
-        {%- if page.spoiler %}
-        <meta property="og:description" content="{{ page.spoiler | truncatewords: 30 }}">
-        {%- else %}
         <meta property="og:description" content="{{ page.excerpt | strip_html | truncatewords: 30 }}">
-        {%- endif %}
         <meta property="og:type" content="website">
         <title>{{ page.title | default: site.title }} &mdash; {{ site.title_suffix }}</title>
         <link rel="stylesheet" media="screen" href="/assets/css/styles.css">
