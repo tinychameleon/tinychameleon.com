@@ -31,7 +31,6 @@ JEKYLL ?= bundle exec jekyll
 BREW_BIN ?= $(shell brew --prefix)/bin
 AZ ?= $(BREW_BIN)/az
 DIRENV ?= $(BREW_BIN)/direnv
-JQ ?= $(BREW_BIN)/jq
 RBENV ?= $(BREW_BIN)/rbenv
 
 
@@ -70,12 +69,20 @@ _tmp:
 	mkdir -p _tmp
 
 _tmp/site_published: _tmp/production_build | _tmp
-	$(AZ) storage blob sync -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -s _site
-	$(AZ) storage blob list -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" > _tmp/blobdata
-	$(JQ) -rf cache.filter _tmp/blobdata | xargs -t -P4 -I% \
-		$(AZ) storage blob update -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -n '%' \
-			--content-cache-control '$(CACHE_HEADERS)'
-	touch $@
+	generate_manifest > _tmp/new_manifest
+	comm -13 $@ _tmp/new_manifest | awk '{ print $$1 }' > _tmp/files_to_upload
+	comm -23 $@ _tmp/new_manifest | awk '{ print $$1 }' > _tmp/old_files_changed
+	comm -23 _tmp/{old_files_changed,files_to_upload} > _tmp/files_to_delete
+	while read f; do
+		echo "Uploading $$f"
+		$(AZ) storage blob upload -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" \
+			-f "_site/$$f" -n "$$f" --content-cache-control '$(CACHE_HEADERS)'
+	done < _tmp/files_to_upload
+	while read f; do
+		echo "Deleting $$f"
+		$(AZ) storage blob delete -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -n "$$f"
+	done < _tmp/files_to_delete
+	cp _tmp/new_manifest $@
 
 _tmp/production_build: $(shell find _posts -type f -name '*.md') | _tmp
 	rm -rf _site
@@ -105,9 +112,6 @@ $(AZ):
 $(DIRENV):
 	brew install direnv
 
-$(JQ):
-	brew install jq
-
 $(RBENV):
 	brew install rbenv
 
@@ -119,6 +123,6 @@ _tmp/bundler_installed: .ruby-version | _tmp
 	gem install bundler:$(BUNDLER_VERSION)
 	touch $@
 
-_tmp/dependencies_installed: Gemfile $(AZ) $(DIRENV) $(JQ) $(RBENV) _tmp/bundler_installed | _tmp
+_tmp/dependencies_installed: Gemfile $(AZ) $(DIRENV) $(RBENV) _tmp/bundler_installed | _tmp
 	bundle install
 	touch $@

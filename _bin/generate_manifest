@@ -1,0 +1,6 @@
+#!/bin/bash
+
+find _site -type f -exec sha1sum {} \+ \
+| sed 's;_site/;;' \
+| awk '{ print $2, $1 }' \
+| sort
