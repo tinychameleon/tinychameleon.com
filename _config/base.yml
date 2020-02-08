@@ -32,11 +32,15 @@ exclude:
 # Plugin settings
 
 plugins:
+  - jekyll-feed
   - jekyll-minifier
 
+feed:
+  excerpt_only: true
+
 jekyll-minifier:
-    exclude: []
-    compress_css: false
-    compress_javascript: true
-    uglifier_args:
-        harmony: true
+  exclude: []
+  compress_css: false
+  compress_javascript: true
+  uglifier_args:
+    harmony: true

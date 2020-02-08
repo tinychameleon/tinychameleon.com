@@ -32,6 +32,8 @@ GEM
       rouge (~> 3.0)
       safe_yaml (~> 1.0)
       terminal-table (~> 1.8)
+    jekyll-feed (0.13.0)
+      jekyll (>= 3.7, < 5.0)
     jekyll-minifier (0.1.10)
       cssminify2 (~> 2.0)
       htmlcompressor (~> 0.4)
@@ -74,6 +76,7 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (~> 4.0.0)
+  jekyll-feed (~> 0.13.0)
   jekyll-minifier (~> 0.1.10)
 
 BUNDLED WITH
