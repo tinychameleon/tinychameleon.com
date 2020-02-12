@@ -1,7 +1,16 @@
 function spoilerCloseAction(e) {
-    const p = e.target.parentNode;
-    setTimeout(() => p.remove(), 500);
-    p.classList.add('spoiler-hide');
+    let p = e.target;
+    while (p != null && p.className != 'content-spoiler') {
+        p = p.parentNode;
+    }
+
+    if (p == null) {
+        return;
+    }
+
+    let b = document.querySelector('.content');
+    b.classList.remove('content-hidden');
+    p.remove();
 }
 
 function spoilerCloseTags() {

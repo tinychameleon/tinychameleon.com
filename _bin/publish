@@ -1,14 +1,14 @@
 #!/bin/bash -eu
 
 root_dir="$(root_dir)"
-draft_posts=(${root_dir}/_drafts/*.md)
+draft_posts=(${root_dir}/_drafts/*.adoc)
 index=0
 num_drafts="${#draft_posts[@]}"
 
 if [[ $num_drafts > 1 ]]; then
     echo -e 'Available Draft Posts\n====================='
     for i in ${!draft_posts[@]}; do
-        title="$(sed -n '/^title: .\+$/s/title: //p' "${draft_posts[$i]}")"
+        title="$(sed -n '/^= .\+$/s/= //p' "${draft_posts[$i]}")"
         echo "[$(( $i + 1 ))] $title"
     done
     while [[ ($index < 1 || $index > $num_drafts) && $index != 'q' ]]; do
@@ -23,4 +23,4 @@ draft="${draft_posts[$index]}"
 post="${root_dir}/_posts/${current_date%% *}-$(basename "$draft")"
 
 mv "$draft" "$post"
-sed -i "/^date: \".\+\"$/c\\date: \"${current_date}\"" "$post"
+sed -i "/^:page-date: .\+$/c\\:page-date: ${current_date}" "$post"

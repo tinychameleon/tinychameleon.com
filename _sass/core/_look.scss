@@ -15,12 +15,55 @@ acronym {
     text-decoration: underline dotted $light-foreground;
 }
 
-blockquote, figure, div.highlight {
+.footnotes a {
+    text-decoration: none;
+
+    @include for-tablet-portrait-up {
+        text-decoration: underline;
+    }
+}
+
+.quoteblock, .listingblock {
     border-left: 0.2rem solid $primary-accent-colour;
 }
 
-blockquote, figure, div.highlight, p > code {
+.quoteblock, .listingblock, .paragraph code, .ulist code, .olist code, td > code, .footnote code {
     border-radius: 0.2rem;
+}
+
+.listingblock, .colist {
+    .conum + b {
+        display: none;
+    }
+
+    .conum {
+        font-style: normal;
+    }
+
+    .conum:after {
+        display: inline-block;
+        padding: 0.1rem 0 0.2rem;
+        width: 1.5rem;
+        text-align: center;
+        color: $light-figure-background;
+        background: $primary-accent-colour;
+        border-radius: 0.2rem;
+        content: attr(data-value);
+    }
+}
+
+.colist {
+    tr:nth-child(n) {
+        background: none;
+    }
+
+    td {
+        border: none;
+
+        &:nth-child(2) {
+            padding: 0;
+        }
+    }
 }
 
 table {

@@ -14,17 +14,15 @@ read -p 'Post Title: ' post_title
 post_title="$(collapse_spaces "$post_title")"
 
 drafts_dir="$(root_dir)/_drafts"
-file_name="$(sanitize_file_name "$post_title").md"
+file_name="$(sanitize_file_name "$post_title").adoc"
 file_path="${drafts_dir}/${file_name}"
 
 mkdir -p "$drafts_dir"
 cat <<POST >"$file_path"
----
-layout: post
-title: "$post_title"
-date: "$(now)"
-tags: []
----
+= $post_title
+:page-layout: post
+:page-date: $(now)
+:page-tags: []
 
 POST
 

@@ -5,9 +5,13 @@ layout: default
 <article class="post">
     <h1>{{ page.title }}</h1>
     {% include post_metadata.html post=page %}
-    {% if page.spoiler %}
-        {% include spoiler_full.html spoiler=page.spoiler content=content %}
-    {% else %}
+    <div class="content{% if page.spoiler %} content-hidden{% endif %}">
         {{ content }}
+    </div>
+    {% if page.spoiler %}
+    <div class="content-spoiler">
+        {{ page.excerpt }}
+        {% include spoiler_warning.html text=page.spoiler %}
+    </div>
     {% endif %}
 </article>

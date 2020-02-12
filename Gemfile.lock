@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    asciidoctor (2.0.10)
     colorator (1.1.0)
     concurrent-ruby (1.1.5)
     cssminify2 (2.0.1)
@@ -32,6 +33,9 @@ GEM
       rouge (~> 3.0)
       safe_yaml (~> 1.0)
       terminal-table (~> 1.8)
+    jekyll-asciidoc (3.0.0)
+      asciidoctor (>= 1.5.0)
+      jekyll (>= 3.0.0)
     jekyll-feed (0.13.0)
       jekyll (>= 3.7, < 5.0)
     jekyll-minifier (0.1.10)
@@ -67,6 +71,8 @@ GEM
       ffi (~> 1.9)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
+    thread_safe (0.3.6)
+    tilt (2.0.10)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.6.0)
@@ -76,8 +82,11 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (~> 4.0.0)
+  jekyll-asciidoc (~> 3.0.0)
   jekyll-feed (~> 0.13.0)
   jekyll-minifier (~> 0.1.10)
+  thread_safe (~> 0.3.6)
+  tilt (~> 2.0.10)
 
 BUNDLED WITH
    2.0.2

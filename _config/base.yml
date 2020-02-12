@@ -31,9 +31,10 @@ exclude:
 
 # Plugin settings
 
-plugins:
-  - jekyll-feed
-  - jekyll-minifier
+asciidoc: {}
+asciidoctor:
+  attributes:
+    - icons=font
 
 feed:
   excerpt_only: true

@@ -1,25 +1,23 @@
-.spoiler .spoiler-text {
-    color: $light-background;
-    border-radius: 0.3rem;
-    background-color: $primary-accent-colour;
-    text-align: center;
-
-    p {
-        text-indent: unset;
-    }
+.content.content-hidden {
+    display: none;
 }
 
-.spoiler.spoiler-full {
-    position: relative;
-
+.content-spoiler  {
     .spoiler-text {
-        padding: 0 2rem;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 1;
+        margin-top: 2rem;
+        padding: 2rem;
+        color: $light-background;
+        border-radius: 0.3rem;
+        background-color: $primary-accent-colour;
+        text-align: center;
+
+        h2 {
+            margin-top: 0;
+        }
+
+        p {
+            text-indent: initial;
+        }
     }
 
     .spoiler-close {
@@ -42,10 +40,5 @@
             color: $primary-accent-colour;
             background-color: $light-background;
         }
-    }
-
-    .spoiler-hide {
-        transition: all .4s ease-in-out;
-        opacity: 0;
     }
 }

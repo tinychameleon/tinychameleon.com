@@ -1,12 +1,11 @@
----
-layout: post
-title: "A Decade After Alan Wake"
-date: "2020-01-30 17:18:15 -0800"
-tags: gaming alanwake
-spoiler: |-
-    This article contains details about the plot, game mechanics, and atmosphere
-    of Alan Wake which will spoil most of the game if you intend to play it.
----
+= A Decade After Alan Wake
+:page-date: 2020-01-30 17:18:15 -0800
+:page-layout: post
+:page-tags: [gaming, alan-wake]
+:page-spoiler: This article contains details about the plot, game mechanics, +
+    and atmosphere of Alan Wake which will spoil most of the game if you +
+    intend to play it.
+
 
 Ten years since Alan Wake originally released on consoles and I still think it's
 Remedy Entertainment's best game, and one of the most ambitious games ever made.
@@ -18,7 +17,7 @@ you haven't played it, I suggest you do so immediately, because skipping Alan
 Wake is a massive disservice to yourself.
 
 
-## Have You Got a Light?
+== Have You Got a Light?
 
 Almost everything you do within Alan Wake relates to using light to vanquish the
 darkness consuming people and objects of the world. Defeating the Dark Presence
@@ -40,7 +39,7 @@ today; the shooters produced by the triple-A industry are continuing to be
 incredibly uniform in style and content.
 
 
-## Dark Lustre
+== Dark Lustre
 
 The atmosphere around Bright Falls consistently delivers for the entire game, and
 the transitions from idyllic small town during day-time into a malicious night-time
@@ -69,7 +68,7 @@ experience and part of the narrative is something I have yet to experience in an
 other title.
 
 
-## Malleable Reality
+== Malleable Reality
 
 The best part of Alan Wake for me is the intricate story, unfolding in small,
 reality-bending chunks. Very few games attempt such an ambitious story, and fewer
@@ -92,7 +91,7 @@ it, Alan must acquire it, and the Anderson brothers guide Alan to it.
 The moment Alan retrieves the Clicker is pivotal to the story because it temporally
 links Zane to Alan. Inside the shoebox, Zane has placed a page of writing, brought
 into reality by the magic of the lake, which creates the Clicker as part of Alan's
-childhood --- prior to this, Zane had written himself and the entity out of reality;
+childhood -- prior to this, Zane had written himself and the entity out of reality;
 only Zane's possessions which were already stored within a shoebox would remain.
 With this action Zane demonstrates that the power of the lake is capable of altering
 past and future realities: he removes himself and all his work from the world and
@@ -113,25 +112,27 @@ he creates a mobius strip of seamlessly blended reality and fiction.
 There are two pages I think tie directly into the mobius-strip-story idea; one
 is only found in Nightmare Mode, which reads as follows:
 
-> I lifted the page in front of my eyes and read it. In it, I lifted the page in
-> front of my eyes and read it. In it, I lifted the page in front of my eyes and
-> read it. In it, I lifted the page in front of my eyes and read it. In it, I
-> lifted the page in front of my eyes and read it. In it, I lifted the page in
-> front of my eyes and read it.
-> <br/><br/>
-> --- Wake Reads a Page
+[quote, Wake Reads a Page]
+____
+I lifted the page in front of my eyes and read it. In it, I lifted the page in
+front of my eyes and read it. In it, I lifted the page in front of my eyes and
+read it. In it, I lifted the page in front of my eyes and read it. In it, I
+lifted the page in front of my eyes and read it. In it, I lifted the page in
+front of my eyes and read it.
+____
 
 The other is available as part of the story itself:
 
-> Nightingale tried to make sense of the manuscript. It was disjointed and strange.
-> He didn't understand half of it, but it all rang true, impossibly true.
-> <br/><br/>
-> He took out his hip flask when he reached the page that described how he reached
-> the page that made him take out his hip flask.
-> <br/><br/>
-> It wasn't the booze that made his mind reel.
-> <br/><br/>
-> --- Nightingale Reads the Manuscript
+[quote, Nightingale Reads the Manuscript]
+____
+Nightingale tried to make sense of the manuscript. It was disjointed and strange.
+He didn't understand half of it, but it all rang true, impossibly true.
+
+He took out his hip flask when he reached the page that described how he reached
+the page that made him take out his hip flask.
+
+It wasn't the booze that made his mind reel.
+____
 
 Both of these pages imply that the power of the lake is also capable of causing
 people to take specific actions; actions which Wake has already written and are
@@ -158,15 +159,11 @@ by the majority of games ever created. Alan Wake shows some of the heights that
 video games are capable of when used as a medium for interactive story-telling.
 
 
-## Reach the Lighthouse
+== Reach the Lighthouse
 
 There won't ever be enough time to explore every game, but I think that Alan Wake
-is one that deserves attention --- especially if you enjoy horror-thriller. If the
+is one that deserves attention -- especially if you enjoy horror-thriller. If the
 novel weaponry in the game isn't enough to intrigue you, the full story definitely
 should keep your interest. Reach the lighthouse, finish the game, and decide for
-yourself [if it's real or just a dream](https://www.youtube.com/watch?v=GLxb7m0j5Jg).
-
-
-
-
+yourself https://www.youtube.com/watch?v=GLxb7m0j5Jg[if it's real or just a dream].
 
