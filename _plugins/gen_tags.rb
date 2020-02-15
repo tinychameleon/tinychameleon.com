@@ -10,6 +10,8 @@ module Jekyll
       self.read_yaml("#{base}/_layouts", 'tags.html')
       self.data['title'] = "Tag: #{tag}"
       self.data['posts'] = posts.reverse
+      word = posts.count > 1 ? 'posts' : 'post'
+      self.data['description'] = "#{posts.count} #{word} about ##{tag}."
     end
   end
 

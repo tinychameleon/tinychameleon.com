@@ -1,13 +1,15 @@
 <!doctype html>
 <html lang="en">
     <head>
+        {% assign desc = page.excerpt | strip_html | truncatewords: 30 | default: page.description -%}
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="{{ desc }}">
         <meta property="og:url" content="{{ page.url | absolute_url }}">
         <meta property="og:title" content="{{ page.title }}">
         <meta property="og:image" content="{{ '/assets/images/ogshare.png' | absolute_url }}">
-        <meta property="og:description" content="{{ page.excerpt | strip_html | truncatewords: 30 }}">
+        <meta property="og:description" content="{{ desc }}">
         <meta property="og:type" content="website">
         <title>{{ page.title | default: site.title }} &mdash; {{ site.title_suffix }}</title>
         <link rel="stylesheet" media="screen" href="/assets/css/styles.css">
