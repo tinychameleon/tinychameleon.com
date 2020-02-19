@@ -34,6 +34,7 @@ exclude:
 asciidoc: {}
 asciidoctor:
   attributes:
+    - page-liquid=true@
     - icons=font
 
 feed:
