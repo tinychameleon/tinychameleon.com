@@ -11,7 +11,7 @@ a better concept for legibility and maintenance, because for written work it has
 deep roots in linguistics. When using taste we don't need to identify what is
 "best", we're looking for what is bad. For example: it is easy for a native
 English language speaker to point out bad writing; people do this all the time
-to non-native English speakers on the internet.
+to non-native English speakers on the Internet.
 
 There are many lower-level concepts we discuss in code review, like data clumps
 or refactoring patterns, but all of these processes are directed at providing
@@ -98,7 +98,7 @@ use caution when introducing more of it.
 There are times when, due to legacy decisions, and perhaps comically low +++<acronym title="Return on Investment">ROI</acronym>+++, you are stuck with code
 that is horrid to read. In these situations, generally, there is little you can
 do to fix the root problem. A refactor is out of the question due to the
-negligable resultant value and implementing a secondary, better way of achieving
+negligible resultant value and implementing a secondary, better way of achieving
 the same result for new code only compounds inconsistency over time.
 
 Most of the time I see people hide the ugly details behind a pretty, local
@@ -152,7 +152,7 @@ def save_princess(world):
 
 We've reduced module-level foci by encapsulating the constant within the lone
 function responsible for finding us a hero, and have reduced prominence within
-the main `save_princess()` function. All related data and responsbilities are
+the main `save_princess()` function. All related data and responsibilities are
 cohesive; cohesion reduces foci, fewer foci provide less prominence, and less
 prominence means greater legibility.
 
@@ -213,7 +213,7 @@ for hero in heroes:
 If we look at prominence within this second example, the generator stands out,
 but the nested loop has dropped a focus and gained legibility. What we've done
 in this example is spread the total foci more evenly across scopes; in the real
-codebase this loop construct was repeated and we achived fewer foci. Most
+codebase this loop construct was repeated and we achieved fewer foci. Most
 importantly we've expressed ourselves similarly to Python by creating a function
 like `enumerate()`. You can reduce prominence within scopes by following idioms;
 the code will snap tightly together in ways your teammates expect.

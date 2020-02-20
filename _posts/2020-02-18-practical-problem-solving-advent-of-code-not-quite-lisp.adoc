@@ -83,7 +83,7 @@ def solve_a(input)
 end
 ----
 <1> Since `input` is a `String` we use `each_char` instead of `each`.
-<2> By adding `-1` here we don't need mulitple statements changing `floor`.
+<2> By adding `-1` here we don't need multiple statements changing `floor`.
 <3> Having a final expression comprised of a bare `floor` reference is a bit ugly.
 
 One thing I've had to remind myself of is that Ruby favours methods on objects instead of directly writing explicit loops, which is very different from many other object-oriented languages.
@@ -116,7 +116,7 @@ The implementation can have those assumptions removed by using a sequence interf
 ----
 def solve_a(input, start = 0)
   input.each_char.reduce(start) do |floor, c|
-    c == '(' ? floor.succ : foor.pred
+    c == '(' ? floor.succ : floor.pred
   end
 end
 ----

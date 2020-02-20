@@ -57,7 +57,7 @@ toward the light.
 The beautiful coincidence of the visual design choice made within Alan Wake,
 darkness and fog being the main driver of action-oriented segments, is it has aged
 gracefully. It still looks good playing it today on a 4K monitor, however, the
-cut-scene videos are showing a bit of age, as the upscaling causes artefacts. It's
+cut-scene videos are showing a bit of age, as the up-scaling causes artefacts. It's
 not something that is terribly jarring, and the musical score immediately makes
 up for it.
 
@@ -97,7 +97,7 @@ With this action Zane demonstrates that the power of the lake is capable of alte
 past and future realities: he removes himself and all his work from the world and
 modifies a reality that has not come to pass. Zane takes things a step further
 by placing the Clicker both in a shoebox for Cynthia to guard and into Alan's life,
-potentially creating an object capable of bilocation.
+potentially creating an object capable of bi-location.
 
 Yet all of what we experience within the game is Alan's writing: every battle,
 roadblock, and set-back the Dark Presence creates is part of the story Alan writes

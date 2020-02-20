@@ -17,18 +17,18 @@ Once we're comfortable with this tool, and the process it implements, we can sta
 
 == Making Custom Jigs
 You may not be convinced that we need a purpose-built tool for solving these problems, and if you're not used to creating jigs you might even consider it a waste of time when you can simply run code directly from the terminal.
-There's nothing wrong with avoiding creating custom tools, but if our goal is to focus on solving Advent of Code challenges we shouldn't reinvent common functionality for every chalenge.
+There's nothing wrong with avoiding creating custom tools, but if our goal is to focus on solving Advent of Code challenges we shouldn't reinvent common functionality for every challenge.
 Bespoke structure can be liberating, but formalizing a way to represent and interact with our solutions will provide a solid foundation for our problem solving practice by making the structural decisions once.
 The resultant foundation will give us consistent solution structure, provide a framework for our thoughts to slot into, allow us to easily interact with our solutions consistently, and of course, allow us to run tests.
 
-Ideally, all these requirements will be delivered in as minimal a package as possible, because we don't want to dedicate brain-sapce to complex user interfaces or libraries.
+Ideally, all these requirements will be delivered in as minimal a package as possible, because we don't want to dedicate brain-space to complex user interfaces or libraries.
 This custom tool might seem like a daunting task to you, it definitely sounds like a larger undertaking, but know that you're not alone in that feeling -- many people struggle with breaking down large problems into smaller, manageable chunks.
 I also want you to know up-front that this tool is much easier to build than you may think; we're going to walk through all 109 lines of it in the remainder of this post.
 Seriously, it's only 109 lines total; you're gonna be just fine.
 
 == Advent of Code Runner
 Let's start at the top-level of our tool, the user interface, and work our way down to the actual solution runner, because top-down design works really well for the majority of problems.
-We're going to build a tool that operates based on command-line flags using only the Rubyfootnote:[I'm using Ruby 2.6.5] standard library, and it will expose the this interface:
+We're going to build a tool that operates based on command-line flags using only the Rubyfootnote:[I'm using Ruby 2.6.5] standard library, and it will expose this interface:
 ----
 Required flags:
     -y, --year YEAR                  The problem-set year (2015)
@@ -86,7 +86,7 @@ puts Driver.launch ARGV  <1>
 
 As you can see, our `Driver` class is sparse, and the two static methods aren't complicated; `launch` handles command-line flags and loading solutions based on those values and `run_solution` runs the challenge part or tests based on a dynamically loaded `Solution` class which we'll see later on.
 
-While building this I originally had the `Driver` and option parsing class in the same file, but decided to split them apart to mantain separation of concerns once the options parsing grew.
+While building this I originally had the `Driver` and option parsing class in the same file, but decided to split them apart to maintain separation of concerns once the options parsing grew.
 You're going to read a lot of code, but never assume what you're seeing is a first-cut; in fact, I added the `Dir.chdir` call later when I realized it was handy to read files from individual solution directories.
 This driver isn't perfect, but it _is_ good enough for my purposes, and that's the most important thing about building personal tooling: arriving at "good enough".
 
@@ -94,7 +94,7 @@ This driver isn't perfect, but it _is_ good enough for my purposes, and that's t
 The second, and largest, piece we'll look at is the `Options` class that the `Driver` class uses; it comprises 79 of the 109 lines of code within the tool.
 If you recall, I mentioned the dynamic code loading is not a security exploit, which is due to the validation `Options` applies to the inputs it's given.
 My `Options` class achieves this validation, and command-line flag parsing, by leaning heavily on the `optparse` library that ships with Ruby.
-We're going to do a class teardown of `Options` covering static constants, initialization, flag definitions, and validations, and while the code segments presented will not reference or be indented they are all part of the `Options` class.
+We're going to do a class tear-down of `Options` covering static constants, initialization, flag definitions, and validations, and while the code segments presented will not reference or be indented they are all part of the `Options` class.
 
 .options.rb pass:a[<a href="{blob-base-url}/options.rb#L3">source</a>]
 [source,ruby]
@@ -147,7 +147,7 @@ def required_flags(opt)
 end
 ----
 <1> This is how I get those nice headings in the help text.
-<2> The `YEARS` argument in the 3rd position acts as a set of allowed values.
+<2> The `YEARS` argument in the 3^rd^ position acts as a set of allowed values.
 <3> Mixing `do ... end` and `{ ... }` blocks. Whoops.
 
 At this point you might be thinking, "I don't think I could come up with this option-parser code so easily...", but you would be selling yourself short.
@@ -253,7 +253,7 @@ end
 ----
 <1> `sum` is called on the result of `map` not on the block.
 
-The one tricky thing about `validate_run_flags` is how I've decided to verify only one is given by taking the sum of booleans converted into a 0 or 1.
+The one tricky thing about `validate_run_flags` is how I've decided to verify only one is given by taking the sum of boolean values converted into a 0 or 1.
 That way any result not equal to 1 implies that zero or more than one of the flags were passed to the program.
 With that, we're done looking at the `Options` class, so it might be a good time to take a break, maybe grab a drink.
 
