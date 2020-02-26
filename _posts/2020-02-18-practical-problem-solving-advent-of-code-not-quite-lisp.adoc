@@ -3,6 +3,8 @@
 :page-date: 2020-02-18 21:12:04 -0800
 :page-tags: [practical-problem-solving, advent-of-code, ruby]
 :blob-base-url: https://github.com/tinychameleon/advent-of-code/blob
+:page-series: pps-aoc
+:page-series-entry: 2
 
 Before I begin going through Advent of Code challenges, I would like to suggest that you personally attempt them before reading ahead.
 You can still learn a lot by reading the code written by others, but first-hand practice has no substitute when building skills.
@@ -10,8 +12,7 @@ Your solution may dramatically differ from my own, but the multitude of possible
 Try to see the spectrum of possible answers as an opportunity for exploring strategies instead of the daunting task of picking the perfect solution.
 Finding a perfect solution should never be your goal when there are numerous "good enough" solutions immediately available.
 
-Previously, I link:{% link _posts/2020-02-12-practical-problem-solving-advent-of-code.adoc %}[created a small program] for running Advent of Code solutions.
-Today I'm going to start with the very first Advent of Code challenge, https://adventofcode.com/2015/day/1[Not Quite Lisp -- 2015 Day 1]; it's ancient at this point in time, but it can still be a great learning experience.
+Previously I created a small program for running Advent of Code solutions and today I'm going to start with the very first Advent of Code challenge from 2015: https://adventofcode.com/2015/day/1[Not Quite Lisp]; it's ancient at this point in time, but it can still be a great learning experience.
 To begin, I like to determine what restrictions a problem imposes, so let's look at the provided problem description.
 [quote, "Advent of Code, 2015 Day 1"]
 ____

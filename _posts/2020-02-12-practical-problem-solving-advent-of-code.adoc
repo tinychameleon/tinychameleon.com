@@ -4,6 +4,8 @@
 :page-tags: [practical-problem-solving, advent-of-code, ruby]
 :aoc-link: https://adventofcode.com/
 :blob-base-url: https://github.com/tinychameleon/advent-of-code/blob/a8141af2967b4c82fa39c2e14ab829c8c37858b9
+:page-series: pps-aoc
+:page-series-entry: 1
 
 Problem solving is really hard; it's difficult enough that many people struggle approaching the process, before even beginning to attempt a solution.
 I don't think that's surprising at all: the journey an idea must take from thought to a rough draft to iterating toward final working solution is intimidating.
@@ -366,4 +368,4 @@ Hopefully you made it through unscathed, with new appreciation for tools and how
 Every profession has tools-of-the-trade and as software developers, or even software enthusiasts, we're in the lucky position of being able to easily invent tools for any situation we face.
 I think it helps to reflect on how impossible creating tools like the solution runner above is for so many other professions; it's kind of a software superpower.
 
-Next time, we're going to dive into the link:{% link _posts/2020-02-18-practical-problem-solving-advent-of-code-not-quite-lisp.adoc %}[first Advent of Code challenge].
+Next time, we're going to dive into the first Advent of Code challenge.
