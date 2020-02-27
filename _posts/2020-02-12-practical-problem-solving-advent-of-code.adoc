@@ -14,7 +14,7 @@ Even with my experience, I still occasionally suffer this paralysis when faced w
 
 This series of posts will practice problem solving and highlight the process and approaches used to create working solutions using challenges from {aoc-link}[Advent of Code].
 Through practice you will improve at following your own process and become adept at recognizing patterns within the challenges you encounter.
-Each challenge consists of two parts, the first part unlocks the second, with challenge inputs generated for each user, but before we begin, I would like to walk you through a self-made problem: creating a tool to ease our problem solving process.
+Each challenge consists of two parts, the first part unlocks the second, but before we begin, I would like to walk you through a self-made problem: creating a tool to ease our problem solving process.
 Once we're comfortable with this tool, and the process it implements, we can start solving the challenges.
 
 == Making Custom Jigs
