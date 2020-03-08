@@ -1,7 +1,7 @@
 = Interviewing Programmers
 :page-layout: post
 :page-date: 2020-02-20 09:01:35 -0800
-:page-tags: [programming, team-building]
+:page-tags: [programming, business, teamwork]
 :src-url: https://medium.com/@jakob/i-m-sorry-i-won-t-do-your-take-home-coding-exercise-3b74ba34928a
 
 I believe large tech companies, and via association their employees, are some of the worst people to ask for hiring advice.
