@@ -1,18 +1,15 @@
-{%- assign series = site.data.post_series[include.series] %}
-{%- assign iprev = include.entry | minus: 2 %}
-{%- assign inext = include.entry %}
+{%- assign links = include.path | basename | series_index: include.series %}
+{%- assign name = site.data.post_series[include.series].name %}
 <div class="series-note">
     <div class="content">
-        <div class="paragraph"><strong>{{ series.name }} Series</strong></div>
+        <div class="paragraph"><strong>{{ name }} Series</strong></div>
         <div class="ulist">
             <ul>
-                {%- if iprev >= 0 %}
-                    {%- assign ppost = series.entries[iprev] %}
-                    <li><a href="{% link _posts/{{ ppost }}.adoc %}">Previous Entry</a></li>
+                {%- if links.prev %}
+                <li><a href="{% link _posts/{{ links.prev }}.adoc %}">Previous Entry</a></li>
                 {%- endif %}
-                {%- if inext < series.entries.size %}
-                    {%- assign npost = series.entries[inext] %}
-                    <li><a href="{% link _posts/{{ npost }}.adoc %}">Next Entry</a></li>
+                {%- if links.next %}
+                <li><a href="{% link _posts/{{ links.next }}.adoc %}">Next Entry</a></li>
                 {%- endif %}
             </ul>
         </div>
