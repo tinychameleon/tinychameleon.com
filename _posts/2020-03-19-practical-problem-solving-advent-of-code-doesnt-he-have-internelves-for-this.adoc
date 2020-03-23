@@ -156,6 +156,6 @@ $ run -y 2015 -q 5 -b
 
 == Very Nice 👍
 There's not much to day 5, but learning about the different `String` methods that take regular expressions was worth it.
-I am sure they will be handy with future challenges, and it's always great to get some practice slinging regular expressions in the programming languge you're using.
+I am sure they will be handy with future challenges, and it's always great to get some practice slinging regular expressions in the programming language you're using.
 
 I doubt I will immediately remember to add methods to classes in order to avoid creating pass-through blocks, but maybe it will slowly become ingrained into my solutions.
