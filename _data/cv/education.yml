@@ -1,0 +1,28 @@
+- title: B.Sc. Honours Computer Science with Software Engineering Specialization
+  place: University of Windsor
+  location: Windsor, ON
+  timeframe:
+    start: September 2007
+    end: April 2011
+  description: >-
+    My time at university consisted of lots of theory and even more practical application of programming techniques to learn about different systems.
+    The two largest projects I worked on during this time period were an operating system simulator and a complete role-playing video game.
+
+    The RPG was written in C# using the now defunct XNA framework and was fully realized in every way an RPG needs: it had complete combat, world-map, and inventory systems.
+    I wrote the entire UI management stack, including things like scroll-bar support, wrap-around cursor movement, stack-based layering, and decorations.
+    Following this I created the inventory and character management systems, as well as dialogue compoents and game-wide text rendering systems.
+    I was also responsible for creating the navigation components necessary to do things like traverse the environment, change maps, cleanly transition to and from combat states.
+
+    The operating system simulation project was written in C++ and involved creating a fake operating system which people could interact with to facilitate learning about how kernels implement scheduling, locking, and many other things.
+- title: Incomplete M.Sc. Computer Science
+  place: University of Windsor
+  location: Windsor, ON
+  timeframe:
+    start: September 2011
+    end: April 2012
+  description: >-
+    I eagerly began my M.Sc. the winter semester immediately after my graduation, but after completing the course requirements, and before my thesis, I dropped out of the program.
+    I simply wasn't enjoying the research work my supervising professor assigned to me, and there was no alternative&mdash;it was either spend another year doing something I didn't enjoy or leave.
+    I chose to leave.
+
+    The only reason this is here is due to the questions I receive about the gap in time after graduating and before my first job.

@@ -1,0 +1,16 @@
+<div class="position">
+    <h3>{{ include.item.title }}</h3>
+    <div class="details paragraph">
+        <span class="place">{{ include.item.place }}</span>
+        &middot;
+        <span class="location">{{ include.item.location }}</span>
+        &middot;
+        <span class="timeframe">{{ include.item.timeframe.start }}&ndash;{{ include.item.timeframe.end }}</span>
+    </div>
+    <div class="description">
+        {%- assign paragraphs = include.item.description | newline_to_br | split: '<br />' -%}
+        {%- for p in paragraphs %}
+        {{ p | asciidocify }}
+        {%- endfor %}
+    </div>
+</div>

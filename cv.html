@@ -1,0 +1,21 @@
+---
+layout: default
+title: CV
+kind: cv
+---
+
+<h1>Summary</h1>
+{%- assign paragraphs = site.data.cv.summary.blurb | newline_to_br | split: '<br />' -%}
+{%- for p in  paragraphs %}
+{{ p | asciidocify }}
+{%- endfor %}
+
+<h2>Experience</h2>
+{%- for item in site.data.cv.work %}
+    {%- include cv_entry.html item=item -%}
+{%- endfor %}
+
+<h2>Education</h2>
+{%- for item in site.data.cv.education %}
+    {%- include cv_entry.html item=item -%}
+{%- endfor %}
