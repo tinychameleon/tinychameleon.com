@@ -46,7 +46,7 @@ serve: deps
 	$(JEKYLL) server --config _config/base.yml,_config/dev.yml
 .PHONY: serve
 
-deploy: deps infra build _tmp/site_published
+deploy: deps build _tmp/site_published
 .PHONY: publish
 
 infra: deps _tmp/infra_deployed
