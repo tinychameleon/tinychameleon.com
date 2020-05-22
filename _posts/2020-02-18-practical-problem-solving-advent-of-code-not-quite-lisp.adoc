@@ -49,10 +49,9 @@ def tests
   assert solve_a('))('), -1
   assert solve_a(')))'), -3
   assert solve_a(')())())'), -3
-  :ok  <1>
+  :ok
 end
 ----
-<1> The symbol `:ok` gets printed by our tool and `:ok.to_s == "ok"`.
 
 If I make a mistake implementing the solution and run the tests, an error like the following will appear:
 [source]
@@ -62,11 +61,9 @@ Traceback (most recent call last):
 	4: from main.rb:23:in `<main>'
 	3: from main.rb:8:in `launch'
 	2: from main.rb:14:in `run_solution'
-	1: from /Users/srt/Projects/advent-of-code/2015/1/solution.rb:7:in `tests'  <1>
-/Users/srt/Projects/advent-of-code/utils.rb:6:in `assert': Got 0, want 3 (AssertionFailure)  <2>
+	1: from /Users/srt/Projects/advent-of-code/2015/1/solution.rb:7:in `tests'
+/Users/srt/Projects/advent-of-code/utils.rb:6:in `assert': Got 0, want 3 (AssertionFailure)
 ----
-<1> Line of the failed assert call output here.
-<2> Helpful assertion failure message is shown last.
 
 It's not going to win any awards for beauty, but I  don't have to choose and learn a full testing framework for what amounts to a series of small challenges.
 Now that our `tests` method is working we can begin implementing a solution for part A of the challenge; my first cut is a simple loop over every character within the given input.
@@ -76,15 +73,17 @@ Now that our `tests` method is working we can begin implementing a solution for 
 ----
 def solve_a(input)
   floor = 0
-  input.each_char do |c|  <1>
-    floor += c == '(' ? 1 : -1  <2>
+  input.each_char do |c|
+    floor += c == '(' ? 1 : -1
   end
-  floor  <3>
+  floor
 end
 ----
-<1> Since `input` is a `String` we use `each_char` instead of `each`.
-<2> By adding `-1` here we don't need multiple statements changing `floor`.
-<3> Having a final expression comprised of a bare `floor` reference is a bit ugly.
+
+There are two things to recognize about this solution:
+
+. With `input` as a `String` we need to use `String#each_char` instead of a normal `each`
+. By adding `-1` when `c != '('` here we don't need multiple statements changing `floor`
 
 One thing I've had to remind myself of is that Ruby favours methods on objects instead of directly writing explicit loops, which is very different from many other object-oriented languages.
 Aside from that, I think what I've come up with is easy to understand, fairly fast, and importantly it calculates the correct answer.
@@ -94,12 +93,11 @@ I'm not finished this solution though, I want to improve the legibility of the s
 [source,ruby]
 ----
 def solve_a(input)
-  input.each_char.reduce(0) do |floor, c|  <1>
+  input.each_char.reduce(0) do |floor, c|
     floor += c == '(' ? 1 : -1
   end
 end
 ----
-<1> Ruby's `Enumerable` classes can be chained or take a block.
 
 This solution is compact and made the method implementation a single chain of calls; removing of the bare `floor` reference to return the result has greatly improved legibility.
 I think this is a "good enough" solution, it's fairly memory efficient, is decently legible, has few focal points vying for attention, and running it yields the correct answer:
@@ -164,15 +162,14 @@ To easily solve part B, I'm about to make my implementation a bit worse by rolli
 ----
 def solve_b(input)
   floor = 0
-  input.each_char.with_index(1) do |c, pos|  <1>
+  input.each_char.with_index(1) do |c, pos|
     floor += c == '(' ? 1 : -1
-    return pos if floor == -1  <2>
+    return pos if floor == -1
   end
 end
 ----
-<1> Using `with_index` lets us start counting `pos` values from 1.
-<2> We can return the correct `pos` directly from the block.
 
+Using `Enumerable#with_index(1)` allows us to start `pos` at the value of one and immediately return its value should the floor match.
 This solution still avoids a bare variable as the last expression of the method, but for legibility the `floor` variable must be declared outside of the enumerable block.
 Maintaining the `reduce` call would have let me keep `floor` scoped to the enumerable block, but the nested arrays I mentioned previously would have a structure similar to `[floor, [c, pos]]`.
 That kind of nested structure would lead to either legibility assignments or direct index accesses within the enumerable block; I don't consider either of those options great for long-term maintainability.

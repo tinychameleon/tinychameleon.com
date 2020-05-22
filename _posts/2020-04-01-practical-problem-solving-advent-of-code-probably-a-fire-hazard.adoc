@@ -59,7 +59,7 @@ I've written a few tests to ensure that point parsing and instruction parsing in
 ----
 def test_parse_line
   assert parse_line('turn on 0,0 through 999,999'), [
-    :on, Point.new(0, 0), Point.new(999, 999)  <1>
+    :on, Point.new(0, 0), Point.new(999, 999)
   ]
   assert parse_line('toggle 0,0 through 999,0'), [
     :toggle, Point.new(0, 0), Point.new(999, 0)
@@ -69,8 +69,8 @@ def test_parse_line
   ]
 end
 ----
-<1> The `Point` class is not very exciting: `Point = Struct.new(:x, :y)`
 
+The `Point` class used here is not very exciting and is implemented in a single statement: `Point = Struct.new(:x, :y)`.
 To parse each line a regular expression can be associated to each instruction symbol and the numeric point components can be captured.
 The regular expressions turn out to be very legible, if a little verbose.
 
@@ -150,12 +150,10 @@ Let's start with the `initialize` method for the calls to `LightGrid#new` which 
 [source,ruby]
 ----
 def initialize(rows: 1_000, cols: 1_000)
-  @grid = [false] * rows * cols  <1> <2>
+  @grid = [false] * rows * cols
   @cols = cols
 end
 ----
-<1> I decided to use `false` to represent the light being off.
-<2> I'm also using a 1-dimensional array for the grid.
 
 The next error from the test method indicates that `count` isn't a method on the `LightGrid` class and I want it to return the number of lights which are on.
 
@@ -186,12 +184,11 @@ def turn_on(origin, bound)
   for y in origin.y..bound.y
     offset = @cols * y
     for x in origin.x..bound.x
-      @grid[offset + x] = true <1>
+      @grid[offset + x] = true
     end
   end
 end
 ----
-<1> This assignment is the only thing that changes between the methods.
 
 Here's where the two-dimensional coordinates are converted into one-dimensional indexes for the `@grid` array by using two nested for-loops.
 If you've never seen a two-dimensional array compressed into a one-dimensional array, just picture all the rows of the two-dimensional array side-by-side within the one-dimensional array.
@@ -258,13 +255,13 @@ def change_state(origin, bound)
   for y in origin.y..bound.y
     offset = @cols * y
     for x in origin.x..bound.x
-      @grid[offset + x] = yield @grid[offset + x]  <1>
+      @grid[offset + x] = yield @grid[offset + x]
     end
   end
 end
 ----
-<1> The `yield` keyword handles the sending and receiving of data to a block.
 
+The critical thing to understand in this method is that the `yield` keyword handles the sending and receiving of data for a block.
 The instruction handling methods all collapse into a single statement and pass a slightly different block into the `change_state` call.
 
 .solution.rb {commit-2}/solution.rb#L15[source]
@@ -290,12 +287,11 @@ Once we've done this a point will no longer have to be constructed using `Point.
 [source,ruby]
 ----
 Point = Struct.new(:x, :y) do
-  def self.[](x, y)  <1>
+  def self.[](x, y)
     Point.new(x, y)
   end
 end
 ----
-<1> The `self.` prefix makes this a class method.
 
 You can see that this doesn't actually eliminate the `.new` method, it only hides it behind a better interface for creating such a primary data type.
 Maybe you think this is going a bit overboard, but I think that legibility of solutions is something that should not be sacrificed unless absolutely necessary.
@@ -335,11 +331,10 @@ The simplest solution is to push that value into the constructor, which is exact
 [source,ruby]
 ----
 def initialize(val, rows: 1_000, cols: 1_000)
-  @grid = [val] * rows * cols  <1>
+  @grid = [val] * rows * cols
   @cols = cols
 end
 ----
-<1> Note `val` instead of `false`.
 
 The second change is to remove the instruction action method implementations and replace them with a `NotImplementedError`.
 This will allow `LightGrid` to effectively function as a base class without the ability to be used as a concrete grid in the rest of the code.
@@ -368,7 +363,7 @@ What you should notice is that no functionality has really changed within this n
 ----
 class SwitchLightGrid < LightGrid
   def initialize(rows: 1_000, cols: 1_000)
-    super(false, rows: rows, cols: cols)  <1>
+    super(false, rows: rows, cols: cols)
   end
 
   def count
@@ -388,7 +383,6 @@ class SwitchLightGrid < LightGrid
   end
 end
 ----
-<1> Here's where that `false` value migrated.
 
 The flexibility `change_state` has from taking a block argument will help with implementing the grid for the second part of this challenge.
 That grid will require the use of integers, instead of booleans, and those blocks will implement slightly different transformations of the light values.
@@ -433,11 +427,11 @@ The brightness value changes in ways very different to the on and off states of 
 ----
 class DimmableLightGrid < LightGrid
   def initialize(rows: 1_000, cols: 1_000)
-    super(0, rows: rows, cols: cols)  <1>
+    super(0, rows: rows, cols: cols)
   end
 
   def brightness
-    @grid.sum  <2>
+    @grid.sum
   end
 
   def turn_on(origin, bound)
@@ -445,7 +439,7 @@ class DimmableLightGrid < LightGrid
   end
 
   def turn_off(origin, bound)
-    change_state(origin, bound) { |i| 0.max(i - 1) }  <3>
+    change_state(origin, bound) { |i| 0.max(i - 1) }
   end
 
   def toggle(origin, bound)
@@ -453,9 +447,6 @@ class DimmableLightGrid < LightGrid
   end
 end
 ----
-<1> Note the `0` value as the default.
-<2> Legibility, even for simple implementations, is king of all domains.
-<3> The `Integer#max` method doesn't exist -- what is this magic?
 
 This turned out rather well, without much complexity to creating a new light grid, and it mirrors the requirements list in an explicit fashion.
 The one piece of additional complexity is the `Integer#max` method, but I think it pulls its own weight here because without it I would either need an additional line of code within the block to hold the decremented value, or I would need to create an array to call `Array#max`.

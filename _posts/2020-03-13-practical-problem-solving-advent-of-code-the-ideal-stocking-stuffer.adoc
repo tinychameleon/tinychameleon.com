@@ -40,16 +40,13 @@ The implemenation is also simple, consisting of a single loop and some minor sup
 [source,ruby]
 ----
 def solve(input)
-  prefix = '0' * 5  <1>
-  (1..).each do |i|  <2>
+  prefix = '0' * 5
+  (1..).each do |i|
     hex = Digest::MD5.hexdigest "#{input}#{i}"
-    return i if hex.start_with? prefix  <3>
+    return i if hex.start_with? prefix
   end
 end
 ----
-<1> A compact way to represent 5 zeroes as a string.
-<2> The `(1..)` syntax generates an infinite range of integers.
-<3> Here I've excluded method call parenthesis for legibility.
 
 Ruby has allowed me to do something particularly interesting here due to the nature of block scopes; a block in this case is the `do ... end` bit following `each`.
 Though the `each` method is responsible for running the given block on every iteration, the `return` call is capable of exiting the block's enclosing scope.

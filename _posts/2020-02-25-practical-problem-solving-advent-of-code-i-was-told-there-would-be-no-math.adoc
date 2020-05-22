@@ -65,11 +65,10 @@ Taking these things into account, I've implemented the `necessary_paper` method 
 [source,ruby]
 ----
 def necessary_paper(dimensions)
-  b = Box.from(dimensions)  <1>
+  b = Box.from(dimensions)
   b.areas.min + b.areas.sum * 2
 end
 ----
-<1> I like readable static methods that construct new instances of classes.
 
 If you recall from the list of requirements I made above, the total paper for a given gift is the sum of the smallest side's area and the surface area of the gift.
 The `Box#areas` method returns the areas of the three distinct faces as an array, so we can easily use it to find the smallest area and the total surface area.
@@ -90,8 +89,8 @@ With the `necessary_paper` method complete, I'm ready to start working on the su
 [source,ruby]
 ----
 Box = Struct.new(:l, :w, :h) do
-  def self.from(str)  <1>
-    Box.new(*str.split('x').map(&:to_i))  <2>
+  def self.from(str)
+    Box.new(*str.split('x').map(&:to_i))
   end
 
   def areas
@@ -99,8 +98,6 @@ Box = Struct.new(:l, :w, :h) do
   end
 end
 ----
-<1> This is how you define a static class method in Ruby.
-<2> Our not-so-fancy `LxWxH` line parser.
 
 The static method `from` is where I have chosen to push the line parsing responsibility, but it doubles as a very readable way of constructing a `Box` instance -- I think `Box.from(dimensions)` reads beautifully.
 The interior call to `Box.new` might be difficult to understand, so I want to break it down for clarity.
@@ -178,10 +175,9 @@ The body of `necessary_ribbon` will also look familiar because of that interface
 ----
 def necessary_ribbon(dimensions)
   b = Box.from(dimensions)
-  b.perimeters.min + b.volume  <1>
+  b.perimeters.min + b.volume
 end
 ----
-<1> These are the new `Box` methods we will implement.
 
 I had to make an interesting decision regarding whether `Box` should know about the ribbon requirements and return the minimum perimeter directly, or if it should simply return the face perimeters.
 I've opted for the latter because I consider it cleaner for `Box` to avoid knowledge of the challenge requirements, it mirrors the `areas` implementation nicely, and I feel that it's not too inefficient to call `min` on a 3 element array.

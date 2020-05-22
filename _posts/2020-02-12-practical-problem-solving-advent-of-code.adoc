@@ -59,14 +59,14 @@ In fact, it only has two very short, static methods called `launch` and `run_sol
 require './options'
 
 class Driver
-  def self.launch(args)  <2>
+  def self.launch(args)
     options = Options.new.parse(args)
     workdir = "./#{options.year}/#{options.question}"
-    require "#{workdir}/solution"  <3>
+    require "#{workdir}/solution"
     run_solution(workdir, options)
   end
 
-  def self.run_solution(pwd, options)  <4>
+  def self.run_solution(pwd, options)
     Dir.chdir(pwd)
     if options.tests
       Solution.new.tests
@@ -78,12 +78,14 @@ class Driver
   end
 end
 
-puts Driver.launch ARGV  <1>
+puts Driver.launch ARGV
 ----
-<1> No "main" function, just a line to print results.
-<2> The `launch` method is our glue.
-<3> Dynamic code loading, but not a security exploit!
-<4> Running a solution; it's not the prettiest.
+
+There are a few things to notice about this piece of code:
+
+. No "main" function, only a line to print results
+. The `launch` method is our glue
+. There is dynamic code loading, via `require`, but it's not a security exploit
 
 As you can see, our `Driver` class is sparse, and the two static methods aren't complicated; `launch` handles command-line flags and loading solutions based on those values and `run_solution` runs the challenge part or tests based on a dynamically loaded `Solution` class which we'll see later on.
 
@@ -103,18 +105,17 @@ We're going to do a class tear-down of `Options` covering static constants, init
 require 'optparse'
 
 class Options
-  YEARS = %w[2015].freeze  <1>
-  QUESTIONS = ('1'..'25').to_a.freeze  <1>
+  YEARS = %w[2015].freeze
+  QUESTIONS = ('1'..'25').to_a.freeze
   QUESTION_MESSAGE = 'The problem-set question (1..25)'.freeze
 
-  attr_reader :year, :question, :tests, :part_a, :part_b  <2>
+  attr_reader :year, :question, :tests, :part_a, :part_b
 
   # All other methods snipped out
 end
 ----
-<1> The constants we use to validate input.
-<2> Some reader properties we use in `Driver`.
 
+The years and question numbers are frozen here, which we will use to validate input to ensure nothing silly can happen, like passing `..` as part of one of the parameters.
 You can see that the basic structure of the constants in this class is rather simple: we just create groups of allowed values to eventually pass into the `OptionParser` class.footnote:[Ruby is dynamic and calling `freeze` on an object stops it from changing.]
 
 .options.rb {blob-base-url}/options.rb#L10[source]
@@ -137,19 +138,16 @@ Our required flag set-up is a bit more interesting because I set up validation t
 [source,ruby]
 ----
 def required_flags(opt)
-  opt.separator "\nRequired flags:"  <1>
+  opt.separator "\nRequired flags:"
 
   year_msg = "The problem-set year (#{YEARS.join ', '})"
-  opt.on('-y', '--year YEAR', YEARS, year_msg) { |y| @year = y }  <2>
+  opt.on('-y', '--year YEAR', YEARS, year_msg) { |y| @year = y }
 
-  opt.on('-q', '--question QUESTION', QUESTIONS, QUESTION_MESSAGE) do |q|  <3>
+  opt.on('-q', '--question QUESTION', QUESTIONS, QUESTION_MESSAGE) do |q|
     @question = q
   end
 end
 ----
-<1> This is how I get those nice headings in the help text.
-<2> The `YEARS` argument in the 3^rd^ position acts as a set of allowed values.
-<3> Mixing `do ... end` and `{ ... }` blocks. Whoops.
 
 At this point you might be thinking, "I don't think I could come up with this option-parser code so easily...", but you would be selling yourself short.
 The fact you don't know what the arguments to `on` are doesn't matter, because those kinds of detail are more about familiarity than problem solving.
@@ -181,14 +179,12 @@ This method is important though, because it's setting up our run choice flags fo
 ----
 def common_flags(opt)
   opt.separator "\nCommon flags:"
-  opt.on_tail('-h', '--help', 'Display this help message') do  <1>
-    puts @parser  <2>
+  opt.on_tail('-h', '--help', 'Display this help message') do
+    puts @parser
     exit
   end
 end
 ----
-<1> A nifty trick to add the help flags last by using `on_tail`.
-<2> The usage statement is output by printing the parser itself.
 
 My `common_flags` implementation should be equally easy to understand; hopefully your confidence in reading Ruby and understanding the tool is increasing.
 I think the critical realization you should be working toward is that solutions don't have to be fancy, and actually, I prefer these boring solutions because they require less brain-space.
@@ -201,10 +197,9 @@ def parse(args)
   parse_or_fail(args)
   validate_mandatory_flags
   validate_run_flags
-  self  <1>
+  self
 end
 ----
-<1> Another neat trick to allow method chaining.
 
 Very little about `parse` can be considered intriguing and that's exactly how I like my methods: unimaginatively boring.
 The remaining methods are all about validating input and producing decent error messages, which is a task many people choose to avoid when creating their own tools.
@@ -215,28 +210,27 @@ I think it's important to always handle errors in a graceful manner because firs
 ----
 def parse_or_fail(args)
   @parser.parse!(args)
-rescue OptionParser::MissingArgument, OptionParser::InvalidArgument => e  <1>
+rescue OptionParser::MissingArgument, OptionParser::InvalidArgument => e
   puts e
   puts "\n", @parser
   exit 1
 end
 ----
-<1> Ruby eliminates a level of nesting by allowing `rescue` at the `def` level.
 
+Ruby has a neat trick for eliminating a level of nesting in method definitions: the catch clause can be attached to the `def` level.
 Essentially, all `parse_or_fail` does is ask the `OptionParser` instance to parse the given arguments and print out our help message if there is a failure of any kind.
 
 .options.rb {blob-base-url}/options.rb#L63[source]
 [source,ruby]
 ----
 def validate_mandatory_flags
-  return unless @year.nil? || @question.nil?  <1>
+  return unless @year.nil? || @question.nil?
 
   puts "Both the --year and --question flags must be specified\n\n"
   puts @parser
   exit 2
 end
 ----
-<1> Ruby's conditional modifier syntax is excellent for terse expressions.
 
 The `validate_mandatory_flags` method just checks that year and question flags are both provided and prints a nice error message otherwise.
 
@@ -244,7 +238,7 @@ The `validate_mandatory_flags` method just checks that year and question flags a
 [source,ruby]
 ----
 def validate_run_flags
-  active = [@tests, @part_a, @part_b].map { |b| b ? 1 : 0 }.sum  <1>
+  active = [@tests, @part_a, @part_b].map { |b| b ? 1 : 0 }.sum
   return unless active != 1
 
   puts "Exactly one of --tests, --part_a, or --part_b must be specified\n\n"
@@ -252,7 +246,6 @@ def validate_run_flags
   exit 3
 end
 ----
-<1> `sum` is called on the result of `map` not on the block.
 
 The one tricky thing about `validate_run_flags` is how I've decided to verify only one is given by taking the sum of boolean values converted into a 0 or 1.
 That way any result not equal to 1 implies that zero or more than one of the flags were passed to the program.

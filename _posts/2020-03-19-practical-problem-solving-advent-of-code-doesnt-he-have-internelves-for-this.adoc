@@ -61,11 +61,10 @@ def nice?(word)
   [
     word.scan(/[aeiou]/).count >= 3,
     word.match?(/([a-z])\1/),
-    !word.match(/ab|cd|pq|xy/)  <1>
+    !word.match(/ab|cd|pq|xy/)
   ].all?
 end
 ----
-<1> This could also use `String#match?`, but I wanted to test out `String#match`.
 
 This method constructs an array of boolean values and applies `Array#all?` to verify that each element is `true`.
 All that's left is to wire up the `solve_a` method to use our `nice?` method as a filter.

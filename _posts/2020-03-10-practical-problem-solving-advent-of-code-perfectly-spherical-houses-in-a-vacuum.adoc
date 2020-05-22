@@ -49,13 +49,12 @@ I want to represent the directional characters of the input as coordinate-pair d
 [source,ruby]
 ----
 DELTAS = {
-  '>' => Point.new(1, 0),  <1>
+  '>' => Point.new(1, 0),
   '<' => Point.new(-1, 0),
   '^' => Point.new(0, 1),
   'v' => Point.new(0, -1)
 }.freeze
 ----
-<1> Remember that Santa can only move 1 unit in a direction.
 
 Now when I encounter a "move south" `v` character I know that the `X` coordinate will remain the same and the `Y` coordinate will be decreased by 1.
 Following this, I need define the `Point` class and give it an `add` method to support the strategy I want to take for processing the challenge input.
@@ -78,18 +77,15 @@ With these pieces set up I'm ready to begin implementing the `santa_tracker`.
 [source,ruby]
 ----
 def santa_tracker(directions)
-  houses = new_house_map  <1>
-  pos = Point.new(0, 0)  <2>
+  houses = new_house_map
+  pos = Point.new(0, 0)
   directions.each_char do |c|
-    pos.add(DELTAS[c])  <3>
+    pos.add(DELTAS[c])
     houses[pos.x].add(pos.y)
   end
   houses
 end
 ----
-<1> All will be answered in due time.
-<2> I've decided that Santa starts at the origin `(0, 0)`.
-<3> Here's the pay-off -- nice and simple.
 
 This function is just a loop over each direction character to apply the position update and record visiting the house; I think it's pretty simple at heart.
 So what's up with that `new_house_map` method?
@@ -157,16 +153,14 @@ The implementation is nearly identical in semantics, but differs in the details 
 ----
 def duo_tracker(directions)
   houses = new_house_map
-  duo = [Point.new(0, 0), Point.new(0, 0)]  <1>
-  directions.each_char.zip(duo.cycle).each do |c, pos|  <2>
+  duo = [Point.new(0, 0), Point.new(0, 0)]
+  directions.each_char.zip(duo.cycle).each do |c, pos|
     pos.add(DELTAS[c])
     houses[pos.x].add(pos.y)
   end
   houses
 end
 ----
-<1> Two Santas, two positions.
-<2> A little fancier than some other things I've done so far.
 
 The body of the loop in this solution is identical, I'm still tracking the `X` and `Y` coordinates in the same `Hash` from part A, but the values being iterated over have changed.
 The `Array#cycle` method is a really neat way to repeat the contents of the given array infinitely, so that `[A, B, C].cycle` is equivalent to `[A, B, C, A, B, C, A, B, C, ...]`.
