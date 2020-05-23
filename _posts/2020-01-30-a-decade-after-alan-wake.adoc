@@ -2,10 +2,6 @@
 :page-date: 2020-01-30 17:18:15 -0800
 :page-layout: post
 :page-tags: [gaming, alan-wake]
-:page-spoiler: This article contains details about the plot, game mechanics, +
-    and atmosphere of Alan Wake which will spoil most of the game if you +
-    intend to play it.
-
 
 Ten years since Alan Wake originally released on consoles and I still think it's
 Remedy Entertainment's best game, and one of the most ambitious games ever made.

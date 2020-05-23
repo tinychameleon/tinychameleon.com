@@ -8,13 +8,7 @@ layout: default
     {% if page.series %}
         {% include series_entry.html path=page.path series=page.series %}
     {% endif %}
-    <div class="content{% if page.spoiler %} content-hidden{% endif %}">
+    <div class="content">
         {{ content }}
     </div>
-    {% if page.spoiler %}
-    <div class="content-spoiler">
-        {{ page.excerpt }}
-        {% include spoiler_warning.html text=page.spoiler %}
-    </div>
-    {% endif %}
 </article>

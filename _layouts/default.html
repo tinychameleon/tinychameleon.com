@@ -14,9 +14,6 @@
         <title>{{ page.title | default: site.title }} &mdash; {{ site.title_suffix }}</title>
         <link rel="stylesheet" media="screen" href="/assets/css/styles.css">
         <link rel="icon" href="/assets/images/favicon.ico">
-        {%- if page.spoiler %}
-        <script type="text/javascript" src="/assets/scripts/spoilers.js" async></script>
-        {%- endif %}
     </head>
     <body>
         {% include global_header.html %}
