@@ -43,7 +43,7 @@ That's a lot of text, but I think it's best distilled as the following:
 If we can implement all of that then we can determine how many lights are lit after following all of the input instructions.
 Those input instructions look something like this:
 
-.input pass:a[<a href="{commit-1}/input#L6">source</a>]
+.input {commit-1}/input#L6[source]
 [source]
 ----
 turn off 301,3 through 808,453
@@ -54,7 +54,7 @@ toggle 720,196 through 897,994
 My first thought is to turn them into an ordered list of data with a symbol representing the instruction and two points representing the rectangle to act upon.
 I've written a few tests to ensure that point parsing and instruction parsing inside the `parse_line` method work correctly.
 
-.solution.rb pass:a[<a href="{commit-1}/solution.rb#L87">source</a>]
+.solution.rb {commit-1}/solution.rb#L87[source]
 [source,ruby]
 ----
 def test_parse_line
@@ -74,7 +74,7 @@ end
 To parse each line a regular expression can be associated to each instruction symbol and the numeric point components can be captured.
 The regular expressions turn out to be very legible, if a little verbose.
 
-.solution.rb pass:a[<a href="{commit-1}/solution.rb#L109">source</a>]
+.solution.rb {commit-1}/solution.rb#L109[source]
 [source,ruby]
 ----
 MATCHERS = {
@@ -87,7 +87,7 @@ MATCHERS = {
 All `parse_line` will have to handle is selecting the right regular expression and processing its data.
 As soon as we find a regular expression match we return the symbol value from `MATCHERS` with the resultant points from the captured integers.
 
-.solution.rb pass:a[<a href="{commit-1}/solution.rb#L115">source</a>]
+.solution.rb {commit-1}/solution.rb#L115[source]
 [source,ruby]
 ----
 def parse_line(line)
@@ -102,7 +102,7 @@ end
 
 Finally, for parsing the instruction data we need to create the `Point` instances from the given numeric capture data in the `make_points` method; I've chosen to just manually construct the points.
 
-.solution.rb pass:a[<a href="{commit-1}/solution.rb#L124">source</a>]
+.solution.rb {commit-1}/solution.rb#L124[source]
 [source,ruby]
 ----
 def make_points(captures)
@@ -114,7 +114,7 @@ end
 The next component of the solution to build is something to handle processing the instructions and manipulating the light grid.
 For this I want to base the solution around Ruby's class system, so the tests for the `LightGrid` class, with a grid visualization, exercise each of the issuable instructions.
 
-.solution.rb pass:a[<a href="{commit-1}/solution.rb#L61">source</a>]
+.solution.rb {commit-1}/solution.rb#L61[source]
 [source,ruby]
 ----
 def test_lightgrid
@@ -146,7 +146,7 @@ end
 
 Let's start with the `initialize` method for the calls to `LightGrid#new` which need to instantiate our grid to the correct size and ensure the lights are off by default.
 
-.solution.rb pass:a[<a href="{commit-1}/solution.rb#L6">source</a>]
+.solution.rb {commit-1}/solution.rb#L6[source]
 [source,ruby]
 ----
 def initialize(rows: 1_000, cols: 1_000)
@@ -159,7 +159,7 @@ end
 
 The next error from the test method indicates that `count` isn't a method on the `LightGrid` class and I want it to return the number of lights which are on.
 
-.solution.rb pass:a[<a href="{commit-1}/solution.rb#L11">source</a>]
+.solution.rb {commit-1}/solution.rb#L11[source]
 [source,ruby]
 ----
 def count
@@ -179,7 +179,7 @@ I feel like Ruby may have a better method for this, something that is more expli
 
 The final three instruction methods are all very similar, so I will only show the `turn_on` method here, but you can see the other two by following the source link.
 
-.solution.rb pass:a[<a href="{commit-1}/solution.rb#L5">source</a>]
+.solution.rb {commit-1}/solution.rb#L5[source]
 [source,ruby]
 ----
 def turn_on(origin, bound)
@@ -200,7 +200,7 @@ You navigate to a particular row by moving in multiples of the column count and 
 With the `LightGrid` class complete the last remaining step is to wire everything together in the `solve_a` method.
 I want to test the wiring works correctly because there's a decent amount of written code in this solution, with some copy-paste repetition that will eventually need to be cleaned up.
 
-.solution.rb pass:a[<a href="{commit-1}/solution.rb#L99">source</a>]
+.solution.rb {commit-1}/solution.rb#L99[source]
 [source,ruby]
 ----
 def test_solve_a
@@ -217,7 +217,7 @@ end
 The `solve_a` method should take a `LightGrid` and the instruction input, parse that instruction input, apply the instructions to the `LightGrid`, and return the count of lights which are on.
 It sounds like a lot, but it ends up being 11 lines of code.
 
-.solution.rb pass:a[<a href="{commit-1}/solution.rb#L129">source</a>]
+.solution.rb {commit-1}/solution.rb#L129[source]
 [source,ruby]
 ----
 def solve_a(grid, input)
@@ -251,7 +251,7 @@ I feel that the `.new` syntax, in this case, takes legibility away from the sema
 
 To solve the first problem, I consolidated the `@grid` navigation logic within a private method called `change_state` which defers the light manipulation logic to a block using `yield`.
 
-.solution.rb pass:a[<a href="{commit-2}/solution.rb#L29">source</a>]
+.solution.rb {commit-2}/solution.rb#L29[source]
 [source,ruby]
 ----
 def change_state(origin, bound)
@@ -267,7 +267,7 @@ end
 
 The instruction handling methods all collapse into a single statement and pass a slightly different block into the `change_state` call.
 
-.solution.rb pass:a[<a href="{commit-2}/solution.rb#L15">source</a>]
+.solution.rb {commit-2}/solution.rb#L15[source]
 [source,ruby]
 ----
 def turn_on(origin, bound)
@@ -286,7 +286,7 @@ end
 The second problem is solved by -- at least considered by myself to be -- a very neat Ruby idiom which overrides `[]` via a class method.
 Once we've done this a point will no longer have to be constructed using `Point.new(x, y)`, instead we can use the more readable syntax of `Point[x, y]`.
 
-.solution.rb pass:a[<a href="{commit-3}/solution.rb#L3">source</a>]
+.solution.rb {commit-3}/solution.rb#L3[source]
 [source,ruby]
 ----
 Point = Struct.new(:x, :y) do
@@ -331,7 +331,7 @@ I'm going to turn `LightGrid` into the interface class and move its functionalit
 The first change to make is inside the `LightGrid` initialization method -- I need to remove the hard-coded `false` value from the `@grid` initialization code.
 The simplest solution is to push that value into the constructor, which is exactly what I've done.
 
-.solution.rb pass:a[<a href="{commit-4}/solution.rb#L10">source</a>]
+.solution.rb {commit-4}/solution.rb#L10[source]
 [source,ruby]
 ----
 def initialize(val, rows: 1_000, cols: 1_000)
@@ -344,7 +344,7 @@ end
 The second change is to remove the instruction action method implementations and replace them with a `NotImplementedError`.
 This will allow `LightGrid` to effectively function as a base class without the ability to be used as a concrete grid in the rest of the code.
 
-.solution.rb pass:a[<a href="{commit-4}/solution.rb#L15">source</a>]
+.solution.rb {commit-4}/solution.rb#L15[source]
 [source,ruby]
 ----
 def turn_on(origin, bound)
@@ -363,7 +363,7 @@ end
 All that functionality we just removed gets pushed into the new `SwitchLightGrid` class which extends the `LightGrid` as a base class.
 What you should notice is that no functionality has really changed within this new class -- it still calls `change_state` and passes in blocks which work on booleans.
 
-.solution.rb pass:a[<a href="{commit-4}/solution.rb#L39">source</a>]
+.solution.rb {commit-4}/solution.rb#L39[source]
 [source,ruby]
 ----
 class SwitchLightGrid < LightGrid
@@ -396,7 +396,7 @@ That grid will require the use of integers, instead of booleans, and those block
 I've decided to call the new grid `DimmableLightGrid` since the instructions increase and decrease the brightness of each light.
 The tests for it are identical to the previous grid and highlights how this grid functions in a completely different manner.
 
-.solution.rb pass:a[<a href="{commit-5}/solution.rb#L136">source</a>]
+.solution.rb {commit-5}/solution.rb#L136[source]
 [source,ruby]
 ----
 def test_dimmablelightgrid
@@ -428,7 +428,7 @@ end
 
 The brightness value changes in ways very different to the on and off states of the previous grid and I have included comments representing the grid for clarity again.
 
-.solution.rb pass:a[<a href="{commit-5}/solution.rb#L67">source</a>]
+.solution.rb {commit-5}/solution.rb#L67[source]
 [source,ruby]
 ----
 class DimmableLightGrid < LightGrid
@@ -462,7 +462,7 @@ The one piece of additional complexity is the `Integer#max` method, but I think 
 
 This little piece of nice looking code is because Ruby solves the expression problem via open classes -- in true object-oriented style, every single class in Ruby is open for your code to modify.
 
-.solution.rb pass:a[<a href="{commit-5}/solution.rb#L9">source</a>]
+.solution.rb {commit-5}/solution.rb#L9[source]
 [source,ruby]
 ----
 class Integer
@@ -477,7 +477,7 @@ The other minor trick here is that the method parameter doubles as a storage loc
 Last, but certainly not least, I've refactored the original `solve_a` method into one called `solve_worker` without changing the implementation at all.
 The `solve_a` and our new `solve_b` method both now rely on the `solve_worker` method to drive changes to their grid classes and only return the problem solution.
 
-.solution.rb pass:a[<a href="{commit-5}/solution.rb#L227">source</a>]
+.solution.rb {commit-5}/solution.rb#L227[source]
 [source,ruby]
 ----
 def solve_a(grid, input)

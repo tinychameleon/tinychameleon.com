@@ -35,7 +35,7 @@ This kind of terse requirements list is great to work from while solving a probl
 I have to parse a list of gift dimensions, so to start I like to peek at the input format and decide how parsing responsibilities should be split between potential components.
 Looking at the input file, it's made up of line-wise descriptions of gifts using a simple `LxWxH` format.
 
-.input pass:a[<a href="{part-a-url}/input">source</a>]
+.input {part-a-url}/input[source]
 [source]
 ----
 4x23x21
@@ -50,7 +50,7 @@ To me, this presents a nice interface where I can input a `String` like `"2x3x4"
 I'm going to begin with creating a few tests for the `necessary_paper` method I will create.
 Please be aware that in order to save space I am not showing the surrounding `tests` method, so click through to the source to see the full implementation.
 
-.solution.rb pass:a[<a href="{part-a-url}/solution.rb#L5">source</a>]
+.solution.rb {part-a-url}/solution.rb#L5[source]
 [source,ruby]
 ----
 assert necessary_paper('2x3x4'), 58
@@ -61,7 +61,7 @@ assert necessary_paper('1x1x1'), 7
 Now, I don't think `necessary_paper` really needs to have the parsing for the `LxWxH` values in-line; I would prefer a separate class to have the responsibility of calculating geometry equations and the line parsing can be folded into that class.
 Taking these things into account, I've implemented the `necessary_paper` method as follows:
 
-.solution.rb pass:a[<a href="{part-a-url}/solution.rb#L33">source</a>]
+.solution.rb {part-a-url}/solution.rb#L33[source]
 [source,ruby]
 ----
 def necessary_paper(dimensions)
@@ -86,7 +86,7 @@ If that doesn't make sense to you, here is a short set of algebraic transformati
 With the `necessary_paper` method complete, I'm ready to start working on the supporting `Box` class, which I've decided to implement as a value-type using Ruby's `Struct` class.
 
 [[box-class]]
-.solution.rb pass:a[<a href="{part-a-url}/solution.rb#L23">source</a>]
+.solution.rb {part-a-url}/solution.rb#L23[source]
 [source,ruby]
 ----
 Box = Struct.new(:l, :w, :h) do
@@ -113,7 +113,7 @@ Finally `map` is called on that array and applies the `to_i` method to each `Str
 The tests I wrote pass now that the `Box` class implementation is complete, and as the next step we can start implementing the `solve_a` method.
 I will start by writing a test for the method, keeping in mind that I previously decided this function will take multiple lines of input.
 
-.solution.rb pass:a[<a href="{part-a-url}/solution.rb#L9">source</a>]
+.solution.rb {part-a-url}/solution.rb#L9[source]
 [source,ruby]
 ----
 assert solve_a("2x3x4\n1x1x1"), 65
@@ -121,7 +121,7 @@ assert solve_a("2x3x4\n1x1x1"), 65
 
 From this test, the implementation of `solve_a` seems obvious to me; I know the input must be split line-wise, that each line needs its necessary paper area calculated, and a sum of those areas is the result.
 
-.solution.rb pass:a[<a href="{part-a-url}/solution.rb#L38">source</a>]
+.solution.rb {part-a-url}/solution.rb#L38[source]
 [source,ruby]
 ----
 def solve_a(input)
@@ -162,7 +162,7 @@ The important bits I see are:
 The implementation I created for pat A will help immensely now, I can extend the `Box` class to include methods for these new requirements.
 First, I want to create some tests for a new method called `necessary_ribbon` which will follow the same interface as `necessary_paper`: it will take a `String` and return the total length as an `Integer`.
 
-.solution.rb pass:a[<a href="{part-b-url}#L11">source</a>]
+.solution.rb {part-b-url}#L11[source]
 [source,ruby]
 ----
 assert necessary_ribbon('2x3x4'), 34
@@ -173,7 +173,7 @@ assert necessary_ribbon('1x1x1'), 5
 These are nearly identical to the prior tests we've written -- it's very easy to hammer out new tests to ensure we're implementing things correctly when we follow a similar interface for each method.
 The body of `necessary_ribbon` will also look familiar because of that interface similarity.
 
-.solution.rb pass:a[<a href="{part-b-url}#L55">source</a>]
+.solution.rb {part-b-url}#L55[source]
 [source,ruby]
 ----
 def necessary_ribbon(dimensions)
@@ -188,7 +188,7 @@ I've opted for the latter because I consider it cleaner for `Box` to avoid knowl
 
 I have to actually build those new methods on `Box` now, which I will not show the full source code for, so if you've forgotten what `Box` looks like take a minute to <<box-class,refresh your memory>>.
 
-.solution.rb pass:a[<a href="{part-b-url}#L38">source</a>]
+.solution.rb {part-b-url}#L38[source]
 [source,ruby]
 ----
 def volume
@@ -198,7 +198,7 @@ end
 
 I began by implementing `volume` since it's trivial to complete, but do allow yourself to enjoy the simplicity and low ceremony of Ruby here, as I did, before progressing to the `perimeters` method.
 
-.solution.rb pass:a[<a href="{part-b-url}#L42">source</a>]
+.solution.rb {part-b-url}#L42[source]
 [source,ruby]
 ----
 def perimeters
@@ -212,7 +212,7 @@ end
 One thing of minor interest with `perimeters` is I've chosen to cache the reusable, partial perimeter sums to improve the legibility of the final array expression.
 With these two methods complete, I can move on to writing tests and code for the `solve_b` method.
 
-.solution.rb pass:a[<a href="{part-b-url}#L15">source</a>]
+.solution.rb {part-b-url}#L15[source]
 [source,ruby]
 ----
 assert solve_b("2x3x4\n1x1x1"), 39
@@ -221,7 +221,7 @@ assert solve_b("2x3x4\n1x1x1"), 39
 I used identical test input again for quickly implementing the new assertions; having a similar interface is really great.
 I'm sorry to say that `solve_b` is really not interesting -- it's almost identical to `solve_a`.
 
-.solution.rb pass:a[<a href="{part-b-url}#L64">source</a>]
+.solution.rb {part-b-url}#L64[source]
 [source,ruby]
 ----
 def solve_b(input)

@@ -28,7 +28,7 @@ ____
 The challenge is to determine how many strings in the input match all of the bulleted requirements, which should be pretty simple to express thanks to regular expressions.
 I want to start with some tests for the examples the challenge gives, to codify the API for the `nice?` method.
 
-.solution.rb pass:a[<a href="{part-a-url}#L5">source</a>]
+.solution.rb {part-a-url}#L5[source]
 [source,ruby]
 ----
 assert nice?('ugknbfddgicrmopn'), true
@@ -54,7 +54,7 @@ The second statement can be easily checked by using `String#match?` which return
 Finally, the third statement ensures that we don't have any of the four bigrams mentioned, so we can use the alternation operator `|` to construct a regular expression like `/ab|cd|pq|xy/`.
 Put all of these together and you get a `nice?` method that looks something like this:
 
-.solution.rb pass:a[<a href="{part-a-url}#L23">source</a>]
+.solution.rb {part-a-url}#L23[source]
 [source,ruby]
 ----
 def nice?(word)
@@ -70,7 +70,7 @@ end
 This method constructs an array of boolean values and applies `Array#all?` to verify that each element is `true`.
 All that's left is to wire up the `solve_a` method to use our `nice?` method as a filter.
 
-.solution.rb pass:a[<a href="{part-a-url}#L31">source</a>]
+.solution.rb {part-a-url}#L31[source]
 [source,ruby]
 ----
 def solve_a(input)
@@ -108,7 +108,7 @@ ____
 
 We also get a nice pre-bulleted requirements list and a set of examples to turn into tests:
 
-.solution.rb pass:a[<a href="{part-b-url}#L11">source</a>]
+.solution.rb {part-b-url}#L11[source]
 [source,ruby]
 ----
 assert better_nice?('qjhvhtzxzqqjkmpb'), true
@@ -125,7 +125,7 @@ The second statement is similar, except it matches one character on either side 
 Translating that into a regular expression gives `/([a-z])[a-z]\1/`.
 Putting these together, like the prior `nice?` method, gives us the `better_nice?` method.
 
-.solution.rb pass:a[<a href="{part-b-url}#L37">source</a>]
+.solution.rb {part-b-url}#L37[source]
 [source,ruby]
 ----
 def better_nice?(word)
@@ -138,7 +138,7 @@ end
 
 Of course, we also need to wire up the `solve_b` method, which is very similar to `solve_a`.
 
-.solution.rb pass:a[<a href="{part-b-url}#L48">source</a>]
+.solution.rb {part-b-url}#L48[source]
 [source,ruby]
 ----
 def solve_b(input)

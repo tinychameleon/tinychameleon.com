@@ -34,7 +34,7 @@ I will start with some tests to lay out what I expect as output from the `santa_
 For the method I want to return a `Hash` where the keys are `X` coordinates and the values are a `Set` of `Y` coordinates.
 This will represent all the `(X, Y)` coordinates that Santa has visited and will allow me to figure out how many houses were visited at least once.
 
-.solution.rb pass:a[<a href="{part-a-url}#L6">source</a>]
+.solution.rb {part-a-url}#L6[source]
 [source,ruby]
 ----
 assert santa_tracker('>'), { 0 => Set[0], 1 => Set[0] }
@@ -45,7 +45,7 @@ assert santa_tracker('^v^v^v^v^v'), { 0 => Set[0, 1] }
 Before I start implementing the `santa_tracker` method there are a few things I want to codify to make my life easier for the core of the implementation.
 I want to represent the directional characters of the input as coordinate-pair deltas, so that I can simply add that difference to the current position of Santa.
 
-.solution.rb pass:a[<a href="{part-a-url}#L33">source</a>]
+.solution.rb {part-a-url}#L33[source]
 [source,ruby]
 ----
 DELTAS = {
@@ -60,7 +60,7 @@ DELTAS = {
 Now when I encounter a "move south" `v` character I know that the `X` coordinate will remain the same and the `Y` coordinate will be decreased by 1.
 Following this, I need define the `Point` class and give it an `add` method to support the strategy I want to take for processing the challenge input.
 
-.solution.rb pass:a[<a href="{part-a-url}#L26">source</a>]
+.solution.rb {part-a-url}#L26[source]
 [source,ruby]
 ----
 Point = Struct.new(:x, :y) do
@@ -74,7 +74,7 @@ end
 Nothing too fancy -- just a simple `Struct` with some method definitions; if you're not used to doing algebra try to recall that adding a negative number is the same as subtracting the positive number.
 With these pieces set up I'm ready to begin implementing the `santa_tracker`.
 
-.solution.rb pass:a[<a href="{part-a-url}#L46">source</a>]
+.solution.rb {part-a-url}#L46[source]
 [source,ruby]
 ----
 def santa_tracker(directions)
@@ -96,7 +96,7 @@ So what's up with that `new_house_map` method?
 Well, if you look closely at the code you will notice I never check if an `X` coordinate key exists in the `Hash` before adding the `Y` coordinate.
 This requires a `Hash` which sets a default value for newly added keys, which I have encapsulated in the `new_house_map` method.
 
-.solution.rb pass:a[<a href="{part-a-url}#L40">source</a>]
+.solution.rb {part-a-url}#L40[source]
 [source,ruby]
 ----
 def new_house_map
@@ -109,7 +109,7 @@ end
 Whenever I add a new key to the `Hash` it will run the block to provide a default value for my code to immediately use; I've also been a little sneaky and added the coordinate-pair `(0, 0)` to it.
 With all of this in place I can wire together everything to solve part A.
 
-.solution.rb pass:a[<a href="{part-a-url}#L56">source</a>]
+.solution.rb {part-a-url}#L56[source]
 [source,ruby]
 ----
 def solve_a(input)
@@ -141,7 +141,7 @@ ____
 This time I still have to answer the same question, but the catch is that Santa and Robo-Santa both utilize the same input with each of them consuming half.
 The tests I wrote for `duo_tracker` use almost identical input to the `santa_tracker` tests, so it is obvious how the output changes because of Santa's helper.
 
-.solution.rb pass:a[<a href="{part-b-url}#L14">source</a>]
+.solution.rb {part-b-url}#L14[source]
 [source,ruby]
 ----
 assert duo_tracker('^v'), { 0 => Set[0, 1, -1] }
@@ -152,7 +152,7 @@ assert duo_tracker('^v^v^v^v^v'), { 0 => Set[*(-5..5)] }
 The change is particularly dramatic for the third test, where instead of two houses receiving gifts, eleven do.
 The implementation is nearly identical in semantics, but differs in the details while using some pretty interesting features.
 
-.solution.rb pass:a[<a href="{part-b-url}#L64">source</a>]
+.solution.rb {part-b-url}#L64[source]
 [source,ruby]
 ----
 def duo_tracker(directions)

@@ -34,7 +34,7 @@ Here are the requirements I see:
 By following those requirements and creating an interface to ask for a specific wire's value, we should be able to solve the problem.
 What I would like to do, at the top-level of the solution, is pass the problem input and the wire name into a function and get back the wire value.
 
-.solution.rb pass:a[<a href="{file-url}#L47">source</a>]
+.solution.rb {file-url}#L47[source]
 [source,ruby]
 ----
 TEST_INPUT = <<~DATA.freeze
@@ -58,7 +58,7 @@ The test input is pulled directly from the Advent of Code challenge page, and th
 I decided to use symbols (`:g`) as wire names, though strings would have been completely acceptable, as it just felt a bit cleaner to me.
 While the `solve` method feels like a good place to deal with breaking apart the input, it doesn't feel like the spot for any of the signal value calculation logic.
 
-.solution.rb pass:a[<a href="{file-url}#L155">source</a>]
+.solution.rb {file-url}#L155[source]
 [source,ruby]
 ----
 def solve(input, wire)
@@ -75,7 +75,7 @@ This split seemed reasonable to me, but my idea is that the `Circuit` class will
 To create these logic gates each line of input will need to be analysed to determine what kind of gate it should be -- recall from above that a wire can receive a signal from a literal value, another wire, or a logic gate.
 I would like to model all of these as a single `Gate` class that can be parametrized by a lambda.
 
-.solution.rb pass:a[<a href="{file-url}#L150">source</a>]
+.solution.rb {file-url}#L150[source]
 [source,ruby]
 ----
 def parse_line(line)
@@ -87,7 +87,7 @@ end
 Parsing each individual line turns out to be rather easy to write because it delegates to two other methods; remember that I also decided to represent wires as symbols, not strings.
 Of the two methods `components` and `build_gate` only the latter requires tests as it will be the factory method that needs to correctly parametrize the `Gate` instances.
 
-.solution.rb pass:a[<a href="{file-url}#L133">source</a>]
+.solution.rb {file-url}#L133[source]
 [source,ruby]
 ----
 def components(line)
@@ -100,7 +100,7 @@ As you can see both `parse_line` and `components` are simple and, at least in my
 On the other hand, the `build_gate` method I have chosen to test because it will require a reference to the currently non-existent `Circuit` class.
 This kind of relationship should have some tests around it to ensure the communication between classes works correctly.
 
-.solution.rb pass:a[<a href="{file-url}#L21">source</a>]
+.solution.rb {file-url}#L21[source]
 [source,ruby]
 ----
 def test_build_gate
@@ -121,7 +121,7 @@ end
 The tests I've written exercise the `Gate` class to retrieve the signal value and ensure the input record is correct.
 It doesn't fully exercise the class for all possible inputs, but it's good enough to give me confidence in the code I will be writing.
 
-.solution.rb pass:a[<a href="{file-url}#L120">source</a>]
+.solution.rb {file-url}#L120[source]
 [source,ruby]
 ----
 DIGIT = /^[0-9]/.freeze
@@ -161,7 +161,7 @@ Each of these `Gate.new` statements passes in the pre-requisite inputs for the l
 
 The last piece of the input-to-gate translation is to create the `Gate` class itself.
 
-.solution.rb pass:a[<a href="{file-url}#L63">source</a>]
+.solution.rb {file-url}#L63[source]
 [source,ruby]
 ----
 class Gate
@@ -189,7 +189,7 @@ The remaining portion of code to write is the `Circuit` which records all the si
 This class is the most complicated part of the solution because it only calculates necessary wire values for the requested read operation.
 I've decided on a simple interface to `Circuit` which only has two methods: `<<` as a short-hand for "add-a-wire-and-gate", `read` to ask for a wire value, and `signal` to fetch the value of a particular input for `Gate`.
 
-.solution.rb pass:a[<a href="{file-url}#L35">source</a>]
+.solution.rb {file-url}#L35[source]
 [source,ruby]
 ----
 def test_circuit
@@ -207,7 +207,7 @@ end
 
 This test also doubles as a check that `Circuit` will work with the output of the `parse_line` method that we wrote above; if the class works with our test data then it should work with `parse_line`, unless that method has a bug.
 
-.solution.rb pass:a[<a href="{file-url}#L77">source</a>]
+.solution.rb {file-url}#L77[source]
 [source,ruby]
 ----
 class Circuit
@@ -230,7 +230,7 @@ The first chunk of the `Circuit` class is fairly easy to understand -- initializ
 The `read` method is the bulk of the class and implements a depth-first approach to calculating only the necessary wire values.
 Before looking at `read` I want to look at two helper methods because they will make understanding the depth-first approach a little easier.
 
-.solution.rb pass:a[<a href="{file-url}#L111">source</a>]
+.solution.rb {file-url}#L111[source]
 [source,ruby]
 ----
 def missing_signals(inputs)
@@ -246,7 +246,7 @@ The `calculate_signal` method stores the result of asking the `Gate` for it's si
 More important to the algorithm is the `missing_signals` method -- it determines which inputs still need to be calculated so that we only deal with each wire once.
 With these two methods, we can now look at the `read` implementation.
 
-.solution.rb pass:a[<a href="{file-url}#L91">source</a>]
+.solution.rb {file-url}#L91[source]
 [source,ruby]
 ----
 def read(wire)

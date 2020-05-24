@@ -36,7 +36,7 @@ The first part of this challenge is to determine which floor Santa ends up on by
 Using the examples provided within the challenge I have implemented a simple `tests` method which will crash if an assertion fails.
 The stack trace produced by such a crash will highlight the failed assertion and provide a legible comparison message; if all tests pass the output will simply be "ok".
 
-.solution.rb pass:a[<a href="{blob-base-url}/e4951228497fb3f027364d39c3661445f56a96ae/2015/1/solution.rb#L4">source</a>]
+.solution.rb {blob-base-url}/e4951228497fb3f027364d39c3661445f56a96ae/2015/1/solution.rb#L4[source]
 [source,ruby]
 ----
 def tests
@@ -71,7 +71,7 @@ Traceback (most recent call last):
 It's not going to win any awards for beauty, but I  don't have to choose and learn a full testing framework for what amounts to a series of small challenges.
 Now that our `tests` method is working we can begin implementing a solution for part A of the challenge; my first cut is a simple loop over every character within the given input.
 
-.solution.rb pass:a[<a href="{blob-base-url}/e4951228497fb3f027364d39c3661445f56a96ae/2015/1/solution.rb#L27">source</a>]
+.solution.rb {blob-base-url}/e4951228497fb3f027364d39c3661445f56a96ae/2015/1/solution.rb#L27[source]
 [source,ruby]
 ----
 def solve_a(input)
@@ -90,7 +90,7 @@ One thing I've had to remind myself of is that Ruby favours methods on objects i
 Aside from that, I think what I've come up with is easy to understand, fairly fast, and importantly it calculates the correct answer.
 I'm not finished this solution though, I want to improve the legibility of the solution by eliminating the external `floor` variable using the `reduce` method.
 
-.solution.rb pass:a[<a href="{blob-base-url}/4012fa0a5093b53cbbfadbd3089038d731746eb9/2015/1/solution.rb#L27">source</a>]
+.solution.rb {blob-base-url}/4012fa0a5093b53cbbfadbd3089038d731746eb9/2015/1/solution.rb#L27[source]
 [source,ruby]
 ----
 def solve_a(input)
@@ -125,7 +125,7 @@ I find this too generic for the challenge, but it's useful to know about the `su
 == Interlude: Reading Input
 I'd like to take a moment before beginning part B to discuss how I'm reading input for the challenge because this can be a large bottleneck in many programs.
 
-.solution.rb pass:a[<a href="{blob-base-url}/4012fa0a5093b53cbbfadbd3089038d731746eb9/2015/1/solution.rb#L17">source</a>]
+.solution.rb {blob-base-url}/4012fa0a5093b53cbbfadbd3089038d731746eb9/2015/1/solution.rb#L17[source]
 [source,ruby]
 ----
 def part_a
@@ -145,7 +145,7 @@ The first character in the instructions has position 1, the second character has
 ____
 Again, I'm beginning by updating the `tests` method to include assertions for solving part B; the challenge gives a few examples that I can add without much effort.
 
-.solution.rb pass:a[<a href="{blob-base-url}/bf8eae05654c37ba38a6198b0c25191ebaf4e587/2015/1/solution.rb#L15">source</a>]
+.solution.rb {blob-base-url}/bf8eae05654c37ba38a6198b0c25191ebaf4e587/2015/1/solution.rb#L15[source]
 [source,ruby]
 ----
 def tests
@@ -159,7 +159,7 @@ end
 You may object to mixing the tests for each part of the challenge and you're not entirely wrong to do so; I don't think these are complicated enough to warrant individual methods, but the refactoring is easy to do and doesn't make the code worse.
 To easily solve part B, I'm about to make my implementation a bit worse by rolling back the improvement I made by using `reduce`; keeping it would lead to poor legibility using nested arrays.
 
-.solution.rb pass:a[<a href="{blob-base-url}/bf8eae05654c37ba38a6198b0c25191ebaf4e587/2015/1/solution.rb#L37">source</a>]
+.solution.rb {blob-base-url}/bf8eae05654c37ba38a6198b0c25191ebaf4e587/2015/1/solution.rb#L37[source]
 [source,ruby]
 ----
 def solve_b(input)

@@ -26,7 +26,7 @@ Still, I want to list out the important information in this description to aid t
 - Concatenate the puzzle input with a positive integers
 - The smallest integer where the hex digest begins with 5 zeroes is the solution
 
-.solution.rb pass:a[<a href="{part-a-url}#L6">source</a>]
+.solution.rb {part-a-url}#L6[source]
 [source,ruby]
 ----
 assert solve('abcdef'), 609_043
@@ -36,7 +36,7 @@ I've decided that I may be able to get away with eliminating the part A and B di
 The API is simple: provide a secret and get back the smallest positive integer which leads to a digest beginning with 5 zeroes.
 The implemenation is also simple, consisting of a single loop and some minor supporting functionality for matching the prefix.
 
-.solution.rb pass:a[<a href="{part-a-url}#L22">source</a>]
+.solution.rb {part-a-url}#L22[source]
 [source,ruby]
 ----
 def solve(input)
@@ -74,7 +74,7 @@ ____
 
 I've modified the tests to display an improved version of the `solve` API which provides enough flexibility for it to solve both challenge parts; I've also added a second, more computationally expensive test.
 
-.solution.rb pass:a[<a href="{part-b-url}#L6">source</a>]
+.solution.rb {part-b-url}#L6[source]
 [source,ruby]
 ----
 assert solve('abcdef', zeroes: 5), 609_043
@@ -84,7 +84,7 @@ assert solve('pqrstuv', zeroes: 5), 1_048_970
 This is going to be a very easy change to make to the `solve` method because I am only replacing the originally hard-coded `5` value with a parameter.
 These situations are always a great feeling, since it shows the original strategy is malleable enough to avoid major redesign work.
 
-.solution.rb pass:a[<a href="{part-b-url}#L23">source</a>]
+.solution.rb {part-b-url}#L23[source]
 [source,ruby]
 ----
 def solve(input, zeroes:)

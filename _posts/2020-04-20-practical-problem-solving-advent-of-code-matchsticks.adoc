@@ -27,7 +27,7 @@ We need to find the result of subtracting the string literal length from the str
 I want to build out methods that return a hash of data values per string, which I can use to aggregate data to determine the correct answer.
 As a first step, I've pulled the example data from the challenge page into a reusable test input.
 
-.solution.rb pass:a[<a href="{file-url}#L4">source</a>]
+.solution.rb {file-url}#L4[source]
 [source,ruby]
 ----
 TEST_INPUT = <<~'DATA'.freeze
@@ -40,7 +40,7 @@ DATA
 
 The solver method should be able to return an answer from the whole input and lean on a method called `char_counts` to determine the literal and in-memory values for each string; let's represent that in some tests.
 
-.solution.rb pass:a[<a href="{file-url}#L17">source</a>]
+.solution.rb {file-url}#L17[source]
 [source,ruby]
 ----
 def test_counts
@@ -55,7 +55,7 @@ end
 That `char_counts` method exclusively prepares the hash of key-value pairs and pushes the in-memory length calculation into another helper method.
 It also nicely highlights how literal data structures and implicit `return` statements improve the legibility of code by stripping away unnecessary syntax.
 
-.solution.rb pass:a[<a href="{file-url}#L43">source</a>]
+.solution.rb {file-url}#L43[source]
 [source,ruby]
 ----
 def char_counts(string)
@@ -66,7 +66,7 @@ end
 Exploring Ruby's support for procedural code pushes me toward implementing `char_scan` using a while-loop control-flow statement instead of the more functional `Enumerable` methods.
 It's important to understand what tools your language provides for expressing problems in their most natural way; sometimes problems are easier to express procedurally than functionally or logically.
 
-.solution.rb pass:a[<a href="{file-url}#L47">source</a>]
+.solution.rb {file-url}#L47[source]
 [source,ruby]
 ----
 def char_scan(string)
@@ -97,7 +97,7 @@ If this character is an `x` then we need to move three characters ahead to have 
 
 Having implemented `char_scan` and `char_counts` we can focus on implementing `solve_a` and the aggregation of line data counts.
 
-.solution.rb pass:a[<a href="{file-url}#L73">source</a>]
+.solution.rb {file-url}#L73[source]
 [source,ruby]
 ----
 def solve_a(input)
@@ -170,7 +170,7 @@ ____
 Similar to part A, I want to have a solver method that relies on a method called `encode_counts` to create a hash containing the literal and encoded character counts.
 The implementation was fairly good last time, so replicating it seems like a great way to speed up finding the answer to part B.
 
-.solution.rb pass:a[<a href="{file-url}#L61">source</a>]
+.solution.rb {file-url}#L61[source]
 [source,ruby]
 ----
 def encode_counts(string)
@@ -180,7 +180,7 @@ end
 
 The method called `char_encode` will calculate the total length of the escaped string, but before I can confidently work on it I want to duplicate prior tests to figure out the expected results.
 
-.solution.rb pass:a[<a href="{file-url}#L25">source</a>]
+.solution.rb {file-url}#L25[source]
 [source,ruby]
 ----
 def test_encodings
@@ -195,7 +195,7 @@ end
 Using the commented examples above to think about how to calculate escaped string length turned out to be valuable -- the solution is surprisingly simple.
 Any backslash or double-quote character counts as two characters and everything else counts as one.
 
-.solution.rb pass:a[<a href="{file-url}#L65">source</a>]
+.solution.rb {file-url}#L65[source]
 [source,ruby]
 ----
 ENCODE = ['\\', '"'].freeze
@@ -212,7 +212,7 @@ The final piece is to take into account the surrounding double-quotes of a strin
 
 To tie everything together the `solve_b` method can be written almost identically to the previous `solve_a` method -- the only differences being the `:encoded` symbol and the `encode_counts` call.
 
-.solution.rb pass:a[<a href="{file-url}#L81">source</a>]
+.solution.rb {file-url}#L81[source]
 [source,ruby]
 ----
 def solve_b(input)

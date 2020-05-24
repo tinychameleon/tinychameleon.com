@@ -27,7 +27,7 @@ This is actually a https://en.wikipedia.org/wiki/Hamiltonian_path[Hamiltonian Pa
 Unfortunately, the Hamiltonian Path problem is NP-Complete, so there are no fast and correct solutions.
 This isn't going to deter us from solving the problem though, so lets write some tests for parsing the input data.
 
-.solution.rb pass:a[<a href="{part-a1-url}#L4">source</a>]
+.solution.rb {part-a1-url}#L4[source]
 [source,ruby]
 ----
 TEST_INPUT = <<~DATA
@@ -50,7 +50,7 @@ end
 As you can see from `TEST_DATA` the input is a series of lines indicating a starting location, an ending location, and the distance between the two.
 The approach will be to use a sorted array of starting and ending locations to reference the distance values, so that we avoid creating an entry for every direction; for example, `London -> Belfast` and `Belfast -> London`.
 
-.solution.rb pass:a[<a href="{part-a1-url}#L31">source</a>]
+.solution.rb {part-a1-url}#L31[source]
 [source,ruby]
 ----
 def parse_distances(input)
@@ -77,7 +77,7 @@ The benefit of using `Enumerable#each_with_object` here is two-fold:
 With distance parsing from input text complete, it's time to implement a method to find the shortest path given a hash-map of distances.
 The test for this is a simple one line change:
 
-.solution.rb pass:a[<a href="{part-a1-url}#L17">source</a>]
+.solution.rb {part-a1-url}#L17[source]
 [source,ruby]
 ----
 assert shortest_path(distances), 605
@@ -85,7 +85,7 @@ assert shortest_path(distances), 605
 
 The implementation code is inefficient, but it's a straight-forward way to determine the shortest path: find the total distance for every ordering of locations and return the minimum value.
 
-.solution.rb pass:a[<a href="{part-a1-url}#L38">source</a>]
+.solution.rb {part-a1-url}#L38[source]
 [source,ruby]
 ----
 def shortest_path(distances)
@@ -145,7 +145,7 @@ This means that our algorithm is dominated by the middle section and can be expr
 To improve performance we need to do less work, so lets think about how to eliminate work earlier in the process.
 We can't eliminate enumerating all the permutations, but we can maintain a current minimum and exit earlier in the distance total calculation if we exceed that value.
 
-.solution.rb pass:a[<a href="{part-a2-url}">source</a>]
+.solution.rb {part-a2-url}[source]
 [source,ruby]
 ----
 def shortest_path(distances)
@@ -185,7 +185,7 @@ The second, and final, optimization we'll make to the algorithm will trade memor
 It's a strategy that doesn't necessarily work for all input sizes, since the larger the input size the more memory will be utilized.
 Our optimization is going to remove the sorting requirement on distance keys and migrate the hash-map toward a nested hash-map of locations; let's modify the tests to get a better picture of what the result will be.
 
-.solution.rb pass:a[<a href="{part-a3-url}">source</a>]
+.solution.rb {part-a3-url}[source]
 [source,ruby]
 ----
 def tests
@@ -203,7 +203,7 @@ end
 The parsed distance values now reflect the bi-directional travel between locations by duplicating the distance information across each key.
 The `parse_distances` method changes a little, but there are still some familiar aspects remaining, like the `split.each_slice(5)` method chain.
 
-.solution.rb pass:a[<a href="{part-a3-url}">source</a>]
+.solution.rb {part-a3-url}[source]
 [source,ruby]
 ----
 def parse_distances(input)
@@ -220,7 +220,7 @@ end
 The array decomposition for each line is promoted into the block arguments of `Enumerable#each_slice` and the body of the block writes the distance into the atlas for both location directions.
 At this point the tests are broken because the `shortest_path` method still expects the original distances data structure; that is the next thing to modify.
 
-.solution.rb pass:a[<a href="{part-a3-url}">source</a>]
+.solution.rb {part-a3-url}[source]
 [source,ruby]
 ----
 def shortest_path(distances)
@@ -264,7 +264,7 @@ ____
 
 Tests are a good starting point for our `longest_path` method, so lets add the example provided by the challenge as a test.
 
-.solution.rb pass:a[<a href="{part-b-url}#L18">source</a>]
+.solution.rb {part-b-url}#L18[source]
 [source,ruby]
 ----
 assert longest_path(distances), 982
@@ -273,7 +273,7 @@ assert longest_path(distances), 982
 Similar to the `shortest_path` implementation, there is no avoiding checking every permutation of the locations; that makes our `longest_path` implementation also `O(n!)` in Big-O notation.
 The code is simpler because finding the maximum distance precludes an early exit -- the sum of distances between all locations in an ordering must be calculated to know if it is larger than the current maximum.
 
-.solution.rb pass:a[<a href="{part-b-url}#L53">source</a>]
+.solution.rb {part-b-url}#L53[source]
 [source,ruby]
 ----
 def longest_path(distances)

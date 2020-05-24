@@ -53,7 +53,7 @@ My solution is split up into three components, each of which provides a specific
 We'll start with the top-level component: the `Driver` class; as mentioned above it's responsible for gluing together all of our components, which means it has little functionality itself.
 In fact, it only has two very short, static methods called `launch` and `run_solution`:
 
-.main.rb pass:a[<a href="{blob-base-url}/main.rb">source</a>]
+.main.rb {blob-base-url}/main.rb[source]
 [source,ruby]
 ----
 require './options'
@@ -97,7 +97,7 @@ If you recall, I mentioned the dynamic code loading is not a security exploit, w
 My `Options` class achieves this validation, and command-line flag parsing, by leaning heavily on the `optparse` library that ships with Ruby.
 We're going to do a class tear-down of `Options` covering static constants, initialization, flag definitions, and validations, and while the code segments presented will not reference or be indented they are all part of the `Options` class.
 
-.options.rb pass:a[<a href="{blob-base-url}/options.rb#L3">source</a>]
+.options.rb {blob-base-url}/options.rb#L3[source]
 [source,ruby]
 ----
 require 'optparse'
@@ -117,7 +117,7 @@ end
 
 You can see that the basic structure of the constants in this class is rather simple: we just create groups of allowed values to eventually pass into the `OptionParser` class.footnote:[Ruby is dynamic and calling `freeze` on an object stops it from changing.]
 
-.options.rb pass:a[<a href="{blob-base-url}/options.rb#L10">source</a>]
+.options.rb {blob-base-url}/options.rb#L10[source]
 [source,ruby]
 ----
 def initialize
@@ -133,7 +133,7 @@ end
 The initialization of the `Options` class should be easy to understand: explicitly give the read-only attributes we defined their initial values, create a new `OptionParser` instance and set up different types of flags on it.
 Our required flag set-up is a bit more interesting because I set up validation to avoid security issues in the `Driver` class; don't expect anything too amazing though, `OptionParser` makes it trivial.
 
-.options.rb pass:a[<a href="{blob-base-url}/options.rb#L20">source</a>]
+.options.rb {blob-base-url}/options.rb#L20[source]
 [source,ruby]
 ----
 def required_flags(opt)
@@ -163,7 +163,7 @@ In case you really want to know, the positional arguments mean the following thi
 
 If you attempt building a personal tool in the future, make sure you refrain from judging your progress by how much time that first attempt takes.
 
-.options.rb pass:a[<a href="{blob-base-url}/options.rb#L31">source</a>]
+.options.rb {blob-base-url}/options.rb#L31[source]
 [source,ruby]
 ----
 def choice_flags(opt)
@@ -176,7 +176,7 @@ end
 You should be able to speed-read the `choice_flags` method at this point because it's basically the same thing as the `required_flags` method, but with less going on.
 This method is important though, because it's setting up our run choice flags for tests and the two parts of each challenge.
 
-.options.rb pass:a[<a href="{blob-base-url}/options.rb#38">source</a>]
+.options.rb {blob-base-url}/options.rb#38[source]
 [source,ruby]
 ----
 def common_flags(opt)
@@ -194,7 +194,7 @@ My `common_flags` implementation should be equally easy to understand; hopefully
 I think the critical realization you should be working toward is that solutions don't have to be fancy, and actually, I prefer these boring solutions because they require less brain-space.
 There's only four small methods remaining in this class, and three of them are related to validating input, so lets look at `parse` first since it's used by the `Driver` class.
 
-.options.rb pass:a[<a href="{blob-base-url}/options.rb#L46">source</a>]
+.options.rb {blob-base-url}/options.rb#L46[source]
 [source,ruby]
 ----
 def parse(args)
@@ -210,7 +210,7 @@ Very little about `parse` can be considered intriguing and that's exactly how I 
 The remaining methods are all about validating input and producing decent error messages, which is a task many people choose to avoid when creating their own tools.
 I think it's important to always handle errors in a graceful manner because firstly, it helps me in the future, and secondly, it allows me practice at solving error cases for more important code-bases I work within.
 
-.options.rb pass:a[<a href="{blob-base-url}/options.rb#L55">source</a>]
+.options.rb {blob-base-url}/options.rb#L55[source]
 [source,ruby]
 ----
 def parse_or_fail(args)
@@ -225,7 +225,7 @@ end
 
 Essentially, all `parse_or_fail` does is ask the `OptionParser` instance to parse the given arguments and print out our help message if there is a failure of any kind.
 
-.options.rb pass:a[<a href="{blob-base-url}/options.rb#L63">source</a>]
+.options.rb {blob-base-url}/options.rb#L63[source]
 [source,ruby]
 ----
 def validate_mandatory_flags
@@ -240,7 +240,7 @@ end
 
 The `validate_mandatory_flags` method just checks that year and question flags are both provided and prints a nice error message otherwise.
 
-.options.rb pass:a[<a href="{blob-base-url}/options.rb#L71">source</a>]
+.options.rb {blob-base-url}/options.rb#L71[source]
 [source,ruby]
 ----
 def validate_run_flags
@@ -263,7 +263,7 @@ Well now, `Options` was quite a trek, so as a cool-down let's think about how we
 Keeping the tests alongside the solution code is important to me to minimize context switching while problem solving, and while Ruby does have many good production-ready testing frameworks, they're all too verbose for our purposes here.
 May I present to you, a nano-framework for testing consisting of a single `assert` method:
 
-.utils.rb pass:a[<a href="{blob-base-url}/utils.rb">source</a>]
+.utils.rb {blob-base-url}/utils.rb[source]
 [source,ruby]
 ----
 class AssertionFailure < RuntimeError; end
@@ -283,7 +283,7 @@ Not very exciting, right?
 I think it's an important piece of tooling, since you can simply `cp` it into the correct position and immediately begin work on a new challenge with almost zero friction.
 The solution interface is laid out for us without needing to ever think about it again.
 
-.solution.rb.template pass:a[<a href="{blob-base-url}/solution.rb.template">source</a>]
+.solution.rb.template {blob-base-url}/solution.rb.template[source]
 [source,ruby]
 ----
 require './utils'
@@ -327,7 +327,7 @@ However, I find it much easier to learn languages with a decent code style tool,
 It ships with fairly decent defaults for most projects, but for my purposes some of those defaults are unacceptable and will need tweaking.
 The YAML configuration Rubocop uses is very legible and since I prefer to comment styling rules, I will simply reproduce the file below and avoid unnecessary explanations.
 
-..rubocop.yml pass:a[<a href="{blob-base-url}/.rubocopy.yml">source</a>]
+..rubocop.yml {blob-base-url}/.rubocopy.yml[source]
 [source,yaml]
 ----
 # For tests, having braces around the expected value helps
