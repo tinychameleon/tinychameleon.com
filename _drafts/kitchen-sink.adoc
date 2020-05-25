@@ -1,0 +1,99 @@
+= Kitchen Sink
+:page-layout: post
+:page-date: 2120-05-24 18:03:28 -0700
+:page-tags: [fake, tags]
+
+This is the kitchen sink page.footnote:[This is a really long footnote that will span more than one line because of how wordy it is and really something this long seems excessive for a footnote, but maybe it would be useful.]
+It contains all of the different elements that are used on the website.
+Things like ordered lists:
+
+. Ordered List
+. With several items of varying lengths to ensure styling works when lines overflow
+. Final item
+
+And really long paragraphs that don't actually say anything.footnote:[This is a short footnote.]
+Because mostly this page is just to demo styling of different elements and I've got nothing to say that's interesting about it.
+
+Don't forget that https://github.com/tinychameleon[links to other places] can be included.
+Plus there are *strong* and _emphasized_ text styles.
+Here's a link:likmujnhy[completely broken link] to get to the 404 page.
+
+== A Second Level Heading
+Every so often there's a heading.
+Or a table, or an unordered list.
+
+.A Table Title
+|===
+| Column One | Column Two
+
+| Abcd
+| Efgh
+
+| Apple
+| Orange
+|===
+
+Most of the time there's a paragraph in-between to determing line-spacing.
+
+* Unordered List
+* With several items of varying lengths to ensure styling works when lines overflow
+* Final item
+
+=== A Third Level Heading
+There are also a several kinds of `code` blocks.
+Some are inline, but others are simply normal "literal blocks"
+
+    $ echo "Hello, World"
+
+Literal blocks can also have block titles:
+
+.A Literal Block https://github.com/tinychameleon[magic]
+....
+$ echo "Gasp"
+....
+
+Others are real "code blocks" that get syntax highlighting.
+
+[source]
+----
+$ echo "Goodbye, Moon"
+----
+
+Still others have a additional headings and source links:
+
+.The Block Title https://github.com/tinychameleon[source]
+[source,ruby]
+----
+puts "I like gold!"
+----
+
+Even more features can be added, like code callouts:
+
+[source,ruby]
+----
+a = [1, 2, 3]  <1>
+puts a.map { |i| i + i }  <2>
+----
+<1> That's a nice array.
+<2> I can't believe how simple it is to multiply a number by 2 using addition, a block, and a combinator function.
+
+That's about it for code blocks.
+
+==== A Fourth Level Heading
+We can also quote things, because citing your sources is a good habit to get into.
+
+[quote,"Person Who Got Stabbed"]
+____
+What're you gonna do, stab me?
+____
+
+===== A Fifth Level Heading
+I don't think I'll ever really get to use a fifth or sixth level heading, but they're here anyway.
+All the headings next to each other should give a noticable indication of the level differences.
+
+= All Glory to the Hypnotoad
+== All Glory to the Hypnotoad
+=== All Glory to the Hypnotoad
+==== All Glory to the Hypnotoad
+===== All Glory to the Hypnotoad
+====== All Glory to the Hypnotoad
