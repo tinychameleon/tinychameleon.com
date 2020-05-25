@@ -21,7 +21,7 @@ header {
     margin-bottom: 2rem;
 }
 
-h1, h2, h3, h4, .paragraph, .ulist, .olist, .listingblock, .quoteblock, table, .post-details, .post-metadata {
+h1, h2, h3, h4, .paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, .post-details, .post-metadata {
     margin: 0 0 1rem 0;
 }
 
@@ -49,7 +49,7 @@ h4 {
     font-size: 1.4rem;
 }
 
-.paragraph, .ulist, .olist, .listingblock, .quoteblock, table, .colist td:nth-child(2), #footnotes, header > ul {
+.paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, .colist td:nth-child(2), #footnotes, header > ul {
     letter-spacing: -0.02rem;
     font-size: 1.1rem;
     line-height: 1.8;
@@ -72,7 +72,7 @@ h4 {
     }
 }
 
-.listingblock, .colist table, p > code, li > code, td > code {
+.listingblock, .literalblock, .colist table, p > code, li > code, td > code {
     font-size: 1.07rem;
 }
 
@@ -115,12 +115,12 @@ p > code, li > code, td > code, .footnote > code {
     background-color: $light-figure-background;
 }
 
-.quoteblock, .listingblock {
+.quoteblock, .listingblock, .literalblock {
     line-height: 1.6;
     background-color: $light-figure-background;
 }
 
-.listingblock {
+.listingblock, .literalblock {
     .content {
         display: flex;
         padding: 1rem 1.5rem;
@@ -187,11 +187,14 @@ p > code, li > code, td > code, .footnote > code {
     }
 }
 
-table {
-    display: block;
-    overflow: scroll;
+table.tableblock {
+    width: 100%;
     white-space: nowrap;
     border-collapse: collapse;
+
+    caption.title {
+        text-align: left;
+    }
 
     thead th, tbody td {
         padding: 0.2rem 1rem;
@@ -204,6 +207,10 @@ table {
 
     tbody tr:nth-child(odd) {
         background-color: $light-figure-background;
+    }
+
+    td > p {
+        margin: 0;
     }
 }
 
