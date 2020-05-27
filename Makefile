@@ -84,7 +84,7 @@ _tmp/site_published: _tmp/production_build | _tmp
 	done < _tmp/files_to_delete
 	cp _tmp/new_manifest $@
 
-_tmp/production_build: $(shell find _posts -type f -name '*.adoc') | _tmp
+_tmp/production_build: $(shell find _posts _sass -type f \( -name '*.adoc' -or -name '*.scss' \)) | _tmp
 	rm -rf _site
 	JEKYLL_ENV=production $(JEKYLL) build --config _config/base.yml,_config/prod.yml
 	touch $@
