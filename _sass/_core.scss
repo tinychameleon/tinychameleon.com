@@ -17,13 +17,12 @@ body {
     background-color: $light-background;
 }
 
-header {
-    margin-bottom: 2rem;
-}
-
 h1, h2, h3, h4, .paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, .post-details, .post-metadata {
     margin: 0 0 1rem 0;
 }
+
+// AsciiDoc wraps a lot of p tags in other semantic divs
+p { margin: 0; }
 
 h1, h2, h3, h4 {
     letter-spacing: -0.1rem;
@@ -33,21 +32,10 @@ h2, h3, h4 {
     margin-top: 2rem;
 }
 
-h1 {
-    font-size: 2rem;
-}
-
-h2 {
-    font-size: 1.8rem;
-}
-
-h3 {
-    font-size: 1.6rem;
-}
-
-h4 {
-    font-size: 1.4rem;
-}
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
 
 .paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, .colist td:nth-child(2), #footnotes, header > ul {
     letter-spacing: -0.02rem;
@@ -55,24 +43,7 @@ h4 {
     line-height: 1.8;
 }
 
-.paragraph {
-    -ms-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-    text-indent: 2rem;
-
-    > p {
-        margin: 0;
-    }
-}
-
-.ulist, .olist {
-    p {
-        margin: 0;
-    }
-}
-
-.listingblock, .literalblock, .colist table, p > code, li > code, td > code {
+.listingblock, .literalblock, .colist table, code {
     font-size: 1.07rem;
 }
 
@@ -133,7 +104,7 @@ code, pre {
     font-family: $code-font-families;
 }
 
-p > code, li > code, td > code, .footnote > code {
+:not(pre) > code {
     padding: 0.2rem 0.4rem;
     background-color: $light-figure-background;
 }
@@ -144,7 +115,7 @@ p > code, li > code, td > code, .footnote > code {
     border-left: 0.2rem solid $primary-accent-colour;
 }
 
-.quoteblock, .listingblock, .literalblock, .paragraph code, .ulist code, .olist code, td > code, .footnote code {
+.quoteblock, .listingblock, .literalblock, :not(pre) > code {
     border-radius: 0.2rem;
 }
 
@@ -211,12 +182,8 @@ p > code, li > code, td > code, .footnote > code {
         padding: 1rem 1.5rem;
     }
 
-    .paragraph {
-        text-indent: unset;
-
-        &:last-of-type {
-            margin-bottom: 0;
-        }
+    .paragraph:last-of-type {
+        margin-bottom: 0;
     }
 
     .attribution {
@@ -261,10 +228,6 @@ table.tableblock {
         &:last-child {
             border-right: none;
         }
-
-        > p {
-            margin: 0;
-        }
     }
 
     tbody tr:nth-child(odd) {
@@ -274,7 +237,6 @@ table.tableblock {
 
 .post-metadata {
     color: $light-accent-foreground;
-    text-indent: unset;
 }
 
 .post-details h3 {
@@ -284,30 +246,14 @@ table.tableblock {
 a {
     color: $primary-accent-colour;
 
-    &:hover {
-        color: $secondary-accent-colour;
-    }
-
-    &.tag:before {
-        content: '#';
-    }
-}
-
-acronym {
-    cursor: help;
-    text-decoration: underline dotted $light-foreground;
+    &:hover { color: $secondary-accent-colour; }
+    &.tag:before { content: '#'; }
 }
 
 footer {
     margin-top: 3rem;
     text-align: center;
 
-    h5 {
-        margin: 0.3rem 0;
-    }
-
-    p {
-        text-indent: initial;
-        font-size: 0.9rem;
-    }
+    h5 { margin: 0.3rem 0; }
+    p { font-size: 0.9rem; }
 }

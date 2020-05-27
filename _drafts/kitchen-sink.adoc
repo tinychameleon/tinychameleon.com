@@ -8,7 +8,7 @@ It contains all of the different elements that are used on the website.
 Things like ordered lists:
 
 . Ordered List
-. With several items of varying lengths to ensure styling works when lines overflow
+. With several `items` of varying lengths to ensure styling works when lines overflow
 . Final item
 
 And really long paragraphs that don't actually say anything.footnote:[This is a short footnote.]
@@ -27,16 +27,16 @@ Or a table, or an unordered list.
 | Column One | Column Two
 
 | Abcd
-| Efgh
+| Efgh and `code` blocks
 
 | Apple
-| Orange
+| Orange and `code` blocks
 |===
 
 Most of the time there's a paragraph in-between to determing line-spacing.
 
 * Unordered List
-* With several items of varying lengths to ensure styling works when lines overflow
+* With several `items` of varying lengths to ensure styling works when lines overflow
 * Final item
 
 === A Third Level Heading

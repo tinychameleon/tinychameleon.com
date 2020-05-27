@@ -95,7 +95,7 @@ use caution when introducing more of it.
 
 == Three-Index Programming
 
-There are times when, due to legacy decisions, and perhaps comically low +++<acronym title="Return on Investment">ROI</acronym>+++, you are stuck with code
+There are times when, due to legacy decisions, and perhaps comically low ROI, you are stuck with code
 that is horrid to read. In these situations, generally, there is little you can
 do to fix the root problem. A refactor is out of the question due to the
 negligible resultant value and implementing a secondary, better way of achieving
