@@ -37,36 +37,14 @@ h2 { font-size: 1.8rem; }
 h3 { font-size: 1.6rem; }
 h4 { font-size: 1.4rem; }
 
-.paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, .colist td:nth-child(2), #footnotes, header > ul {
+.paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, #footnotes, header > ul {
     letter-spacing: -0.02rem;
     font-size: 1.1rem;
     line-height: 1.8;
 }
 
-.listingblock, .literalblock, .colist table, code {
+.listingblock, .literalblock, code {
     font-size: 1.07rem;
-}
-
-.listingblock, .colist {
-    .conum + b {
-        display: none;
-    }
-
-    .conum {
-        display: inline-block;
-        width: 1.5rem;
-        height: 1.5rem;
-        text-align: center;
-        vertical-align: middle;
-        font: 0.9rem/1.5rem $root-font-families;
-        color: $light-figure-background;
-        background: $primary-accent-colour;
-        border-radius: 0.2rem;
-    }
-
-    .conum:after {
-        content: attr(data-value);
-    }
 }
 
 #footnotes {
@@ -143,36 +121,6 @@ code, pre {
 
     pre {
         padding-right: 1.5rem;
-    }
-}
-
-.colist {
-    table {
-        overflow: visible;
-        white-space: unset;
-
-        td:nth-child(1) {
-            vertical-align: top;
-        }
-
-        @include for-tablet-landscape-up {
-            td:nth-child(2) {
-                padding-top: 0.15rem;
-            }
-        }
-    }
-
-    tr:nth-child(n) {
-        background: none;
-    }
-
-    td {
-        border: none;
-        padding-right: 0.6rem;
-
-        &:nth-child(2) {
-            padding: 0;
-        }
     }
 }
 
