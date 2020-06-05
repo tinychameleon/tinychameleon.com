@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'jekyll', '~> 4.0.0'
+gem 'jekyll', '~> 4.1.0'
 gem 'tilt', '~> 2.0.10'
 gem 'thread_safe', '~> 0.3.6'
 
