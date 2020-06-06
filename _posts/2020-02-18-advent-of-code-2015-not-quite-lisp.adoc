@@ -3,7 +3,7 @@
 :page-date: 2020-02-18 21:12:04 -0800
 :page-tags: [practical-problem-solving, advent-of-code, ruby]
 :blob-base-url: https://github.com/tinychameleon/advent-of-code/blob
-:page-series: pps-aoc
+:page-category: advent-of-code-2015
 
 Before I begin going through Advent of Code challenges, I would like to suggest that you personally attempt them before reading ahead.
 You can still learn a lot by reading the code written by others, but first-hand practice has no substitute when building skills.

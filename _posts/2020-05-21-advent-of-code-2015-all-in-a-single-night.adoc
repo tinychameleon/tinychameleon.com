@@ -1,7 +1,7 @@
 = Advent of Code 2015: All in a Single Night
 :page-layout: post
 :page-date: 2020-05-21 18:26:04 -0700
-:page-series: pps-aoc
+:page-category: advent-of-code-2015
 :page-tags: [practical-problem-solving, advent-of-code, ruby]
 :part-a1-url: https://github.com/tinychameleon/advent-of-code/blob/afc05188dbe34955b46eb0c23fdec0132c344ea0/2015/9/solution.rb
 :part-a2-url: https://github.com/tinychameleon/advent-of-code/commit/ef30998225c194362c68330c689af94ba3b51368

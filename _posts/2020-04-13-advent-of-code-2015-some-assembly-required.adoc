@@ -2,7 +2,7 @@
 :page-layout: post
 :page-date: 2020-04-13 17:39:10 -0700
 :page-tags: [practical-problem-solving, advent-of-code, ruby]
-:page-series: pps-aoc
+:page-category: advent-of-code-2015
 :file-url: https://github.com/tinychameleon/advent-of-code/blob/131c7710c5b6c29f83e5bdb0ffbb10adc9f80a38/2015/7/solution.rb
 
 The seventh Advent of Code https://adventofcode.com/2015/day/7[challenge] has a few very different solutions; I chose one that would let me experiment with Ruby lambda features.

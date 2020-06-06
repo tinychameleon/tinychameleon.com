@@ -2,7 +2,7 @@
 :page-layout: post
 :page-date: 2020-04-20 21:04:48 -0700
 :page-tags: [practical-problem-solving, advent-of-code, ruby]
-:page-series: pps-aoc
+:page-category: advent-of-code-2015
 :file-url: https://github.com/tinychameleon/advent-of-code/blob/e1cff83ecdaba81b7c6cdb49b1fb77b241a5aa55/2015/8/solution.rb
 
 The eighth Advent of Code https://adventofcode.com/2015/day/8[challenge] is all about character escapes in strings and provides a good opportunity to discuss why you should avoid `eval`.
