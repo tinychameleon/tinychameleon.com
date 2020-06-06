@@ -1,4 +1,4 @@
-= Practical Problem Solving: Probably a Fire Hazard
+= Advent of Code 2015: Probably a Fire Hazard
 :page-layout: post
 :page-date: 2020-04-01 18:06:00 -0700
 :page-tags: [practical-problem-solving, advent-of-code, ruby]

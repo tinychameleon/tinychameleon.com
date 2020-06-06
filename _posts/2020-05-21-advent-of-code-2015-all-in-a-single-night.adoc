@@ -1,4 +1,4 @@
-= Practical Problem Solving: All in a Single Night
+= Advent of Code 2015: All in a Single Night
 :page-layout: post
 :page-date: 2020-05-21 18:26:04 -0700
 :page-series: pps-aoc

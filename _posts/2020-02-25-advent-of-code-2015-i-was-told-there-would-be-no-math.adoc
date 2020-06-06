@@ -1,4 +1,4 @@
-= Practical Problem Solving: I Was Told There Would Be No Math
+= Advent of Code 2015: I Was Told There Would Be No Math
 :page-layout: post
 :page-date: 2020-02-25 17:41:47 -0800
 :page-tags: [practical-problem-solving, advent-of-code, ruby]

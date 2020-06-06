@@ -1,4 +1,4 @@
-= Practical Problem Solving: Not Quite Lisp
+= Advent of Code 2015: Not Quite Lisp
 :page-layout: post
 :page-date: 2020-02-18 21:12:04 -0800
 :page-tags: [practical-problem-solving, advent-of-code, ruby]

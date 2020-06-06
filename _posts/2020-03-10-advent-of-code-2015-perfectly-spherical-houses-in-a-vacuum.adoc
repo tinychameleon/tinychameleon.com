@@ -1,4 +1,4 @@
-= Practical Problem Solving: Perfectly Spherical Houses in a Vacuum
+= Advent of Code 2015: Perfectly Spherical Houses in a Vacuum
 :page-layout: post
 :page-date: 2020-03-10 19:22:24 -0700
 :page-tags: [practical-problem-solving, advent-of-code, ruby]

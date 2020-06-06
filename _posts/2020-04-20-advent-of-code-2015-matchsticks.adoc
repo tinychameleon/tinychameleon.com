@@ -1,4 +1,4 @@
-= Practical Problem Solving: Matchsticks
+= Advent of Code 2015: Matchsticks
 :page-layout: post
 :page-date: 2020-04-20 21:04:48 -0700
 :page-tags: [practical-problem-solving, advent-of-code, ruby]

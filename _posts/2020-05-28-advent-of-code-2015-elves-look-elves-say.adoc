@@ -1,4 +1,4 @@
-= Practical Problem Solving: Elves Look, Elves Say
+= Advent of Code 2015: Elves Look, Elves Say
 :page-layout: post
 :page-date: 2020-05-28 19:16:10 -0700
 :page-tags: [practical-problem-solving, advent-of-code, ruby]
