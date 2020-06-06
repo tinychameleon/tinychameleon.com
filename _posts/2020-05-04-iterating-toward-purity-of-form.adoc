@@ -1,7 +1,7 @@
 = Iterating Toward Purity of Form
 :page-layout: post
 :page-date: 2020-05-04 22:02:27 -0700
-:page-tags: [programming, design, gaming]
+:page-tags: [programming]
 
 All really good programs ever built focus intensely on a core set of features, which inevitably become associated properties.
 Modal editing in vim, flexibility in Emacs, and the illegibility of Perl are all great examples of this effect.

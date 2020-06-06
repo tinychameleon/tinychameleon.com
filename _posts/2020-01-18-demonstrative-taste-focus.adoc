@@ -1,7 +1,7 @@
 = Demonstrative Taste: Focus
 :page-layout: post
 :page-date: 2020-01-18 13:08:14 -0800
-:page-tags: [programming, python]
+:page-tags: [programming]
 
 
 I don't like the phrase "Code Smells" or the concepts behind it. It's a nebulous

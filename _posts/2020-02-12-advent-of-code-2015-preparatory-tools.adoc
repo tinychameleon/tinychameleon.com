@@ -1,7 +1,7 @@
 = Advent of Code 2015: Preparatory Tools
 :page-layout: post
 :page-date: 2020-02-12 22:06:27 -0800
-:page-tags: [practical-problem-solving, advent-of-code, ruby]
+:page-tags: [advent-of-code, ruby]
 :aoc-link: https://adventofcode.com/
 :blob-base-url: https://github.com/tinychameleon/advent-of-code/blob/a8141af2967b4c82fa39c2e14ab829c8c37858b9
 :page-category: advent-of-code-2015

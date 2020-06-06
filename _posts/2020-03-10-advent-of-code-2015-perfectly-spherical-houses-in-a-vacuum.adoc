@@ -1,7 +1,7 @@
 = Advent of Code 2015: Perfectly Spherical Houses in a Vacuum
 :page-layout: post
 :page-date: 2020-03-10 19:22:24 -0700
-:page-tags: [practical-problem-solving, advent-of-code, ruby]
+:page-tags: [advent-of-code, ruby]
 :page-category: advent-of-code-2015
 :part-a-url: https://github.com/tinychameleon/advent-of-code/blob/246e3d7758c5cd2e02c41c47a6792075fd7a77a7/2015/3/solution.rb
 :part-b-url: https://github.com/tinychameleon/advent-of-code/blob/c21e517aa4c96b4b69390ccca766aaa4cad90c88/2015/3/solution.rb

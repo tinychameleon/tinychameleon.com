@@ -1,7 +1,7 @@
 = Advent of Code 2015: Not Quite Lisp
 :page-layout: post
 :page-date: 2020-02-18 21:12:04 -0800
-:page-tags: [practical-problem-solving, advent-of-code, ruby]
+:page-tags: [advent-of-code, ruby]
 :blob-base-url: https://github.com/tinychameleon/advent-of-code/blob
 :page-category: advent-of-code-2015
 
