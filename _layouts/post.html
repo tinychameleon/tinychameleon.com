@@ -9,6 +9,22 @@ layout: default
         {{ content }}
     </div>
 </article>
+
+<aside class="post-timeline-links">
+    {%- if page.previous %}
+    <div>
+        <h5>Previous Post</h5>
+        <a href="{{ page.previous.url }}">{{ page.previous.title }}</a>
+    </div>
+    {%- endif %}
+    {%- if page.next %}
+    <div>
+        <h5>Next Post</h5>
+        <a href="{{ page.next.url }}">{{ page.next.title }}</a>
+    </div>
+    {%- endif %}
+</aside>
+
 {%- if page.category %}
 <aside class="series-posts">
     <h4>More Posts in the {{ page.title | split: ': ' | first }} Series</h4>

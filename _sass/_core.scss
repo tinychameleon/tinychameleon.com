@@ -17,7 +17,7 @@ body {
     background-color: $light-background;
 }
 
-h1, h2, h3, h4, .paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, .post-details, .post-metadata, .series-posts {
+h1, h2, h3, h4, .paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, .post-details, .post-metadata, .series-posts, .post-timeline-links {
     margin: 0 0 1rem 0;
 }
 
@@ -28,7 +28,7 @@ h1, h2, h3, h4 {
     letter-spacing: -0.1rem;
 }
 
-h2, h3, h4 {
+h2, h3, h4, h5 {
     margin-top: 2rem;
 }
 
@@ -37,7 +37,22 @@ h2 { font-size: 1.8rem; }
 h3 { font-size: 1.6rem; }
 h4 { font-size: 1.4rem; }
 
-.paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, #footnotes, header > ul, .series-posts {
+h5 {
+    margin: 0;
+}
+
+.post-timeline-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 2rem;
+
+    div:last-child {
+        margin-top: 1rem;
+    }
+}
+
+.paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, #footnotes, header > ul, .series-posts, .post-timeline-links {
     letter-spacing: -0.02rem;
     font-size: 1.1rem;
     line-height: 1.8;

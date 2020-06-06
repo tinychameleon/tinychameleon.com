@@ -27,6 +27,7 @@ exclude:
   - LICENSE
   - Makefile
   - README.md
+  - todo_list
 
 
 # Plugin settings
