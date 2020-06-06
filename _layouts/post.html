@@ -5,10 +5,24 @@ layout: default
 <article class="post">
     <h1>{{ page.title }}</h1>
     {% include post_metadata.html post=page %}
-    {% if page.series %}
-        {% include series_entry.html path=page.path series=page.series %}
-    {% endif %}
     <div class="content">
         {{ content }}
     </div>
 </article>
+{%- if page.category %}
+<aside class="series-posts">
+    <h4>More Posts in the {{ page.title | split: ': ' | first }} Series</h4>
+    <ol>
+    {%- for p in site.categories[page.category] reversed %}
+        {%- assign short_title = p.title | split: ': ' | last -%}
+        <li>
+            {% if p == page %}
+            {{ short_title }}
+            {% else %}
+            <a href="{{ p.url }}">{{ short_title }}</a>
+            {% endif %}
+        </li>
+    {%- endfor %}
+    </ol>
+</aside>
+{%- endif %}

@@ -17,7 +17,7 @@ body {
     background-color: $light-background;
 }
 
-h1, h2, h3, h4, .paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, .post-details, .post-metadata {
+h1, h2, h3, h4, .paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, .post-details, .post-metadata, .series-posts {
     margin: 0 0 1rem 0;
 }
 
@@ -37,7 +37,7 @@ h2 { font-size: 1.8rem; }
 h3 { font-size: 1.6rem; }
 h4 { font-size: 1.4rem; }
 
-.paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, #footnotes, header > ul {
+.paragraph, .ulist, .olist, .listingblock, .literalblock, .quoteblock, table, #footnotes, header > ul, .series-posts {
     letter-spacing: -0.02rem;
     font-size: 1.1rem;
     line-height: 1.8;
