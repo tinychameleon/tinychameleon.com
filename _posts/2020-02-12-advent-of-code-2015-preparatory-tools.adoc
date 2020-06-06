@@ -1,4 +1,4 @@
-= Practical Problem Solving: Advent of Code
+= Practical Problem Solving: Preparatory Tools
 :page-layout: post
 :page-date: 2020-02-12 22:06:27 -0800
 :page-tags: [practical-problem-solving, advent-of-code, ruby]
