@@ -76,11 +76,13 @@ _tmp/site_published: _tmp/production_build | _tmp
 	while read f; do
 		echo "Uploading $$f"
 		$(AZ) storage blob upload -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" \
-			-f "_site/$$f" -n "$$f" --content-cache-control '$(CACHE_HEADERS)'
+			-f "_site/$$f" -n "$$f" --content-cache-control '$(CACHE_HEADERS)' \
+			--auth-mode login
 	done < _tmp/files_to_upload
 	while read f; do
 		echo "Deleting $$f"
-		$(AZ) storage blob delete -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -n "$$f"
+		$(AZ) storage blob delete -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -n "$$f" \
+			--auth-mode login
 	done < _tmp/files_to_delete
 	cp _tmp/new_manifest $@
 
