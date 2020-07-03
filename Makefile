@@ -73,17 +73,13 @@ _tmp/site_published: _tmp/production_build | _tmp
 	comm -13 $@ _tmp/new_manifest | awk '{ print $$1 }' > _tmp/files_to_upload
 	comm -23 $@ _tmp/new_manifest | awk '{ print $$1 }' > _tmp/old_files_changed
 	comm -23 _tmp/{old_files_changed,files_to_upload} > _tmp/files_to_delete
-	while read f; do
-		echo "Uploading $$f"
+	xargs -a _tmp/files_to_upload -P1 -I{} \
 		$(AZ) storage blob upload -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" \
-			-f "_site/$$f" -n "$$f" --content-cache-control '$(CACHE_HEADERS)' \
+			-f "_site/{}" -n "{}" --content-cache-control '$(CACHE_HEADERS)' \
 			--auth-mode login
-	done < _tmp/files_to_upload
-	while read f; do
-		echo "Deleting $$f"
-		$(AZ) storage blob delete -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -n "$$f" \
+	xargs -a _tmp/files_to_delete -P1 -I{} \
+		$(AZ) storage blob delete -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -n "{}" \
 			--auth-mode login
-	done < _tmp/files_to_delete
 	cp _tmp/new_manifest $@
 
 _tmp/production_build: $(shell find _posts _sass -type f \( -name '*.adoc' -or -name '*.scss' \)) | _tmp
