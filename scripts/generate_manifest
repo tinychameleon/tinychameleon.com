@@ -1,0 +1,5 @@
+#!/bin/sh
+find public -type f ! -name '.DS_Store' -exec sha1sum {} \+ |
+sed 's:public/::' |
+awk '{ print $2, $1 }' |
+sort

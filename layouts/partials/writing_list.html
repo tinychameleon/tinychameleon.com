@@ -1,0 +1,9 @@
+<ul class="writing">
+    {{ range . }}
+    <li>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <span>{{ partial "date" .Date }}</span>
+        <p>{{ .Summary }}</p>
+    </li>
+    {{ end }}
+</ul>

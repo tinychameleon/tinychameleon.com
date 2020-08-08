@@ -8,26 +8,18 @@ and do not consider Linux at all.
 
 ## Managing Posts
 
-New draft posts can be created by issuing the `post` command from inside the
-repository; after creating the draft file it opens it via `$EDITOR`. Once
-completed, a draft can be made public by using the `publish` command; public
-implies being moved to the `_posts/` directory and having the date of the post
-updated in the file name and front matter.
-
-These commands are placed onto the path by `direnv`, which is an automatically
-installed dependency. Though `direnv` is not necessary, it is nice to avoid
-typing the `_bin/` prefix.
+New posts can be created using the `scripts/hugo` script, or if `direnv` is
+installed, simply `hugo`. This script simply proxies normal Hugo commands
+into a containerized version of Hugo for easier dependency management.
 
 
 ## Development
 
-This project is built using Jekyll and rbenv; the required ruby and bundler
-versions are specified in the [Makefile](Makefile).
+This project is built using Hugo and Docker; the [Makefile](Makefile) default
+target is the `server` recipe which runs a local development server.
 
-To locally serve the website, run either `make` or `make serve`. Dependencies
-will be installed, and marked as such, automatically.
-
-Manual installation of dependencies can be done via `make deps`.
+Manual installation of dependencies can be done via `make deps`, but they are
+also installed by default via the `server` recipe.
 
 
 ## Deployment

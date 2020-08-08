@@ -1,0 +1,19 @@
+/* Constants */
+$defaultWidth: 25px;
+$defaultHeight: 20px;
+$mobileScale: 4;
+$desktopScale: 4;
+
+/* Sizes */
+$width: $defaultWidth * $mobileScale;
+$height: $defaultHeight * $mobileScale;
+
+header {
+    height: $height;
+    text-align: center;
+
+    .logo {
+        width: $width;
+        height: $height;
+    }
+}

@@ -1,0 +1,8 @@
+{{ define "main" }}
+<main>
+    <h1>{{ .Title }}</h1>
+    {{ $pages := cond (eq .CurrentSection.Title "Series") .Sections .Pages }}
+    {{ partial "writing_list" $pages }}
+    </ul>
+</main>
+{{ end }}

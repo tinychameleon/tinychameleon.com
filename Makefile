@@ -1,15 +1,11 @@
-## GNU Make operational configuration
-
-MAKEFLAGS += --warn-undefined-variables --no-builtin-rules
-SHELL := bash
-.SHELLFLAGS := -eu -o pipefail -c
-
-.DELETE_ON_ERROR:
+# GNU Make Configuration
+SHELL := /bin/sh
 .ONESHELL:
+.DELETE_ON_ERROR:
+.DEFAULT_GOAL := server
 
 
-## Required parameters
-
+# Required parameters
 ifndef AZ_RESOURCE_GROUP
   AZ_RESOURCE_GROUP = $(error The AZ_RESOURCE_GROUP variable must be defined)
 endif
@@ -23,86 +19,49 @@ ifndef AZ_DEPLOYMENT_NAME
 endif
 
 
-## Executable parameters
-
-RUBY_VERSION ?= 2.6.5
-BUNDLER_VERSION ?= 2.0.2
-JEKYLL ?= bundle exec jekyll
+# Executable Variables
 BREW_BIN ?= $(shell brew --prefix)/bin
 AZ ?= $(BREW_BIN)/az
 DIRENV ?= $(BREW_BIN)/direnv
-RBENV ?= $(BREW_BIN)/rbenv
 
 
-## Target parameters
+# Recipe Variables
+HUGO_VERSION ?= 0.74.3
+HUGO_IMAGE ?= tc_hugo
 
 MAX_AGE ?= 86400
 CACHE_HEADERS := public,max-age=$(MAX_AGE)
 
 
-## External target definitions
-
-serve: deps
-	$(JEKYLL) server --config _config/base.yml,_config/dev.yml
-.PHONY: serve
-
-deploy: deps build _tmp/site_published
-.PHONY: publish
-
-infra: deps _tmp/infra_deployed
-.PHONY: infra
-
-build: deps _tmp/production_build
-.PHONY: build
-
-deps: _tmp/dependencies_installed
+# External Recipes
 .PHONY: deps
+deps: tmp/dependencies_installed
 
-clean:
-	rm -rf _site _tmp/production_build
+.PHONY: server
+server: deps 
+	hugo server -DF --bind 0.0.0.0 -p 1313
+
+.PHONY: deploy
+deploy: deps tmp/site_published
+
+.PHONY: infra
+infra: deps tmp/infra_deployed
+
 .PHONY: clean
+clean:
+	rm -rf public tmp/production_build
 
 
-## Internal target definitions
+# Internal Recipes
+tmp:
+	mkdir $@
 
-_tmp:
-	mkdir -p _tmp
-
-_tmp/site_published: _tmp/production_build | _tmp
-	generate_manifest > _tmp/new_manifest
-	comm -13 $@ _tmp/new_manifest | awk '{ print $$1 }' > _tmp/files_to_upload
-	comm -23 $@ _tmp/new_manifest | awk '{ print $$1 }' > _tmp/old_files_changed
-	comm -23 _tmp/{old_files_changed,files_to_upload} > _tmp/files_to_delete
-	xargs -a _tmp/files_to_upload -P1 -I{} \
-		$(AZ) storage blob upload -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" \
-			-f "_site/{}" -n "{}" --content-cache-control '$(CACHE_HEADERS)' \
-			--auth-mode login
-	xargs -a _tmp/files_to_delete -P1 -I{} \
-		$(AZ) storage blob delete -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -n "{}" \
-			--auth-mode login
-	cp _tmp/new_manifest $@
-
-_tmp/production_build: $(shell find _posts _sass -type f \( -name '*.adoc' -or -name '*.scss' \)) | _tmp
-	rm -rf _site
-	JEKYLL_ENV=production $(JEKYLL) build --config _config/base.yml,_config/prod.yml
+tmp/hugo_$(HUGO_VERSION):
 	touch $@
 
-_tmp/infra_deployed: _tmp/az_resource_group _tmp/az_infra_json | _tmp
+tmp/$(HUGO_IMAGE): Dockerfile tmp/hugo_$(HUGO_VERSION) | tmp
+	docker build --build-arg version=$(HUGO_VERSION) -t $(HUGO_IMAGE) .
 	touch $@
-
-_tmp/az_resource_group: | _tmp
-	$(AZ) group create -l westus2 -n "$(AZ_RESOURCE_GROUP)"
-	touch $@
-
-_tmp/az_infra_json: infra.json _tmp/myip | _tmp
-	$(AZ) group deployment create -g "$(AZ_RESOURCE_GROUP)" -n "$(AZ_DEPLOYMENT_NAME)" \
-		--template-file infra.json --parameters \
-			cidr="$$(cat _tmp/myip)" \
-			storageAccountName="$(AZ_STORAGE_ACCOUNT)"
-	touch $@
-
-_tmp/myip: | _tmp
-	dig @resolver1.opendns.com ANY myip.opendns.com +short -4 > $@
 
 $(AZ):
 	brew install azure-cli
@@ -110,17 +69,40 @@ $(AZ):
 $(DIRENV):
 	brew install direnv
 
-$(RBENV):
-	brew install rbenv
-
-.ruby-version: $(RBENV)
-	rbenv install -s $(RUBY_VERSION)
-	rbenv local $(RUBY_VERSION)
-
-_tmp/bundler_installed: .ruby-version | _tmp
-	gem install bundler:$(BUNDLER_VERSION)
+tmp/dependencies_installed: tmp/$(HUGO_IMAGE) $(AZ) $(DIRENV) | tmp
 	touch $@
 
-_tmp/dependencies_installed: Gemfile $(AZ) $(DIRENV) $(RBENV) _tmp/bundler_installed | _tmp
-	bundle install
+tmp/infra_deployed: tmp/az_resource_group tmp/az_infra_json | tmp
+	touch $@
+
+tmp/az_resource_group: | tmp
+	$(AZ) group create -l westus2 -n "$(AZ_RESOURCE_GROUP)"
+	touch $@
+
+tmp/az_infra_json: infra.json tmp/myip | tmp
+	$(AZ) group deployment create -g "$(AZ_RESOURCE_GROUP)" -n "$(AZ_DEPLOYMENT_NAME)" \
+		--template-file infra.json --parameters \
+			cidr="$$(cat tmp/myip)" \
+			storageAccountName="$(AZ_STORAGE_ACCOUNT)"
+	touch $@
+
+tmp/myip: | tmp
+	dig @resolver1.opendns.com ANY myip.opendns.com +short -4 > $@
+ 
+tmp/site_published: tmp/build | tmp
+	generate_manifest > tmp/new_manifest
+	comm -13 $@ tmp/new_manifest | awk '{ print $$1 }' > tmp/files_to_upload
+	comm -23 $@ tmp/new_manifest | awk '{ print $$1 }' > tmp/old_files_changed
+	comm -23 tmp/{old_files_changed,files_to_upload} > tmp/files_to_delete
+	xargs -a tmp/files_to_upload -P1 -I{} \
+		$(AZ) storage blob upload -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" \
+			-f "public/{}" -n "{}" --content-cache-control '$(CACHE_HEADERS)' \
+			--auth-mode login
+	xargs -a tmp/files_to_delete -P1 -I{} \
+		$(AZ) storage blob delete -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -n "{}" \
+			--auth-mode login
+	cp tmp/new_manifest $@
+
+tmp/build: | tmp
+	hugo
 	touch $@

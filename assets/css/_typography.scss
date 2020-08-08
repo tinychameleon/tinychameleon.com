@@ -1,0 +1,137 @@
+/** Font Face Definitions **/
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Merriweather Regular'), local('Merriweather-Regular'), url(/fonts/Merriweather-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Merriweather Italic'), local('Merriweather-Italic'), url(/fonts/Merriweather-Italic.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Merriweather Bold'), local('Merriweather-Bold'), url(/fonts/Merriweather-Bold.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  font-stretch: 100%;
+  font-display: swap;
+  src: local('Inconsolata'), url(/fonts/Inconsolata-Regular.woff2) format('woff2');
+}
+
+/** Typographic Variables **/
+
+$text-background: #fdfdfd;
+$text-colour: #0c0c0c;
+$text-size: 14pt;
+$code-size: 15pt;
+$tablet-text-size-delta: -1pt;
+$text-line-height: 1.6;
+$code-line-height: 1.4;
+
+/** Common Styles **/
+
+%embeddedContentHighlight {
+    padding: 0.5em 1em;
+    border-left: 2px solid $primary-colour;
+}
+
+/** General Text  **/
+
+body {
+    background: $text-background;
+    color: $text-colour;
+    font: $text-size Merriweather, serif;
+
+    @include for-tablet-landscape-up {
+        font-size: $text-size + $tablet-text-size-delta;
+    }
+}
+
+p, ul, ol {
+    -ms-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    line-height: $text-line-height;
+}
+
+ul, ol {
+    li {
+        margin-bottom: 0.5em;
+    }
+}
+
+a {
+    color: $secondary-colour;
+
+    &:hover {
+        color: $primary-colour;
+    }
+}
+
+hr {
+    height: 3px;
+    background: repeating-linear-gradient(
+        90deg,
+        $primary-colour 0px, $primary-colour 3px,
+        transparent 3px, transparent 9px
+    );
+    border: none;
+}
+
+/** Code Listings **/
+
+pre, code, .coderef {
+    font-family: Inconsolata, monospace;
+    font-size: $code-size;
+    line-height: $code-line-height;
+
+    @include for-tablet-landscape-up {
+        font-size: $code-size + $tablet-text-size-delta;
+    }
+}
+
+pre, pre > code {
+    overflow: scroll;
+}
+
+pre {
+    @extend %embeddedContentHighlight;
+}
+
+.coderef {
+    @extend %embeddedContentHighlight;
+
+    &+ pre {
+        margin-top: 0;
+    }
+}
+
+/** Quotations **/
+
+blockquote {
+    margin: 0;
+    @extend %embeddedContentHighlight;
+
+    p:first-child {
+        margin-top: 0;
+    }
+
+    p:last-child {
+        margin-bottom: 0;
+    }
+}

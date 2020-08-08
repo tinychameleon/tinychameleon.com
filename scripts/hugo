@@ -1,0 +1,8 @@
+#!/bin/sh
+
+FLAGS=''
+if [[ "$1" == "server" ]]; then
+  FLAGS="-p 1313:1313"
+fi
+
+docker run --rm -ti -v $(rootdir):/workspace $FLAGS tc_hugo $@

@@ -1,0 +1,16 @@
+{{ define "main" }}
+<main>
+    <section>
+        <h1>{{ .Title }}</h1>
+        {{ .Content }}
+    </section>
+    <section>
+        <h1>Recent Writing</h1>
+        {{ partial "writing_list" (first 3 (.Site.GetPage "Writing").Pages) }}
+    </section>
+    <section>
+        <h1>Recent Series</h1>
+        {{ partial "writing_list" (first 3 (.Site.GetPage "Series").Pages) }}
+    </section>
+</main>
+{{ end }}

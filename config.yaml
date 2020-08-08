@@ -1,0 +1,17 @@
+baseURL: "https://tinychameleon.com"
+languageCode: "en-ca"
+title: "tinychameleon"
+summaryLength: 30
+sectionPagesMenu: "navitems"
+disableHugoGeneratorInject: true
+taxonomies:
+  tag: tags
+outputs:
+  home: ["RSS", "HTML"]
+  section: ["HTML"]
+  taxonomy: ["HTML"]
+  term: ["HTML"]
+outputFormats:
+  RSS:
+    baseName: "rss"
+disableKinds: ["sitemap"]

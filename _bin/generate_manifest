@@ -1,6 +1,0 @@
-#!/bin/bash
-
-find _site -type f ! -name '.DS_Store' -exec sha1sum {} \+ \
-| sed 's;_site/;;' \
-| awk '{ print $2, $1 }' \
-| sort

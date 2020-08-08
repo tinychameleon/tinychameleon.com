@@ -1,0 +1,9 @@
+body {
+    margin: 2em 5vw;
+    font-family: Merriweather;
+
+    @include for-tablet-landscape-up {
+        margin: 2em auto;
+        max-width: 72ch;
+    }
+}

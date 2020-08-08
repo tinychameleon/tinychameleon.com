@@ -1,8 +1,0 @@
-#!/bin/bash
-
-find _posts -type f -name '*.adoc' |
-xargs grep -h '^:page-tags:' |
-sed -e 's/^.\+\[//' -e 's/\]$//' -e 's/, /\n/g' |
-sort |
-uniq -c |
-sort -rh

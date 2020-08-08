@@ -1,8 +1,5 @@
-.jekyll-cache/
-_site/
-_tmp/
+public/
+resources/
+tmp/
 .env
-.jekyll-metadata
-.ruby-version
 .DS_Store
-todo_list

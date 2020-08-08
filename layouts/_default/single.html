@@ -1,0 +1,33 @@
+{{ define "main" }}
+<main>
+    <article class="writing">
+        <h1>{{ .Title }}</h1>
+        <span>{{ partial "date" .Date }}</span>
+        {{ .Content }}
+    </article>
+    <section class="more-writing">
+        <hr/>
+        <h2>More Writing</h2>
+        <div>
+            <section class="directional-links">
+                {{ with .PrevInSection }}
+                <h3>Previous</h3>
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                {{ end }}
+                {{ with .NextInSection }}
+                <h3>Next</h3>
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                {{ end }}
+            </section>
+            <section class="tags">
+                <h3>Tags</h3>
+                <ul>
+                    {{ range .Params.tags }}
+                    <li><a href="{{ print "/tags/" . "/" | relURL }}">{{ . }}</a></li>
+                    {{ end }}
+                </ul>
+            </section>
+        </aside>
+    </section>
+</main>
+{{ end }}
