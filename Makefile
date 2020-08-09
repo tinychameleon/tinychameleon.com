@@ -103,6 +103,6 @@ tmp/site_published: tmp/build | tmp
 			--auth-mode login
 	cp tmp/new_manifest $@
 
-tmp/build: | tmp
+tmp/build: $(shell find content -type f -name '*.md') | tmp
 	hugo
 	touch $@
