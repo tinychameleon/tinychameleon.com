@@ -1,0 +1,36 @@
+#!/bin/bash
+set -e
+
+function post_title() {
+	sed -ne 's/^title: "\(.\+\)"$/\1/p' "$1"
+}
+
+function publish() {
+	echo "Publishing \"$(post_title "$1")\""
+	now="$(date -uIseconds | sed 's/[+-]00:00/Z/')"
+	sed -i -e '/^draft: true$/d' -e 's/^date: ".\+"$/date: "'$now'"/' "$1"
+}
+
+draft_files=($(grep -lr '^draft: true$' "$(rootdir)/content/"))
+max_index="$(( ${#draft_files[@]} - 1 ))"
+
+if [[ $max_index == -1 ]]; then
+	echo "No draft content"
+	exit 0
+fi
+
+if [[ $max_index == 0 ]]; then
+	publish "${draft_files[0]}"
+	exit 0
+fi
+
+for idx in $(seq 0 $max_index); do
+  echo "[$idx] $(post_title "${draft_files[$idx]}")"
+done
+
+idx=-1
+while [[ $idx < 0 || $idx > $max_index ]]; do
+	read -p "Choose content to publish: " idx
+done
+
+publish "${draft_files[$idx]}"

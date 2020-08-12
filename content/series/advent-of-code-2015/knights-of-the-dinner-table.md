@@ -1,8 +1,7 @@
 ---
 title: "Advent of Code 2015: Knights of the Dinner Table"
-date: "2020-08-09T21:05:44Z"
+date: "2020-08-12T03:12:36Z"
 tags: [advent-of-code, ruby]
-draft: true
 fileurl: https://github.com/tinychameleon/advent-of-code-2015/blob/3c24e9df8f1932c96db0c1400b191559f75c3886/2015/13/solution.rb
 ---
 
