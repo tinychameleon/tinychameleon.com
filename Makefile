@@ -42,14 +42,14 @@ server: deps
 	hugo server -DF --bind 0.0.0.0 -p 1313
 
 .PHONY: deploy
-deploy: deps tmp/site_published
+deploy: deps clean tmp/site_published
 
 .PHONY: infra
 infra: deps tmp/infra_deployed
 
 .PHONY: clean
 clean:
-	rm -rf public tmp/production_build
+	rm -rf public tmp/build
 
 
 # Internal Recipes
@@ -94,14 +94,17 @@ tmp/site_published: tmp/build | tmp
 	comm -13 $@ tmp/new_manifest | awk '{ print $$1 }' > tmp/files_to_upload
 	comm -23 $@ tmp/new_manifest | awk '{ print $$1 }' > tmp/old_files_changed
 	comm -23 tmp/{old_files_changed,files_to_upload} > tmp/files_to_delete
+	echo "Uploading $$(wc -l tmp/files_to_upload | cut -d' ' -f1) files..."
 	xargs -a tmp/files_to_upload -P1 -I{} \
 		$(AZ) storage blob upload -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" \
 			-f "public/{}" -n "{}" --content-cache-control '$(CACHE_HEADERS)' \
-			--auth-mode login
+			--auth-mode login --no-progress
+	echo "Deleting $$(wc -l tmp/files_to_delete | cut -d' ' -f1) files..."
 	xargs -a tmp/files_to_delete -P1 -I{} \
 		$(AZ) storage blob delete -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" -n "{}" \
 			--auth-mode login
 	cp tmp/new_manifest $@
+	echo "Done"
 
 tmp/build: $(shell find content -type f -name '*.md') | tmp
 	hugo
