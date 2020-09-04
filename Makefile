@@ -88,7 +88,7 @@ tmp/az_infra_json: infra.json tmp/myip | tmp
 
 tmp/myip: | tmp
 	dig @resolver1.opendns.com ANY myip.opendns.com +short -4 > $@
- 
+
 tmp/site_published: tmp/build | tmp
 	generate_manifest > tmp/new_manifest
 	comm -13 $@ tmp/new_manifest | awk '{ print $$1 }' > tmp/files_to_upload

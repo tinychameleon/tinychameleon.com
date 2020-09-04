@@ -41,6 +41,7 @@ $text-size: 14pt;
 $code-size: 15pt;
 $tablet-text-size-delta: -1pt;
 $text-line-height: 1.6;
+$tablet-text-line-height-delta: 0.2;
 $code-line-height: 1.4;
 
 /** Common Styles **/
@@ -67,6 +68,10 @@ p, ul, ol {
     -webkit-hyphens: auto;
     hyphens: auto;
     line-height: $text-line-height;
+
+    @include for-tablet-landscape-up {
+        line-height: $text-line-height + $tablet-text-line-height-delta;
+    }
 }
 
 ul, ol {
