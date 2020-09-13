@@ -1,5 +1,6 @@
 # GNU Make Configuration
 SHELL := /bin/sh
+.SHELLFLAGS = -e -c
 .ONESHELL:
 .DELETE_ON_ERROR:
 .DEFAULT_GOAL := server
