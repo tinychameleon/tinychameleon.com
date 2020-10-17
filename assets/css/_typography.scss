@@ -63,7 +63,7 @@ body {
     }
 }
 
-p, ul, ol {
+p, ul, ol, table {
     -ms-hyphens: auto;
     -webkit-hyphens: auto;
     hyphens: auto;
@@ -142,5 +142,28 @@ blockquote {
 
     p:last-child {
         margin-bottom: 0;
+    }
+}
+
+/** Tables **/
+
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-collapse: collapse;
+
+    td, th {
+        padding: 0.3em 1em;
+        border-bottom: 1px solid #dbdbdb;
+        border-right: 1px solid #dbdbdb;
+        &:last-child { border-right: none; }
+    }
+
+    th {
+        background: #f6f6f6;
+        border-bottom: 1px solid #dbdbdb;
+        &:first-child { border-radius: 3px 0 0 0; }
+        &:last-child { border-radius: 0 3px 0 0; }
     }
 }
