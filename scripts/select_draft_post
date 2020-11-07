@@ -1,0 +1,29 @@
+#!/bin/bash
+
+draft_files=($(grep -lr '^draft: true$' "$(rootdir)/content/"))
+max_index="$(( ${#draft_files[@]} - 1 ))"
+
+if [[ $max_index == -1 ]]; then
+	exit 0
+fi
+
+if [[ $max_index == 0 ]]; then
+	echo "${draft_files[0]}"
+	exit 0
+fi
+
+for idx in $(seq 0 $max_index); do
+  echo "[$idx] $(extract_post_title "${draft_files[$idx]}")" >&2
+done
+echo "[q] Quit" >&2
+
+idx=-1
+while [[ $idx != "q" && ($idx < 0 || $idx > $max_index) ]]; do
+	read -p "Choose content to publish: " idx
+done
+
+if [[ "$idx" == "q" ]]; then
+	exit 0
+fi
+
+echo "${draft_files[$idx]}"
