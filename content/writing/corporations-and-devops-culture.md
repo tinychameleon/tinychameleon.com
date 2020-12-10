@@ -4,7 +4,7 @@ date: "2020-11-07T22:13:47Z"
 tags: [career, devops]
 ---
 
-Sometimes, thought Reddit, friends, or other blog posts, I read or hear about corporations that want to adopt a DevOps culture to allow their teams to be more effective and capable of change.
+Sometimes, through Reddit, friends, or other blog posts, I read or hear about corporations that want to adopt a DevOps culture to allow their teams to be more effective and capable of change.
 They dream of their Operations and Development specialists working together to effectively triage and solve production issues speedily.
 Reality then slaps their faces and dashes their hopes when it turns out that consultants and process changes haven't made their dreams come true.
 
