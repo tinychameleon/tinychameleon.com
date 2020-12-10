@@ -19,7 +19,7 @@ echo "[q] Quit" >&2
 
 idx=-1
 while [[ $idx != "q" && ($idx < 0 || $idx > $max_index) ]]; do
-	read -p "Choose content to publish: " idx
+	read -p "Choose content: " idx
 done
 
 if [[ "$idx" == "q" ]]; then
