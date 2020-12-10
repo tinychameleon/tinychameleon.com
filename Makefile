@@ -95,7 +95,8 @@ tmp/site_published: tmp/build | tmp
 	comm -13 $@ tmp/new_manifest | awk '{ print $$1 }' > tmp/files_to_upload
 	comm -23 $@ tmp/new_manifest | awk '{ print $$1 }' > tmp/old_files_changed
 	comm -23 tmp/{old_files_changed,files_to_upload} > tmp/files_to_delete
-	echo "Uploading $$(wc -l tmp/files_to_upload | cut -d' ' -f1) files..."
+	echo "Uploading $$(wc -l tmp/files_to_upload | cut -d' ' -f1) files:"
+	sed -e 's/^/\t/' tmp/files_to_upload
 	xargs -a tmp/files_to_upload -P1 -I{} \
 		$(AZ) storage blob upload -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" \
 			-f "public/{}" -n "{}" --content-cache-control '$(CACHE_HEADERS)' \
