@@ -1,2 +1,2 @@
 #!/bin/sh
-aspell -l en_CA -c "$(select_draft_post)"
+aspell -x -l en_CA -c "$(select_draft_post)"
