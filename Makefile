@@ -27,7 +27,7 @@ DIRENV ?= $(BREW_BIN)/direnv
 
 
 # Recipe Variables
-HUGO_VERSION ?= 0.74.3
+HUGO_VERSION ?= 0.82.0
 HUGO_IMAGE ?= tc_hugo
 
 
