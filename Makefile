@@ -78,7 +78,7 @@ tmp/az_resource_group: | tmp
 	touch $@
 
 tmp/az_infra_json: infra.json tmp/myip | tmp
-	$(AZ) group deployment create -g "$(AZ_RESOURCE_GROUP)" -n "$(AZ_DEPLOYMENT_NAME)" \
+	$(AZ) deployment group create -g "$(AZ_RESOURCE_GROUP)" -n "$(AZ_DEPLOYMENT_NAME)" \
 		--template-file infra.json --parameters \
 			cidr="$$(cat tmp/myip)" \
 			storageAccountName="$(AZ_STORAGE_ACCOUNT)"
