@@ -1,6 +1,6 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion": "0.0.0.6",
+    "contentVersion": "1.0.0.1",
     "parameters": {
         "storageAccountName": {
             "type": "string",
@@ -33,20 +33,21 @@
                     "defaultAction": "Deny",
                     "ipRules": [
                         {"value": "[parameters('cidr')]", "action": "Allow"},
-                        {"value": "173.245.48.0/20", "action": "Allow"},
                         {"value": "103.21.244.0/22", "action": "Allow"},
                         {"value": "103.22.200.0/22", "action": "Allow"},
                         {"value": "103.31.4.0/22", "action": "Allow"},
-                        {"value": "141.101.64.0/18", "action": "Allow"},
+                        {"value": "104.16.0.0/13", "action": "Allow"},
+                        {"value": "104.24.0.0/14", "action": "Allow"},
                         {"value": "108.162.192.0/18", "action": "Allow"},
-                        {"value": "190.93.240.0/20", "action": "Allow"},
-                        {"value": "188.114.96.0/20", "action": "Allow"},
-                        {"value": "197.234.240.0/22", "action": "Allow"},
-                        {"value": "198.41.128.0/17", "action": "Allow"},
+                        {"value": "131.0.72.0/22", "action": "Allow"},
+                        {"value": "141.101.64.0/18", "action": "Allow"},
                         {"value": "162.158.0.0/15", "action": "Allow"},
-                        {"value": "104.16.0.0/12", "action": "Allow"},
                         {"value": "172.64.0.0/13", "action": "Allow"},
-                        {"value": "131.0.72.0/22", "action": "Allow"}
+                        {"value": "173.245.48.0/20", "action": "Allow"},
+                        {"value": "188.114.96.0/20", "action": "Allow"},
+                        {"value": "190.93.240.0/20", "action": "Allow"},
+                        {"value": "197.234.240.0/22", "action": "Allow"},
+                        {"value": "198.41.128.0/17", "action": "Allow"}
                     ]
                 },
                 "supportsHttpsTrafficOnly": true
