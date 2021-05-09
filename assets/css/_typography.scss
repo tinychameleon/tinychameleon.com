@@ -37,9 +37,8 @@
 
 $text-background: #fdfdfd;
 $text-colour: #0c0c0c;
-$text-size: 14pt;
-$code-size: 15pt;
-$tablet-text-size-delta: -1pt;
+$text-size: 13pt;
+$code-size: 14pt;
 $text-line-height: 1.6;
 $tablet-text-line-height-delta: 0.2;
 $code-line-height: 1.4;
@@ -57,16 +56,9 @@ body {
     background: $text-background;
     color: $text-colour;
     font: $text-size Merriweather, serif;
-
-    @include for-tablet-landscape-up {
-        font-size: $text-size + $tablet-text-size-delta;
-    }
 }
 
 p, ul, ol, table {
-    -ms-hyphens: auto;
-    -webkit-hyphens: auto;
-    hyphens: auto;
     line-height: $text-line-height;
 
     @include for-tablet-landscape-up {
@@ -74,9 +66,20 @@ p, ul, ol, table {
     }
 }
 
+p {
+    margin: 1em auto;
+    @include for-tablet-landscape-up {
+        margin: 1.5rem auto;
+        line-height: 2;
+    }
+}
+
 ul, ol {
     li {
         margin-bottom: 0.5em;
+        p {
+          margin: 0;
+        }
     }
 
     ul, ol {
@@ -108,10 +111,6 @@ pre, code, .coderef {
     font-family: Inconsolata, monospace;
     font-size: $code-size;
     line-height: $code-line-height;
-
-    @include for-tablet-landscape-up {
-        font-size: $code-size + $tablet-text-size-delta;
-    }
 }
 
 pre, pre > code {
