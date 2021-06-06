@@ -1,0 +1,7 @@
+#!/bin/bash
+
+find content/ -name '*.md' -exec grep '^tags: \[' {} \; |
+    sed -e 's/^tags: \[\(.*\)\]/\1/' -e 's/"//g' -e 's/, */\n/g' -e '/^$/d' |
+    sort |
+    uniq -c |
+    sort -nr
