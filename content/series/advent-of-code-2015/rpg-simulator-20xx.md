@@ -1,10 +1,9 @@
 ---
 title: "Advent of Code 2015: RPG Simulator 20XX"
-date: "2021-07-12T02:30:46Z"
+date: "2021-07-26T00:58:51Z"
 tags: [advent-of-code, ruby]
 part-a-url: https://github.com/tinychameleon/advent-of-code-2015/blob/671609d31b1e4b31d8c1363420db98f427ed101a/2015/21/solution.rb
 part-b-url: https://github.com/tinychameleon/advent-of-code-2015/blob/2c7fbb778e1059a081bec7385798987f38075c98/2015/21/solution.rb
-draft: true
 ---
 
 The [twenty-first Advent of Code challenge](https://adventofcode.com/2015/day/21) is about min-maxing an RPG character build to get the best results for the fewest resources.
