@@ -19,6 +19,14 @@ ifndef AZ_DEPLOYMENT_NAME
   AZ_DEPLOYMENT_NAME = $(error The AZ_DEPLOYMENT_NAME variable must be defined)
 endif
 
+ifndef CLOUDFLARE_API_TOKEN
+  CLOUDFLARE_API_TOKEN = $(error The CLOUDFLARE_API_TOKEN variable must be defined)
+endif
+
+ifndef CLOUDFLARE_ZONE_ID
+  CLOUDFLARE_ZONE_ID = $(error The CLOUDFLARE_ZONE_ID variable must be defined)
+endif
+
 
 # Executable Variables
 BREW_BIN ?= $(shell brew --prefix)/bin
@@ -36,7 +44,7 @@ HUGO_IMAGE ?= tc_hugo
 deps: tmp/dependencies_installed
 
 .PHONY: server
-server: deps 
+server: deps
 	hugo server -DF --bind 0.0.0.0 -p 1313
 
 .PHONY: deploy
@@ -104,8 +112,9 @@ tmp/site_published: tmp/build | tmp
 			--auth-mode login
 	cp tmp/new_manifest $@
 	echo
-	echo 'These URLs can be purged on CloudFlare:'
-	sed -e 's;^;\thttps://tinychameleon.com/;' -e 's/index.html//' tmp/files_to_upload
+	echo 'Purging URLs from CloudFlare:'
+	urls_to_purge
+	do_cloudflare_purge
 	echo
 	echo "Done"
 

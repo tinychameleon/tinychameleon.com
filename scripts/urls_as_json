@@ -1,0 +1,15 @@
+#!/bin/sh
+
+function stdin() {
+    while read -r line; do
+        IFS=', ' echo '"'$line'"'
+    done
+}
+
+function comma_joined() {
+    sed -e ':start' -e 'N; s/\n/, /; t start'
+}
+
+printf '{"files": ['
+stdin | comma_joined
+printf ']}'

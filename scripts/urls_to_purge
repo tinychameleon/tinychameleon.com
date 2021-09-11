@@ -1,0 +1,2 @@
+#!/bin/sh
+sed -e 's;^;\thttps://tinychameleon.com/;' -e 's/index.html//' tmp/files_to_upload
