@@ -52,7 +52,9 @@ are being run. The Makefile will error if a recipe requires a missing value.
 The current required configuration values are:
 - `AZ_RESOURCE_GROUP` &mdash; The Azure resource group name;
 - `AZ_STORAGE_ACCOUNT` &mdash; The Azure storage account name;
-- `AZ_DEPLOYMENT_NAME` &mdash; The Azure resource group deployment name
+- `AZ_DEPLOYMENT_NAME` &mdash; The Azure resource group deployment name;
+- `CLOUDFLARE_API_TOKEN` &mdash; The CloudFlare API bearer token for authentication;
+- `CLOUDFLARE_ZONE_ID` &mdash; The domain zone within CloudFlare
 
 
 ### Infrastructure Trade Offs
