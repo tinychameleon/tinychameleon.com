@@ -1,47 +1,22 @@
 /** Font Face Definitions **/
 
-@font-face {
-  font-family: 'Merriweather';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: local('Merriweather Regular'), local('Merriweather-Regular'), url(/fonts/Merriweather-Regular.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: 'Merriweather';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: local('Merriweather Italic'), local('Merriweather-Italic'), url(/fonts/Merriweather-Italic.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: 'Merriweather';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: local('Merriweather Bold'), local('Merriweather-Bold'), url(/fonts/Merriweather-Bold.woff2) format('woff2');
-}
-
-@font-face {
-  font-family: 'Inconsolata';
-  font-style: normal;
-  font-weight: 400;
-  font-stretch: 100%;
-  font-display: swap;
-  src: local('Inconsolata'), url(/fonts/Inconsolata-Regular.woff2) format('woff2');
-}
+@import url('https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono&display=swap');
 
 /** Typographic Variables **/
 
 $text-background: #fdfdfd;
 $text-colour: #0c0c0c;
-$text-size: 13pt;
-$code-size: 14pt;
-$text-line-height: 1.6;
-$tablet-text-line-height-delta: 0.2;
-$code-line-height: 1.4;
+$prose-family: Bitter, serif;
+$code-family: 'IBM Plex Mono', monospace;
+
+$text-size: 14pt;
+$text-line-height: 1.7;
+$tablet-text-size: 13pt;
+$tablet-text-line-height: 1.8;
+
+$code-size: 13pt;
+$tablet-code-size: 11pt;
+$code-line-height: 1.8;
 
 /** Common Styles **/
 
@@ -55,14 +30,18 @@ $code-line-height: 1.4;
 body {
     background: $text-background;
     color: $text-colour;
-    font: $text-size Merriweather, serif;
+    font: $text-size $prose-family;
+
+    @include for-tablet-landscape-up {
+        font-size: $tablet-text-size;
+    }
 }
 
 p, ul, ol, table {
     line-height: $text-line-height;
 
     @include for-tablet-landscape-up {
-        line-height: $text-line-height + $tablet-text-line-height-delta;
+        line-height: $tablet-text-line-height;
     }
 }
 
@@ -70,20 +49,13 @@ p {
     margin: 1em auto;
     @include for-tablet-landscape-up {
         margin: 1.5rem auto;
-        line-height: 2;
+        line-height: $tablet-text-line-height;
     }
 }
 
 ul, ol {
-    li {
-        margin-bottom: 0.5em;
-        p {
-          margin: 0;
-        }
-    }
-
-    ul, ol {
-        margin-top: 0.5em;
+    li p {
+        margin: 0;
     }
 }
 
@@ -108,9 +80,21 @@ hr {
 /** Code Listings **/
 
 pre, code, .coderef {
-    font-family: Inconsolata, monospace;
+    font-family: $code-family;
     font-size: $code-size;
     line-height: $code-line-height;
+
+    @include for-tablet-landscape-up {
+        font-size: $tablet-code-size;
+    }
+}
+
+p > code {
+    padding: 0 0.4em 0.1em 0.4em;
+    line-height: 1;
+    background-color: $code-inline-colour;
+    border: 1px solid $code-inline-border-colour;
+    border-radius: 8px;
 }
 
 pre, pre > code {
