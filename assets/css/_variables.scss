@@ -1,4 +1,8 @@
 $primary-colour: #369904;
 $secondary-colour: #297303;
-$code-inline-colour: #f3f3f3;
+$text-background: #fdfdfd;
+$text-colour: #0c0c0c;
+$text-colour-faded: lighten($text-colour, 40%);
+//$code-inline-colour: #f3f3f3;
+$code-inline-colour: #f8f8f8;
 $code-inline-border-colour: #dfdfdf;

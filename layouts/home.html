@@ -5,12 +5,8 @@
         {{ .Content }}
     </section>
     <section>
-        <h1>Recent Writing</h1>
-        {{ partial "writing_list" (first 3 (.Site.GetPage "Writing").Pages) }}
-    </section>
-    <section>
-        <h1>Recent Series</h1>
-        {{ partial "writing_list" (first 3 (.Site.GetPage "Series").Pages) }}
+        <h1>Writing</h1>
+        {{ partial "writing_list.html" .Site.RegularPages }}
     </section>
 </main>
 {{ end }}

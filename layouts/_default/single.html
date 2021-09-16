@@ -5,29 +5,26 @@
         <span>{{ partial "date" .Date }}</span>
         {{ .Content }}
     </article>
-    <section class="more-writing">
-        <hr/>
-        <h2>More Writing</h2>
-        <div>
-            <section class="directional-links">
-                {{ with .PrevInSection }}
-                <h3>Previous</h3>
-                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                {{ end }}
-                {{ with .NextInSection }}
-                <h3>Next</h3>
-                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-                {{ end }}
-            </section>
-            <section class="tags">
-                <h3>Tags</h3>
-                <ul>
-                    {{ range .Params.tags }}
-                    <li><a href="{{ print "/tags/" . "/" | relURL }}">{{ . }}</a></li>
-                    {{ end }}
-                </ul>
-            </section>
-        </aside>
-    </section>
+    <aside class="post-tags">
+        <span>tags:</span>
+        <ul class="tags">
+        {{ range .Params.tags | sort }}
+            <li><a href="{{ print "/tags/" . "/" | relURL }}">{{ . }}</a></li>
+        {{ end }}
+        </ul>
+    </aside>
+    <aside class="more-writing-links">
+        {{ with .PrevInSection }}
+        <div class="directional-link">
+            previous: <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </div>
+        {{ end }}
+        <div class="spacer"></div>
+        {{ with .NextInSection }}
+        <div class="directional-link">
+            next: <a href="{{ .RelPermalink }}" style="text-align: right">{{ .Title }}</a>
+        </div>
+        {{ end }}
+    </aside>
 </main>
 {{ end }}

@@ -4,8 +4,6 @@
 
 /** Typographic Variables **/
 
-$text-background: #fdfdfd;
-$text-colour: #0c0c0c;
 $prose-family: Bitter, serif;
 $code-family: 'IBM Plex Mono', monospace;
 
@@ -23,6 +21,7 @@ $code-line-height: 1.8;
 %embeddedContentHighlight {
     padding: 0.5em 1em;
     border-left: 2px solid $primary-colour;
+    background: $code-inline-colour;
 }
 
 /** General Text  **/
@@ -45,7 +44,7 @@ p, ul, ol, table {
     }
 }
 
-p {
+p, .post-tags, .more-writing-links {
     margin: 1em auto;
     @include for-tablet-landscape-up {
         margin: 1.5rem auto;

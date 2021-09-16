@@ -9,11 +9,51 @@ $width: $defaultWidth * $mobileScale;
 $height: $defaultHeight * $mobileScale;
 
 header {
-    height: $height;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     .logo {
+        flex: 0;
         width: $width;
         height: $height;
+    }
+
+    nav {
+        display: flex;
+        flex: 1 0 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: $height;
+        font-size: 15pt;
+
+        .spacer {
+            flex: 1;
+        }
+
+        a {
+            flex: 0;
+            display: inline-block;
+            margin-right: 1em;
+            text-decoration: none;
+        }
+
+        div.additional-links {
+            display: flex;
+            align-items: center;
+
+            .icon {
+                width: 1.5em;
+
+                &.icon-sm {
+                    width: 1.3em;
+                }
+            }
+        }
+
+        @include for-phone-landscape-up {
+            flex-direction: row;
+        }
     }
 }
