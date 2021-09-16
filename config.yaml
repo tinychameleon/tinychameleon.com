@@ -2,7 +2,6 @@ baseURL: "https://tinychameleon.com"
 languageCode: "en-ca"
 title: "tinychameleon"
 summaryLength: 30
-sectionPagesMenu: "navitems"
 disableHugoGeneratorInject: true
 taxonomies:
   tag: tags

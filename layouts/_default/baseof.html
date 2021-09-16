@@ -11,7 +11,7 @@
         <meta property="og:description" content="{{ .Summary }}">
         <meta property="og:type" content="website">
         <title>{{ block "title" . }}{{ .Title }}{{ end }} &mdash; {{ .Site.Title }}</title>
-        {{ $css := resources.Get "css/main.scss" | toCSS | minify }}
+        {{ $css := resources.Get "css/main.scss" | toCSS | minify | fingerprint }}
         <link rel="stylesheet" media="screen" href="{{ $css.RelPermalink }}">
         <link rel="icon" href="/images/favicon.ico">
         <link rel="alternate" type="application/rss+xml" href="/rss.xml">
