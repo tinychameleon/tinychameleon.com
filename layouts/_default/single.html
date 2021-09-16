@@ -14,13 +14,13 @@
         </ul>
     </aside>
     <aside class="more-writing-links">
-        {{ with .PrevInSection }}
+        {{ with .Prev }}
         <div class="directional-link">
             previous: <a href="{{ .RelPermalink }}">{{ .Title }}</a>
         </div>
         {{ end }}
         <div class="spacer"></div>
-        {{ with .NextInSection }}
+        {{ with .Next }}
         <div class="directional-link">
             next: <a href="{{ .RelPermalink }}" style="text-align: right">{{ .Title }}</a>
         </div>
