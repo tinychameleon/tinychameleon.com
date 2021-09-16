@@ -37,7 +37,7 @@ DIRENV ?= $(BREW_BIN)/direnv
 # Recipe Variables
 HUGO_VERSION ?= 0.82.0
 HUGO_IMAGE ?= tc_hugo
-
+CACHE_CONTROL := public, max-age=432000
 
 # External Recipes
 .PHONY: deps
@@ -102,9 +102,12 @@ tmp/site_published: tmp/build | tmp
 	comm -23 tmp/{old_files_changed,files_to_upload} > tmp/files_to_delete
 	echo "Uploading $$(wc -l tmp/files_to_upload | cut -d' ' -f1) files:"
 	sed -e 's/^/\t/' tmp/files_to_upload
-	xargs -a tmp/files_to_upload -P1 -I{} \
-		$(AZ) storage blob upload -c '$$web' --account-name "$(AZ_STORAGE_ACCOUNT)" \
-			-f "public/{}" -n "{}" --auth-mode login --no-progress
+	rm -r tmp/uploads
+	mkdir tmp/uploads
+	xargs -a tmp/files_to_upload -P1 -I{} cp --parents "public/{}" tmp/uploads
+	$(AZ) storage blob upload-batch --account-name "$(AZ_STORAGE_ACCOUNT)" \
+		--auth-mode login --no-progress -d '$$web' -s tmp/uploads/public \
+		--content-cache-control "$(CACHE_CONTROL)"
 	echo "Deleting $$(wc -l tmp/files_to_delete | cut -d' ' -f1) files:"
 	sed -e 's/^/\t/' tmp/files_to_delete
 	xargs -a tmp/files_to_delete -P1 -I{} \
