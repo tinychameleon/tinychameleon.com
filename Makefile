@@ -106,7 +106,7 @@ tmp/site_published: tmp/build | tmp
 	mkdir tmp/uploads
 	xargs -a tmp/files_to_upload -P1 -I{} cp --parents "public/{}" tmp/uploads
 	$(AZ) storage blob upload-batch --account-name "$(AZ_STORAGE_ACCOUNT)" \
-		--auth-mode login --no-progress -d '$$web' -s tmp/uploads/public \
+		--auth-mode login -d '$$web' -s tmp/uploads/public \
 		--content-cache-control "$(CACHE_CONTROL)"
 	echo "Deleting $$(wc -l tmp/files_to_delete | cut -d' ' -f1) files:"
 	sed -e 's/^/\t/' tmp/files_to_delete
