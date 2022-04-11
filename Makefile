@@ -35,7 +35,7 @@ DIRENV ?= $(BREW_BIN)/direnv
 
 
 # Recipe Variables
-HUGO_VERSION ?= 0.82.0
+HUGO_VERSION ?= 0.91.2
 HUGO_IMAGE ?= tc_hugo
 CACHE_CONTROL := public, max-age=432000
 
