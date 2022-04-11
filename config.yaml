@@ -1,4 +1,9 @@
 baseURL: "https://tinychameleon.com"
+frontmatter:
+  lastmod:
+    - lastmod
+    - :fileModTime
+    - :default
 languageCode: "en-ca"
 title: "tinychameleon"
 summaryLength: 30
