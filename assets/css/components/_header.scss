@@ -1,59 +1,44 @@
 /* Constants */
 $defaultWidth: 25px;
 $defaultHeight: 20px;
-$mobileScale: 4;
-$desktopScale: 4;
+$mobileScale: 2;
 
 /* Sizes */
 $width: $defaultWidth * $mobileScale;
 $height: $defaultHeight * $mobileScale;
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	nav {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		height: $height;
+		font-size: 14pt;
 
-    .logo {
-        flex: 0;
-        width: $width;
-        height: $height;
-    }
+		.logo, a { margin-right: 0.6em; }
 
-    nav {
-        display: flex;
-        flex: 1 0 100%;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        height: $height;
-        font-size: 15pt;
+		@include for-phone-landscape-up {
+			.logo, a { margin-right: 1em }
+		}
 
-        .spacer {
-            flex: 1;
-        }
+		.logo {
+			width: $width;
+			height: $height;
+		}
 
-        a {
-            flex: 0;
-            display: inline-block;
-            margin-right: 1em;
-            text-decoration: none;
-        }
+		a {
+			display: inline-block;
+			text-decoration: none;
+		}
 
-        div.additional-links {
-            display: flex;
-            align-items: center;
+		.icon {
+			width: 1.2em;
+			vertical-align: top;
 
-            .icon {
-                width: 1.5em;
-
-                &.icon-sm {
-                    width: 1.3em;
-                }
-            }
-        }
-
-        @include for-phone-landscape-up {
-            flex-direction: row;
-        }
-    }
+			&.icon-sm {
+				width: 1.1em;
+			}
+		}
+	}
 }
