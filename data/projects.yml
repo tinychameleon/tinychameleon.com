@@ -1,0 +1,46 @@
+projects:
+  - name: clusterid
+    description: >-
+      Create unique 128-bit identifiers for entities in distributed systems with
+      customizable identifier attributes.
+    metadata:
+      language: ruby
+      year: 2022
+      source: https://github.com/tinychameleon/clusterid
+  - name: rails-clusterid
+    description: >-
+      ActiveRecord support for using the clusterid library as model primary keys.
+    metadata:
+      language: ruby
+      year: 2022
+      source: https://github.com/tinychameleon/rails-clusterid
+  - name: crockford32
+    description: >-
+      A fast little-endian implementation of Douglas Crockford's Base32 specification.
+    metadata:
+      language: ruby
+      year: 2022
+      source: https://github.com/tinychameleon/crockford32
+  - name: blocky
+    description: >-
+      A command line utility for converting pixel art images into SVGs for the web.
+    metadata:
+      language: go
+      year: 2020
+      source: https://github.com/tinychameleon/blocky
+  - name: printer-fixer
+    description: >-
+      A small Windows PowerShell solution for when Windows forgets how to connect
+      to a LAN printer because its IP has changed.
+    metadata:
+      language: powershell
+      year: 2020
+      source: https://github.com/tinychameleon/printer-fixer
+  - name: cookie-eater
+    description: >-
+      A small Google Chrome extension to remove YouTube-specific cookies for
+      when YouTube fails to load videos while logged into a Google account.
+    metadata:
+      language: javascript
+      year: 2020
+      source: https://github.com/tinychameleon/cookie-eater

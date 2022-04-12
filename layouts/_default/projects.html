@@ -1,0 +1,21 @@
+{{ define "main" }}
+<main>
+	<section>
+		<h1>{{ .Title }}</h1>
+		{{ .Content }}
+		<div class="projects-grid">
+			{{ range sort .Site.Data.projects.projects "name" }}
+			<div class="project-card">
+				<h2>{{ .name }}</h2>
+				<p>{{ .description }}</p>
+				<ul>
+					<li>language: {{ .metadata.language }}</li>
+					<li>year: {{ .metadata.year }}</li>
+					<li>source: <a href="{{ .metadata.source }}">GitHub</a></li>
+				</ul>
+			</div>
+			{{ end }}
+		</div>
+	</section>
+</main>
+{{ end }}

@@ -1,0 +1,36 @@
+.projects-grid {
+	display: flex;
+	flex-direction: column;
+
+	.project-card {
+		margin-bottom: 2em;
+		&:last-of-type { margin-bottom: 0; }
+
+		h2 { margin-top: 0; margin-bottom: 0.5em; }
+
+		ul {
+			display: flex;
+			flex-flow: row wrap;
+			padding: 1em;
+			margin: 0;
+			list-style: none;
+			background: $code-inline-colour;
+			color: $text-colour-faded;
+			font-size: 0.95em;
+
+			li {
+				flex: 1 0 100%;
+			}
+
+			@include for-phone-landscape-up {
+				li {
+					flex: 1 0 auto;
+				}
+			}
+
+			@include for-tablet-landscape-up {
+				font-size: 0.85em;
+			}
+		}
+	}
+}
