@@ -1,7 +1,0 @@
-<ol class="writing">
-{{ range . }}
-    <li data-publish-date="{{ partial "date" .Date }}">
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </li>
-{{ end }}
-</ol>

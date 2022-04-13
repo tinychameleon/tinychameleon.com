@@ -1,12 +1,16 @@
 {{ define "main" }}
 <main>
-    <section>
-        <h1>{{ .Title }}</h1>
-        {{ .Content }}
-    </section>
-    <section>
-        <h1>Writing</h1>
-        {{ partial "writing_list.html" .Site.RegularPages }}
-    </section>
+	<section>
+		<h1>{{ .Title }}</h1>
+		{{ .Content }}
+		<h2>Writing</h2>
+		<ol class="writing">
+		{{- range .Site.RegularPages }}
+			<li>
+				<a href="{{ .RelPermalink }}">{{ .Title }}</a> {{ partial "date" .Date }}
+			</li>
+		{{- end }}
+		</ol>
+	</section>
 </main>
 {{ end }}
