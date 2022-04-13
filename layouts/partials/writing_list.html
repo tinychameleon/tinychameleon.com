@@ -1,0 +1,7 @@
+<ol class="writing">
+{{- range . }}
+	<li>
+		<a href="{{ .RelPermalink }}">{{ .Title }}</a> {{ partial "date" (default .Lastmod .Date) }}
+	</li>
+{{- end }}
+</ol>
