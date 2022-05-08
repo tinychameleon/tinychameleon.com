@@ -1,2 +1,4 @@
 #!/bin/sh
-aspell -x -l en_CA -c "$(select_draft_post)"
+file="$(select_draft_post)"
+[[ -z "$file" ]] && exit 0
+aspell -x -l en_CA -c "$file"
